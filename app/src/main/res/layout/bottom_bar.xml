@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_bar_height"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_main"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_main"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/main_selected"/>
+        <TextView
+            style="@style/bottom_bar_text_style"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom_bar_left_text"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_shopping_cart"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_shopping_cart"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/shopping_cart"/>
+        <TextView
+            style="@style/bottom_bar_text_style"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom_bar_center_text"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_mine"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_mine"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/mine"/>
+        <TextView
+            style="@style/bottom_bar_text_style"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bottom_bar_right_text"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

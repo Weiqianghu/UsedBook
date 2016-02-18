@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <CheckBox
+        android:id="@+id/cb_check"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_book"
+        android:layout_toRightOf="@id/cb_check"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/book2"
+        android:scaleType="fitXY"
+        android:layout_width="@dimen/book_item_img_dimen"
+        android:layout_height="@dimen/book_item_img_dimen" />
+    <TextView
+        android:id="@+id/tv_bookname"
+        android:layout_toRightOf="@id/iv_book"
+        android:text="计算机文化"
+        style="@style/common_text_style"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_price_title"
+        android:layout_toRightOf="@id/iv_book"
+        android:layout_below="@+id/tv_bookname"
+        android:text="@string/price"
+        style="@style/small_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_book_price"
+        android:layout_toRightOf="@id/tv_price_title"
+        android:layout_below="@+id/tv_bookname"
+        android:text="￥10"
+        style="@style/small_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/delete"
+        android:background="@drawable/null_background"
+        android:textColor="@color/link"
+        android:textSize="@dimen/small_text_size"
+        android:layout_width="@dimen/small_dp"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/ib_add"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/btn_delete"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/add"
+        android:background="@drawable/null_background"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tv_number"
+        android:layout_margin="10dp"
+        android:text="1"
+        style="@style/common_text_style"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/ib_add"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/subtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/ib_subtract"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/tv_number"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/subtract"
+        android:background="@drawable/null_background"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:id="@+id/tv_subtotal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_number"
+        android:layout_marginRight="10dp"
+        android:layout_alignRight="@id/ib_add"
+        android:text="￥20"
+        style="@style/small_price_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_subtotal_title"
+        android:layout_marginTop="10dp"
+        android:text="@string/subtotal"
+        style="@style/small_text"
+        android:layout_alignLeft="@id/ib_subtract"
+        android:layout_below="@id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

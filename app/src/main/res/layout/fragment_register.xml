@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/top_bar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.weiqianghu.usedbook.view.customview.ClearEditText
+            android:id="@+id/et_mobile_no"
+            style="@style/username_style"
+            android:hint="@string/mobile_no"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_get_code"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/small_btn_bg"
+            android:text="@string/get_code"
+            style="@style/small_text_style"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.weiqianghu.usedbook.view.customview.ClearEditText
+        android:id="@+id/et_code"
+        style="@style/username_style"
+        android:hint="@string/code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.weiqianghu.usedbook.view.customview.ClearEditText
+        android:id="@+id/et_new_password"
+        style="@style/password_style"
+        android:hint="@string/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.weiqianghu.usedbook.view.customview.ClearEditText
+        android:id="@+id/et_ensuer_password"
+        style="@style/password_style"
+        android:hint="@string/ensure_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btn_submit"
+        android:text="@string/register"
+        style="@style/small_text_style"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

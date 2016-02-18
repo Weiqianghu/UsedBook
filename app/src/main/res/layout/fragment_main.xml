@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="@drawable/search_edit_text_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="@dimen/small_dp"
+            android:layout_height="@dimen/small_dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/search" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/search_icon"
+            android:background="@drawable/null_background"
+            android:hint="@string/search_edit_text_hint"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/middle_text_size" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_book"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="@dimen/book_list_width"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center">
+    </GridView>
+
+
+</LinearLayout>

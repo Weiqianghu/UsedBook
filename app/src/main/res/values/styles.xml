@@ -1,0 +1,119 @@
+<resources>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/gray</item>
+        <item name="colorPrimaryDark">@color/lightGray</item>
+        <item name="colorAccent">@color/mainColor</item>
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base"></style>
+
+    <style name="bottom_bar_text_style">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="common_text_style">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+    </style>
+
+    <style name="position_text_style">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+
+    <style name="small_text">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    </style>
+
+    <style name="small_text_style">
+        <item name="android:padding">14dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="username_style">
+        <item name="android:padding">14dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:background">@drawable/et_background</item>
+        <item name="android:hint">@string/username_hint</item>
+        <item name="android:inputType">phone</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:maxLength">11</item>
+    </style>
+
+    <style name="password_style">
+        <item name="android:padding">14dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:background">@drawable/et_background</item>
+        <item name="android:hint">@string/password_hint</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:maxLength">16</item>
+    </style>
+
+    <style name="book_name_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    </style>
+
+    <style name="book_shop_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    </style>
+
+    <style name="book_price_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    </style>
+
+    <style name="book_percent_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    </style>
+
+    <style name="link_text_style">
+        <item name="android:textColor">@color/link</item>
+        <item name="android:textSize">@dimen/small_text_size</item>
+    </style>
+
+    <style name="price_text_style">
+        <item name="android:textSize">@dimen/middle_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    <style name="small_price_text_style">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="total_money_title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+    </style>
+    <style name="total_money">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/middle_text_size</item>
+    </style>
+
+</resources>

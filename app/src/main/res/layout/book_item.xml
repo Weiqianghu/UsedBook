@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+    
+    <ImageView
+        android:id="@+id/iv_item_book"
+        android:src="@mipmap/logo"
+        android:layout_width="@dimen/book_item_img_dimen"
+        android:layout_height="@dimen/book_item_img_dimen" />
+
+    <TextView
+        android:id="@+id/tv_item_book_percent"
+        android:text="八成新"
+        style="@style/book_percent_style"
+        android:layout_below="@+id/iv_item_book" />
+
+    <TextView
+        android:id="@+id/tv_item_book_price"
+        android:text="20￥"
+        style="@style/book_price_style"
+        android:layout_below="@+id/iv_item_book"
+        android:layout_toRightOf="@id/tv_item_book_percent"/>
+
+    <TextView
+        android:id="@+id/tv_item_book_name"
+        android:text="计算机文化"
+        style="@style/book_name_style"
+        android:layout_below="@+id/tv_item_book_price" />
+
+
+    <TextView
+        android:id="@+id/tv_item_book_shop"
+        android:text="UB二手书城"
+        style="@style/book_shop_style"
+        android:layout_below="@+id/tv_item_book_name" />
+
+</RelativeLayout>

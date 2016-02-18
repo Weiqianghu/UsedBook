@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_shoppingcart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/large_dp"></ListView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray">
+
+            <TextView
+                android:id="@+id/total_money_title"
+                style="@style/total_money_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:text="@string/total_money" />
+
+            <TextView
+                android:id="@+id/tv_total_money"
+                style="@style/total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/total_money_title"
+                android:text="￥10.00" />
+
+            <Button
+                android:id="@+id/payment"
+                style="@style/common_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/btn_background"
+                android:text="@string/payment" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ly_suggest_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_material_light"
+        android:visibility="invisible">
+
+        <include layout="@layout/suggest_to_login"></include>
+    </LinearLayout>
+
+</FrameLayout>
