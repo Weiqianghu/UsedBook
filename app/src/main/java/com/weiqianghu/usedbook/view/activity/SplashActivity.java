@@ -7,6 +7,9 @@ import android.os.Bundle;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.view.common.BaseActivity;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.update.BmobUpdateAgent;
+
 public class SplashActivity extends BaseActivity {
 
     @Override
@@ -16,6 +19,10 @@ public class SplashActivity extends BaseActivity {
 
         Handler x = new Handler();
         x.postDelayed(new splashHandler(), 3000);
+
+        Bmob.initialize(this, "0efc92162139629c26767e7eaf7a4510");
+
+
     }
 
     class splashHandler implements Runnable {

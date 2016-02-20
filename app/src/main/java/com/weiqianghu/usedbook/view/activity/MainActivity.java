@@ -17,6 +17,7 @@ import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
 
 import java.util.List;
 
+import cn.bmob.v3.update.BmobUpdateAgent;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 public class MainActivity extends BaseActivity {
@@ -50,6 +51,8 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.replace(R.id.main_container, fragment, MainLayoutFragment.TAG);
         ft.commit();
+
+        BmobUpdateAgent.update(this);
     }
 
     public void gotoLogin(View view) {

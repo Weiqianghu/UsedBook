@@ -1,5 +1,7 @@
 package com.weiqianghu.usedbook.presenter;
 
+import android.content.Context;
+
 import com.weiqianghu.usedbook.model.impl.IsLoginModel;
 import com.weiqianghu.usedbook.model.inf.IIsLoginModel;
 
@@ -13,7 +15,7 @@ public class IsLoginPresenter {
         model=new IsLoginModel();
     }
 
-    public boolean isLogin(){
-        return model.isLogin();
+    public boolean isLogin(Context context){
+        return model.isLogin(context);
     }
 }

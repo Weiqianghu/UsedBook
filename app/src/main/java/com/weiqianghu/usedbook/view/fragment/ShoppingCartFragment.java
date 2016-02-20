@@ -75,10 +75,12 @@ public class ShoppingCartFragment extends BaseFragment implements IShoppingCartV
     @Override
     public void onResume() {
         super.onResume();
-
-       /* if(mIsLoginPresenter.isLogin()){//TODO 没有登陆
+        Log.d("onResume","ShoopingCart onResume");
+        if(mIsLoginPresenter.isLogin(getActivity())){//TODO 没有登陆
             mSuggestToLoginLayout.setVisibility(View.VISIBLE);
-        }*/
+        }else {
+            mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

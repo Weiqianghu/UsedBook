@@ -6,28 +6,28 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.weiqianghu.usedbook.model.entity.FailureMessage;
-import com.weiqianghu.usedbook.model.impl.LoginModel;
-import com.weiqianghu.usedbook.model.inf.ILoginModel;
+import com.weiqianghu.usedbook.model.impl.RegisterModel;
+import com.weiqianghu.usedbook.model.inf.IRegisterModel;
 import com.weiqianghu.usedbook.util.Constant;
-import com.weiqianghu.usedbook.view.view.ILoginView;
+import com.weiqianghu.usedbook.view.view.IRegisterView;
 
 import cn.bmob.v3.listener.SaveListener;
 
 /**
- * Created by 胡伟强 on 2016/1/27.
+ * Created by weiqianghu on 2016/2/20.
  */
-public class LoginPresenter {
-    private ILoginView mLoginView;
-    private ILoginModel mLoginModel;
+public class RegisterPresenter {
+    private IRegisterModel mRegisterModel;
+    private IRegisterView mRegisterView;
     private Handler handler;
 
-    public LoginPresenter(ILoginView iLoginView,Handler handler){
-        this.mLoginView=iLoginView;
-        mLoginModel=new LoginModel();
+    public RegisterPresenter(IRegisterView iRegisterView,Handler handler){
+        this.mRegisterView=iRegisterView;
+        mRegisterModel=new RegisterModel();
         this.handler=handler;
     }
 
-    public void Login(Context context,String username, String password){
+    public void register(Context context,String mobileNo, String smsCode, String password){
         SaveListener saveListener=new SaveListener() {
             @Override
             public void onSuccess() {
@@ -53,7 +53,6 @@ public class LoginPresenter {
             }
         };
 
-       boolean isLoginSuccessed= mLoginModel.login(context,saveListener,username,password);
-        mLoginView.login(isLoginSuccessed);
+        mRegisterModel.register(context,saveListener,mobileNo,smsCode,password);
     }
 }

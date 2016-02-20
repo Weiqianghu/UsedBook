@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.weiqianghu.usedbook.view.fragment.SeetingsFragment">
+
+    <include layout="@layout/top_bar"></include>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_margin="10dp"
+        android:text="@string/logout"
+        style="@style/common_text_style"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
