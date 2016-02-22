@@ -5,6 +5,7 @@ import android.content.Context;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.model.inf.IRegisterModel;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
 import rx.Observable;
 import rx.Observer;
@@ -19,12 +20,15 @@ public class RegisterModel implements IRegisterModel {
         UserBean user=new UserBean();
         user.setUsername(mobileNo);
         user.setPassword(password);
+        user.setMobilePhoneNumber(mobileNo);
         user.setAddress("");
         user.setAge(0);
         user.setImg("");
         user.setSex(true);
         user.setLatitude(0.0);
         user.setLongitude(0.0);
+        user.signUp(context,saveListener);
+
         user.signUp(context,saveListener);
         return true;
     }

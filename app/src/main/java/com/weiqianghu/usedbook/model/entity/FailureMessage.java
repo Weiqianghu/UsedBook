@@ -25,6 +25,11 @@ public class FailureMessage implements Serializable {
             case 101:
                 msg = "用户名或密码错误";
                 break;
+            case 207:
+                msg="验证码错误";
+                break;
+            case 10010:
+                msg="此手机号使用过于频繁，请稍后再试";
         }
         return msg;
     }

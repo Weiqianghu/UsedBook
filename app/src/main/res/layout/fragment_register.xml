@@ -22,7 +22,7 @@
                 android:hint="@string/mobile_no" />
 
             <Button
-                android:id="@+id/btn_get_code"
+                android:id="@+id/btn_send_sms_code"
                 style="@style/small_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

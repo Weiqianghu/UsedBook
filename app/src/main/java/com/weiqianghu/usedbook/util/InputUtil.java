@@ -12,4 +12,17 @@ public class InputUtil {
         Matcher m = p.matcher(mobileNo.trim());
         return m.matches();
     }
+
+    public static boolean verifyEmail(String email){
+        boolean isExist = false;
+
+        Pattern p = Pattern.compile("\\w+@(\\w+.)+[a-z]{2,3}");
+        Matcher m = p.matcher(email);
+        boolean b = m.matches();
+        if(b) {
+            isExist=true;
+        } else {
+        }
+        return isExist;
+    }
 }
