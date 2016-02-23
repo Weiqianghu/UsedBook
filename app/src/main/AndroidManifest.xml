@@ -30,12 +30,11 @@
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".view.activity.SeetingsActivity"></activity>
-
+        <activity android:name=".view.activity.SeetingsActivity" />
         <activity
             android:name="cn.bmob.v3.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name=".view.activity.EditUserInfoActivity"></activity>
     </application>
 
 </manifest>

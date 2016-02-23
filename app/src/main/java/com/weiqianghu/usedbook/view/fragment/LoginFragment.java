@@ -75,11 +75,6 @@ public class LoginFragment extends BaseFragment implements ILoginView{
         mPasswordEt= (ClearEditText) mRootView.findViewById(R.id.et_password);
     }
 
-    @Override
-    public void login(boolean isLoginSuccessed) {
-    }
-
-
     public Handler registerHanler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -118,7 +113,7 @@ public class LoginFragment extends BaseFragment implements ILoginView{
                     }
                     if(beforeLogin()){
                         mLoading.setVisibility(View.VISIBLE);
-                        mLoginPresenter.Login(getActivity(),username,password);
+                        mLoginPresenter.login(getActivity(),username,password);
                     }
                     break;
                 case R.id.tv_forget_password:

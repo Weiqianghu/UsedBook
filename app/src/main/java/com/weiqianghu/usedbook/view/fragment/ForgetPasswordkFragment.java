@@ -3,10 +3,7 @@ package com.weiqianghu.usedbook.view.fragment;
 
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,7 +34,7 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
     private ClearEditText mMsgCodeEt;
     private ClearEditText mPasswordEt;
     private ClearEditText mEnsurePwEt;
-    private Button mRegisterBtn;
+    private Button mSubmitBtn;
     private Button mSendSmsCodeBtn;
     private ProgressBar mLoading;
 
@@ -74,8 +71,8 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
         mMsgCodeEt = (ClearEditText) mRootView.findViewById(R.id.et_code);
         mPasswordEt = (ClearEditText) mRootView.findViewById(R.id.et_new_password);
         mEnsurePwEt = (ClearEditText) mRootView.findViewById(R.id.et_ensuer_password);
-        mRegisterBtn = (Button) mRootView.findViewById(R.id.btn_submit);
-        mRegisterBtn.setOnClickListener(click);
+        mSubmitBtn = (Button) mRootView.findViewById(R.id.btn_submit);
+        mSubmitBtn.setOnClickListener(click);
         mSendSmsCodeBtn = (Button) mRootView.findViewById(R.id.btn_send_sms_code);
         mSendSmsCodeBtn.setOnClickListener(click);
 
@@ -127,7 +124,7 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
             switch (msg.what) {
                 case Constant.SUCCESS:
                     mLoading.setVisibility(View.INVISIBLE);
-                    mRegisterBtn.setClickable(true);
+                    mSubmitBtn.setClickable(true);
                     Toast.makeText(getActivity(),"密码重置成功",Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                     break;
@@ -137,7 +134,7 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
         public void handleFailureMessage(String msg) {
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
             mLoading.setVisibility(View.INVISIBLE);
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
         }
     };
 
@@ -146,12 +143,12 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
         mobileNo = mMobileNoEt.getText().toString().trim();
         if (mobileNo == null || "".equals(mobileNo)) {
             Toast.makeText(getActivity(), "手机号不能为空", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (!InputUtil.verifyMobileNo(mobileNo)) {
             Toast.makeText(getActivity(), "手机号不合法", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         return true;
@@ -163,36 +160,36 @@ public class ForgetPasswordkFragment extends BaseFragment implements ISendSmsCod
         password = mPasswordEt.getText().toString().trim();
         ensurePwd = mEnsurePwEt.getText().toString().trim();
 
-        mRegisterBtn.setClickable(false);
+        mSubmitBtn.setClickable(false);
 
         if (mobileNo == null || "".equals(mobileNo)) {
             Toast.makeText(getActivity(), "手机号不能为空", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (!InputUtil.verifyMobileNo(mobileNo)) {
             Toast.makeText(getActivity(), "手机号不合法", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (smsCode == null || "".equals(smsCode)) {
             Toast.makeText(getActivity(), "验证码不能为空", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (password == null || "".equals(password)) {
             Toast.makeText(getActivity(), "密码不能为空", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (password.length() < 6) {
             Toast.makeText(getActivity(), "密码长度太短", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         if (!password.equals(ensurePwd)) {
             Toast.makeText(getActivity(), "两次输入密码不一致", Toast.LENGTH_SHORT).show();
-            mRegisterBtn.setClickable(true);
+            mSubmitBtn.setClickable(true);
             return false;
         }
         mLoading.setVisibility(View.VISIBLE);

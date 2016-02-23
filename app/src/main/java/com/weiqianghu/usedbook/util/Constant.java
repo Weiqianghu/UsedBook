@@ -25,5 +25,6 @@ public class Constant {
 
     public static final String FAILURE_MESSAGE="failure_message";
 
+    public static final String USERBEAN="user_bean";
 
 }

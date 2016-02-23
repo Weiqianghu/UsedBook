@@ -30,6 +30,14 @@ public class FailureMessage implements Serializable {
                 break;
             case 10010:
                 msg="此手机号使用过于频繁，请稍后再试";
+                break;
+            case 9010:
+            case 9016:
+                msg="网络状况不良，请检查网络连接";
+                break;
+            case 210:
+                msg="原密码不正确";
+                break;
         }
         return msg;
     }

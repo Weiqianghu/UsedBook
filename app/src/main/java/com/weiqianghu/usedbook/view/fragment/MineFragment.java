@@ -7,17 +7,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.util.SelectImgUtil;
+import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderActivity;
 import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.CircleImageView;
 
+import cn.bmob.v3.BmobUser;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 /**
@@ -41,12 +45,19 @@ public class MineFragment extends BaseFragment {
     private View mFinish;
 
     private View mSeetings;
+    private View mEditUserInfo;
 
     private Intent intent;
 
     private CircleImageView mUserImgImgView;
 
     private FragmentManager fragmentManager;
+
+    private TextView mUsernameTv;
+
+    private String username;
+    private String userImg;
+    private UserBean currentUser;
 
     @Override
     protected int getLayoutId() {
@@ -62,7 +73,7 @@ public class MineFragment extends BaseFragment {
     protected void initView(Bundle savedInstanceState) {
         mSuggestToLoginLayout = mRootView.findViewById(R.id.ly_suggest_to_login);
 
-        Click click=new Click();
+        Click click = new Click();
 
         mUserInfo = mRootView.findViewById(R.id.user_info);
         mUserInfo.setOnClickListener(click);
@@ -96,21 +107,36 @@ public class MineFragment extends BaseFragment {
 
         mIsLoginPresenter = new IsLoginPresenter();
 
-        mUserImgImgView= (CircleImageView) mRootView.findViewById(R.id.iv_user_img);
+        mUserImgImgView = (CircleImageView) mRootView.findViewById(R.id.iv_user_img);
         mUserImgImgView.setOnClickListener(click);
 
-        mSeetings=mRootView.findViewById(R.id.setting);
+        mSeetings = mRootView.findViewById(R.id.setting);
         mSeetings.setOnClickListener(click);
+
+        mEditUserInfo = mRootView.findViewById(R.id.user_info);
+        mEditUserInfo.setOnClickListener(click);
+
+        mUsernameTv = (TextView) mRootView.findViewById(R.id.tv_username);
+
+        updateView();
+    }
+
+    private void updateView() {
+        currentUser = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+        if (currentUser != null) {
+            username = currentUser.getUsername();
+            mUsernameTv.setText(username);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("onResume","Mine onResume");
-        if(mIsLoginPresenter.isLogin(getActivity())){
+        if (mIsLoginPresenter.isLogin(getActivity())) {
             mSuggestToLoginLayout.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
+            updateView();
         }
     }
 
@@ -118,8 +144,8 @@ public class MineFragment extends BaseFragment {
 
         @Override
         public void onClick(View v) {
-            if(intent==null){
-                intent=new Intent(getActivity(), OrderActivity.class);
+            if (intent == null) {
+                intent = new Intent(getActivity(), OrderActivity.class);
             }
             switch (v.getId()) {
                 case R.id.pay:
@@ -143,29 +169,29 @@ public class MineFragment extends BaseFragment {
                     startActivity(intent);
                     break;
                 case R.id.iv_user_img:
-                    SelectImgUtil.selectImg(getActivity(), MultiImageSelectorActivity.MODE_SINGLE,1);
+                    SelectImgUtil.selectImg(getActivity(), MultiImageSelectorActivity.MODE_SINGLE, 1);
                     break;
                 case R.id.setting:
                     gotoSeetings();
+                    break;
+                case R.id.user_info:
+                    gotoEditUserInfo();
                     break;
             }
         }
     }
 
     void gotoSeetings() {
-       /* if (fragmentManager == null) {
-            fragmentManager = getActivity().getSupportFragmentManager();
-        }
-
-        Fragment fragment = fragmentManager.findFragmentByTag(SeetingsFragment.TAG);
-        if (fragment == null) {
-            fragment = new SeetingsFragment();
-        }
-
-        Fragment from=fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
-        FragmentUtil.switchContentAddToBackStack(from,fragment,R.id.main_container,fragmentManager);*/
-
-        Intent intent=new Intent(getActivity(), SeetingsActivity.class);
+        Intent intent = new Intent(getActivity(), SeetingsActivity.class);
         startActivity(intent);
     }
+
+    void gotoEditUserInfo() {
+        Intent intent = new Intent(getActivity(), EditUserInfoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.USERBEAN, currentUser);
+        intent.putExtra(Constant.USERBEAN, bundle);
+        startActivity(intent);
+    }
+
 }

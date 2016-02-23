@@ -32,6 +32,7 @@
     <string name="code">短信验证码</string>
     <string name="new_password">设置新密码，最少6位,最长16位</string>
     <string name="get_code">获取验证码</string>
+    <string name="old_pwd">原密码</string>
 
     <string name="submit">确定</string>
     <string name="password">设置密码，最少6位,最长16位</string>
@@ -85,4 +86,11 @@
     <string name="delete">删除</string>
 
     <string name="update_agent">检查更新</string>
+    <string name="mobileno">手机号码</string>
+    <string name="username">用户名</string>
+    <string name="sex">性别</string>
+    <string name="age">年龄</string>
+
+    <string name="edit_pwd">修改密码</string>
+
 </resources>

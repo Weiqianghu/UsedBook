@@ -8,6 +8,7 @@ import cn.bmob.v3.BmobUser;
 public class UserBean extends BmobUser {
     private int age;
     private boolean sex;
+    private String sexStr;
     private String img;
     private String address;
     private Double longitude;
@@ -59,5 +60,14 @@ public class UserBean extends BmobUser {
 
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getSexStr() {
+        if(sex==true){
+            this.sexStr="男";
+        }else{
+            this.sexStr="女";
+        }
+        return sexStr;
     }
 }

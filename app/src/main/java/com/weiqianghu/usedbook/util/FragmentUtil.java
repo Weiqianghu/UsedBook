@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
 
 /**
  * Created by 胡伟强 on 2016/2/3.
@@ -52,5 +53,16 @@ public class FragmentUtil {
             transaction.addToBackStack(null);
             transaction.commit();
         }
+    }
+
+    public static void addContent(int container, Fragment content,FragmentManager manager,String tag){
+        FragmentTransaction ft = manager.beginTransaction();
+        ft.setCustomAnimations(
+                R.anim.push_left_in,
+                R.anim.push_left_out,
+                R.anim.push_right_in,
+                R.anim.push_right_out);
+        ft.replace(container, content,tag);
+        ft.commit();
     }
 }

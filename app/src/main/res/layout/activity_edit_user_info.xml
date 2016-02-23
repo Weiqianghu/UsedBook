@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/top_bar"
+            layout="@layout/top_bar"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:background="@drawable/box_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                style="@style/common_text_style"
+                android:layout_width="@dimen/xlarge_dp"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="@string/mobileno" />
+            <TextView
+                android:id="@+id/tv_mobile_no"
+                android:layout_marginLeft="10dp"
+                style="@style/common_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="13122392221" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/update_username"
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:background="@drawable/box_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tv_username_title"
+                style="@style/common_text_style"
+                android:layout_width="@dimen/xlarge_dp"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="@string/username" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_toRightOf="@+id/tv_username_title"
+                android:layout_marginLeft="10dp"
+                style="@style/common_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="胡伟强" />
+
+            <ImageView
+                android:layout_width="@dimen/small_dp"
+                android:layout_height="@dimen/small_dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/enter" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/update_sex"
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:background="@drawable/box_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tv_sex_title"
+                style="@style/common_text_style"
+                android:layout_width="@dimen/xlarge_dp"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="@string/sex" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_toRightOf="@+id/tv_sex_title"
+                android:layout_marginLeft="10dp"
+                style="@style/common_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="男" />
+
+            <ImageView
+                android:layout_width="@dimen/small_dp"
+                android:layout_height="@dimen/small_dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/enter" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/update_age"
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:background="@drawable/box_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tv_age_title"
+                style="@style/common_text_style"
+                android:layout_width="@dimen/xlarge_dp"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="@string/age" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_toRightOf="@+id/tv_age_title"
+                android:layout_marginLeft="10dp"
+                style="@style/common_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="20" />
+
+            <ImageView
+                android:layout_width="@dimen/small_dp"
+                android:layout_height="@dimen/small_dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/enter" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/update_pwd"
+            android:layout_below="@id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/large_dp"
+            android:background="@drawable/box_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
+            <TextView
+                style="@style/common_text_style"
+                android:layout_width="@dimen/xlarge_dp"
+                android:layout_height="@dimen/small_dp"
+                android:gravity="center_vertical"
+                android:text="@string/edit_pwd" />
+
+            <ImageView
+                android:layout_width="@dimen/small_dp"
+                android:layout_height="@dimen/small_dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/enter" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/update_pwd_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="@dimen/large_dp"
+        android:layout_height="@dimen/large_dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
