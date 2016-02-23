@@ -27,4 +27,6 @@ public class Constant {
 
     public static final String USERBEAN="user_bean";
 
+    public static final String FILE="file";
+
 }

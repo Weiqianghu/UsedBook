@@ -2,6 +2,7 @@ package com.weiqianghu.usedbook.view.fragment;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
@@ -49,7 +52,7 @@ public class MineFragment extends BaseFragment {
 
     private Intent intent;
 
-    private CircleImageView mUserImgImgView;
+    private SimpleDraweeView mUserImgImgView;
 
     private FragmentManager fragmentManager;
 
@@ -61,6 +64,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
+        Fresco.initialize(getActivity());
         return R.layout.fragment_mine;
     }
 
@@ -107,7 +111,7 @@ public class MineFragment extends BaseFragment {
 
         mIsLoginPresenter = new IsLoginPresenter();
 
-        mUserImgImgView = (CircleImageView) mRootView.findViewById(R.id.iv_user_img);
+        mUserImgImgView = (SimpleDraweeView ) mRootView.findViewById(R.id.iv_user_img);
         mUserImgImgView.setOnClickListener(click);
 
         mSeetings = mRootView.findViewById(R.id.setting);
@@ -124,8 +128,13 @@ public class MineFragment extends BaseFragment {
     private void updateView() {
         currentUser = BmobUser.getCurrentUser(getActivity(), UserBean.class);
         if (currentUser != null) {
+            String userImg = currentUser.getImg();
             username = currentUser.getUsername();
             mUsernameTv.setText(username);
+
+            if(userImg !=null && !"".equals(userImg)){
+                mUserImgImgView.setImageURI(Uri.parse(userImg));
+            }
         }
     }
 

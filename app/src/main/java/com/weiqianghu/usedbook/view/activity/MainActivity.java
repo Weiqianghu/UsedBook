@@ -2,36 +2,62 @@ package com.weiqianghu.usedbook.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.FailureMessage;
+import com.weiqianghu.usedbook.model.entity.UserBean;
+import com.weiqianghu.usedbook.presenter.EditUserPresenter;
+import com.weiqianghu.usedbook.presenter.UploadFileByPathPresenter;
+import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.util.FileUtil;
 import com.weiqianghu.usedbook.util.ImgUtil;
 import com.weiqianghu.usedbook.view.common.BaseActivity;
 import com.weiqianghu.usedbook.view.customview.CircleImageView;
 import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
+import com.weiqianghu.usedbook.view.view.IEditUserView;
+import com.weiqianghu.usedbook.view.view.IUploadFileByPathView;
 
+import java.io.FileInputStream;
 import java.util.List;
 
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IUploadFileByPathView,IEditUserView{
 
 
     private FragmentManager mFragmentManager;
 
-    private CircleImageView mUserImgView;
+    private SimpleDraweeView mUserImgView;
+
+    private UploadFileByPathPresenter mUploadFileByPathPresenter;
+    private List<String> path;
+
+    private EditUserPresenter mEditUserPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initView();
+    }
+
+
+    private void initView(){
         if (mFragmentManager == null) {
             mFragmentManager = getSupportFragmentManager();
         }
@@ -53,6 +79,9 @@ public class MainActivity extends BaseActivity {
         ft.commit();
 
         BmobUpdateAgent.update(this);
+
+        mUploadFileByPathPresenter=new UploadFileByPathPresenter(this,uploadFileHandler);
+        mEditUserPresenter = new EditUserPresenter(this, editUserHanler);
     }
 
     public void gotoLogin(View view) {
@@ -67,15 +96,54 @@ public class MainActivity extends BaseActivity {
         if (requestCode == Constant.REQUEST_IMAGE) {
             if (resultCode == RESULT_OK) {
                 // 获取返回的图片列表
-                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
                 if (path.size() > 0) {
                     if (mUserImgView == null) {
-                        mUserImgView = (CircleImageView) findViewById(R.id.iv_user_img);
+                        mUserImgView = (SimpleDraweeView) findViewById(R.id.iv_user_img);
                     }
-                    Bitmap bitmap = ImgUtil.getSmallBitmap(path.get(0), mUserImgView.getWidth(), mUserImgView.getHeight());
-                    mUserImgView.setImageBitmap(bitmap);
+                    String smallImgPath=ImgUtil.getSmallImgPath(path.get(0), mUserImgView.getWidth(), mUserImgView.getHeight());
+                    updateImg(smallImgPath);
+                    Log.d("path","path.get(0):"+path.get(0)+",smallImgPath:"+smallImgPath);
+                    mUploadFileByPathPresenter.uploadFileByPath(MainActivity.this,smallImgPath);
                 }
             }
         }
     }
+
+    CallBackHandler uploadFileHandler=new CallBackHandler(){
+        public  void handleSuccessMessage(Message msg){
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    BmobFile file = (BmobFile) bundle.getSerializable(Constant.FILE);
+                    String fileUrl = file.getUrl();
+                    UserBean currentUser= BmobUser.getCurrentUser(MainActivity.this,UserBean.class);
+                    currentUser.setImg(fileUrl);
+                    mEditUserPresenter.updateUser(MainActivity.this,currentUser);
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg){
+            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private void updateImg(String path){
+        Uri uri = FileUtil.getUriByPath(path);
+        if(uri!=null){ mUserImgView.setImageURI(uri);}
+    }
+
+    CallBackHandler editUserHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+        }
+    };
 }
