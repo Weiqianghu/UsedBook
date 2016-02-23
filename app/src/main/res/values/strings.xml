@@ -93,4 +93,11 @@
 
     <string name="edit_pwd">修改密码</string>
 
+    <string name="add_new_address">新增收货地址</string>
+    <string name="detail_address_hint">请输入详细地址</string>
+    <string name="name_hint">请输收货人姓名</string>
+    <string name="mobile_no_hint">请输入收货人联系电话</string>
+    <string name="zip_code_hint">请输入邮编</string>
+
+
 </resources>

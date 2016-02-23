@@ -29,4 +29,10 @@ public class Constant {
 
     public static final String FILE="file";
 
+    public static final String PROVINCE="province";
+    public static final String CITY="city";
+    public static final String COUNTY="county";
+
+    public static final String PARCEABLE="Parcelable";
+
 }

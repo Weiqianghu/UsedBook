@@ -4,7 +4,12 @@ package com.weiqianghu.usedbook.util;
 import android.net.Uri;
 import android.os.Environment;
 
+import com.weiqianghu.usedbook.R;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by weiqianghu on 2016/2/23.
@@ -25,5 +30,21 @@ public class FileUtil {
             sdDir=Environment.getDownloadCacheDirectory();
         }
         return sdDir.toString();
+    }
+
+    public static String getStrFromRaw(InputStream inputStream){
+        String result=null;
+        try {
+            InputStreamReader inputReader = new InputStreamReader( inputStream);
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            result = "";
+            while((line = bufReader.readLine()) != null)
+                result += line;
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

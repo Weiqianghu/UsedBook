@@ -18,6 +18,7 @@ import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.util.SelectImgUtil;
+import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderActivity;
 import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
@@ -35,11 +36,9 @@ public class MineFragment extends BaseFragment {
     private View mSuggestToLoginLayout;
     private IsLoginPresenter mIsLoginPresenter;
 
-    private View mUserInfo;
     private View mMessage;
     private View mPrefer;
     private View mAddress;
-    private View mSetting;
 
     private View mPay;
     private View mDeliver;
@@ -79,9 +78,6 @@ public class MineFragment extends BaseFragment {
 
         Click click = new Click();
 
-        mUserInfo = mRootView.findViewById(R.id.user_info);
-        mUserInfo.setOnClickListener(click);
-
         mMessage = mRootView.findViewById(R.id.message);
         mMessage.setOnClickListener(click);
 
@@ -90,9 +86,6 @@ public class MineFragment extends BaseFragment {
 
         mAddress = mRootView.findViewById(R.id.address);
         mAddress.setOnClickListener(click);
-
-        mSetting = mRootView.findViewById(R.id.setting);
-        mSetting.setOnClickListener(click);
 
         mPay = mRootView.findViewById(R.id.pay);
         mPay.setOnClickListener(click);
@@ -186,6 +179,9 @@ public class MineFragment extends BaseFragment {
                 case R.id.user_info:
                     gotoEditUserInfo();
                     break;
+                case R.id.address:
+                    gotoAddress();
+                    break;
             }
         }
     }
@@ -201,6 +197,12 @@ public class MineFragment extends BaseFragment {
         bundle.putSerializable(Constant.USERBEAN, currentUser);
         intent.putExtra(Constant.USERBEAN, bundle);
         startActivity(intent);
+    }
+
+    private void gotoAddress() {
+        Intent intent=new Intent(getActivity(), AddressActivity.class);
+        startActivity(intent);
+
     }
 
 }

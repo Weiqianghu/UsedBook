@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by weiqianghu on 2016/2/20.
  */
-public class FailureMessage implements Serializable {
+public class FailureMessageModel implements Serializable {
     private int msgCode;
     private String msg;
 

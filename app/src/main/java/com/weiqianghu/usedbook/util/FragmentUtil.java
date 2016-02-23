@@ -11,7 +11,7 @@ import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
  * Created by 胡伟强 on 2016/2/3.
  */
 public class FragmentUtil {
-    public static void switchContentAddToBackStack(Fragment from, Fragment to, int container, FragmentManager manager) {
+    public static void switchContentAddToBackStack(Fragment from, Fragment to, int container, FragmentManager manager,String tag) {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(
                 R.anim.push_left_in,
@@ -21,7 +21,7 @@ public class FragmentUtil {
 
         if(!to.isAdded()){
             transaction.hide(from);
-            transaction.add(container,to);
+            transaction.add(container,to,tag);
             transaction.addToBackStack(null);
             transaction.commit();
         }

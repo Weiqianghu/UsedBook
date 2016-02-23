@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
+import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.presenter.LoginPresenter;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
@@ -86,8 +86,8 @@ public class LoginFragment extends BaseFragment implements ILoginView{
                     break;
                 case Constant.FAILURE:
                     Bundle bundle = msg.getData();
-                    FailureMessage failureMessage = (FailureMessage) bundle.getSerializable(Constant.FAILURE_MESSAGE);
-                    String failureMsg = failureMessage.getMsg();
+                    FailureMessageModel failureMessageModel = (FailureMessageModel) bundle.getSerializable(Constant.FAILURE_MESSAGE);
+                    String failureMsg = failureMessageModel.getMsg();
                     mLoading.setVisibility(View.INVISIBLE);
                     mLoginBtn.setClickable(true);
                     Toast.makeText(getActivity(), failureMsg, Toast.LENGTH_SHORT).show();

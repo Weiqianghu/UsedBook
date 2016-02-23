@@ -6,28 +6,29 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
-import com.weiqianghu.usedbook.model.impl.RegisterModel;
-import com.weiqianghu.usedbook.model.inf.IRegisterModel;
+import com.weiqianghu.usedbook.model.impl.SaveModel;
+import com.weiqianghu.usedbook.model.inf.ISaveModel;
 import com.weiqianghu.usedbook.util.Constant;
-import com.weiqianghu.usedbook.view.view.IRegisterView;
+import com.weiqianghu.usedbook.view.ISaveView;
 
+import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.listener.SaveListener;
 
 /**
- * Created by weiqianghu on 2016/2/20.
+ * Created by weiqianghu on 2016/2/23.
  */
-public class RegisterPresenter {
-    private IRegisterModel mRegisterModel;
-    private IRegisterView mRegisterView;
+public class SavePresenter {
+    private ISaveModel mSaveModel;
     private Handler handler;
+    private ISaveView mSaveView;
 
-    public RegisterPresenter(IRegisterView iRegisterView,Handler handler){
-        this.mRegisterView=iRegisterView;
-        mRegisterModel=new RegisterModel();
+    public SavePresenter(ISaveView iSaveView,Handler handler){
+        this.mSaveView=iSaveView;
+        mSaveModel=new SaveModel();
         this.handler=handler;
     }
 
-    public void register(Context context,String mobileNo, String smsCode, String password){
+    public void save(Context context, BmobObject bean){
         SaveListener saveListener=new SaveListener() {
             @Override
             public void onSuccess() {
@@ -53,6 +54,6 @@ public class RegisterPresenter {
             }
         };
 
-        mRegisterModel.register(context,saveListener,mobileNo,smsCode,password);
+        mSaveModel.save(context,saveListener,bean);
     }
 }

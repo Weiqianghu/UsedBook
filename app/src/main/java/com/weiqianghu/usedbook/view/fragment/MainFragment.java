@@ -82,7 +82,7 @@ public class MainFragment extends BaseFragment implements IBooksView {
 
         Fragment form = fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
 
-        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager);
+        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager,BookDetailFragment.TAG);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class MainFragment extends BaseFragment implements IBooksView {
         }
 
         Fragment from=fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
-        FragmentUtil.switchContentAddToBackStack(from,fragment,R.id.main_container,fragmentManager);
+        FragmentUtil.switchContentAddToBackStack(from,fragment,R.id.main_container,fragmentManager,SearchFragment.TAG);
     }
 
 }

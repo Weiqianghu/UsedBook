@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
+import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.model.impl.EditUserModel;
 import com.weiqianghu.usedbook.model.inf.IEditUserModel;
@@ -42,12 +42,12 @@ public class EditUserPresenter {
                 Message message = new Message();
                 message.what = Constant.FAILURE;
 
-                FailureMessage failureMessage = new FailureMessage();
-                failureMessage.setMsgCode(i);
-                failureMessage.setMsg(s);
+                FailureMessageModel failureMessageModel = new FailureMessageModel();
+                failureMessageModel.setMsgCode(i);
+                failureMessageModel.setMsg(s);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessage);
+                bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessageModel);
 
                 message.setData(bundle);
                 handler.sendMessage(message);

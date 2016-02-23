@@ -7,7 +7,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.bmob.btp.callback.UploadListener;
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
+import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.impl.UploadFileByPathModel;
 import com.weiqianghu.usedbook.model.inf.IUploadFileByPathModel;
 import com.weiqianghu.usedbook.util.Constant;
@@ -56,12 +56,12 @@ public class UploadFileByPathPresenter {
                 Message message = new Message();
                 message.what = Constant.FAILURE;
 
-                FailureMessage failureMessage = new FailureMessage();
-                failureMessage.setMsgCode(statuscode);
-                failureMessage.setMsg(errormsg);
+                FailureMessageModel failureMessageModel = new FailureMessageModel();
+                failureMessageModel.setMsgCode(statuscode);
+                failureMessageModel.setMsg(errormsg);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessage);
+                bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessageModel);
 
                 message.setData(bundle);
                 handler.sendMessage(message);

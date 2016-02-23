@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
+import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.impl.VerifySmsModel;
 import com.weiqianghu.usedbook.model.inf.IVerifySmsModel;
 import com.weiqianghu.usedbook.util.Constant;
@@ -40,12 +40,12 @@ public class VerifySmsCodePresenter {
                     Message message=new Message();
                     message.what= Constant.FAILURE;
 
-                    FailureMessage failureMessage=new FailureMessage();
-                    failureMessage.setMsgCode(e.getErrorCode());
-                    failureMessage.setMsg(e.getLocalizedMessage());
+                    FailureMessageModel failureMessageModel =new FailureMessageModel();
+                    failureMessageModel.setMsgCode(e.getErrorCode());
+                    failureMessageModel.setMsg(e.getLocalizedMessage());
 
                     Bundle bundle=new Bundle();
-                    bundle.putSerializable(Constant.FAILURE_MESSAGE,failureMessage);
+                    bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessageModel);
 
                     message.setData(bundle);
                     handler.sendMessage(message);

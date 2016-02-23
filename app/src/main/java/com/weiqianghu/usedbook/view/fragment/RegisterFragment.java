@@ -1,10 +1,7 @@
 package com.weiqianghu.usedbook.view.fragment;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Message;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
 import com.weiqianghu.usedbook.presenter.RegisterPresenter;
 import com.weiqianghu.usedbook.presenter.SendSmsCodePresenter;
 import com.weiqianghu.usedbook.presenter.VerifySmsCodePresenter;

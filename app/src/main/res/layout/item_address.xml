@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/lv_relate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_name"
+            android:text="胡伟强"
+            style="@style/common_text_style"
+            android:gravity="left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <TextView
+            android:id="@+id/tv_mobile_no"
+            android:text="18521595797"
+            android:layout_marginRight="40dp"
+            style="@style/common_text_style"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:text="上海市徐汇区梅陇路130号华东理工大学"
+        style="@style/small_text_style"
+        android:layout_below="@+id/lv_relate"
+        android:padding="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="@dimen/small_dp"
+        android:layout_height="@dimen/small_dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/enter" />
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.weiqianghu.usedbook.view.fragment.AddressSubmitFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/top_bar"></include>
+
+        <TextView
+            android:id="@+id/tv_region"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:maxLength="15"
+            android:padding="20dp"
+            android:text="甘肃省平凉市泾川县" />
+
+        <com.weiqianghu.usedbook.view.customview.ClearEditText
+            android:id="@+id/et_detail_address"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:hint="@string/detail_address_hint"
+            android:padding="20dp" />
+
+        <com.weiqianghu.usedbook.view.customview.ClearEditText
+            android:inputType="number"
+            android:id="@+id/et_zip_code"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:hint="@string/zip_code_hint"
+            android:maxLength="10"
+            android:padding="20dp" />
+
+        <com.weiqianghu.usedbook.view.customview.ClearEditText
+            android:id="@+id/et_name"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:hint="@string/name_hint"
+            android:maxLength="10"
+            android:padding="20dp" />
+
+        <com.weiqianghu.usedbook.view.customview.ClearEditText
+            android:inputType="phone"
+            android:id="@+id/et_mobile_no"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_bg"
+            android:hint="@string/mobile_no_hint"
+            android:maxLength="11"
+            android:padding="20dp" />
+
+        <Button
+            android:id="@+id/btn_submit"
+            style="@style/common_text_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_background"
+            android:text="@string/submit" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="@dimen/large_dp"
+        android:layout_height="@dimen/large_dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

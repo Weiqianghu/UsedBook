@@ -1,7 +1,6 @@
 package com.weiqianghu.usedbook.view.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.model.entity.FailureMessage;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.EditUserPresenter;
 import com.weiqianghu.usedbook.presenter.UploadFileByPathPresenter;
@@ -23,12 +21,10 @@ import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FileUtil;
 import com.weiqianghu.usedbook.util.ImgUtil;
 import com.weiqianghu.usedbook.view.common.BaseActivity;
-import com.weiqianghu.usedbook.view.customview.CircleImageView;
 import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
 import com.weiqianghu.usedbook.view.view.IEditUserView;
 import com.weiqianghu.usedbook.view.view.IUploadFileByPathView;
 
-import java.io.FileInputStream;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;

@@ -1,9 +1,11 @@
 package com.weiqianghu.usedbook.model.entity;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * Created by 胡伟强 on 2016/2/1.
  */
-public class ShoppingCartBean {
+public class ShoppingCartBean extends BmobObject {
     private double price;
     private int number;
     private double subtotal;//小计
