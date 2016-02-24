@@ -35,4 +35,6 @@ public class Constant {
 
     public static final String PARCEABLE="Parcelable";
 
+    public static final String ADDRESS="address";
+
 }

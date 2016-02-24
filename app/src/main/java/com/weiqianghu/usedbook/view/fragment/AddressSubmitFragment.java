@@ -3,12 +3,8 @@ package com.weiqianghu.usedbook.view.fragment;
 
 import android.os.Bundle;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,16 +12,12 @@ import android.widget.Toast;
 
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.AddressBean;
-import com.weiqianghu.usedbook.model.entity.CityModel;
 import com.weiqianghu.usedbook.model.entity.UserBean;
-import com.weiqianghu.usedbook.model.inf.ISaveModel;
 import com.weiqianghu.usedbook.presenter.SavePresenter;
-import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.InputUtil;
-import com.weiqianghu.usedbook.view.ISaveView;
-import com.weiqianghu.usedbook.view.ViewHolder;
+import com.weiqianghu.usedbook.view.view.ISaveView;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.ClearEditText;
 
@@ -99,6 +91,7 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
             switch (msg.what) {
                 case Constant.SUCCESS:
                     mLoading.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(),"收货地址添加成功！",Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                     getActivity().onBackPressed();
                     getActivity().onBackPressed();

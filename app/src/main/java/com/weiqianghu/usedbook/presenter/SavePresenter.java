@@ -9,7 +9,7 @@ import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.impl.SaveModel;
 import com.weiqianghu.usedbook.model.inf.ISaveModel;
 import com.weiqianghu.usedbook.util.Constant;
-import com.weiqianghu.usedbook.view.ISaveView;
+import com.weiqianghu.usedbook.view.view.ISaveView;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.listener.SaveListener;

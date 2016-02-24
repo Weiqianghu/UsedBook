@@ -98,6 +98,13 @@
     <string name="name_hint">请输收货人姓名</string>
     <string name="mobile_no_hint">请输入收货人联系电话</string>
     <string name="zip_code_hint">请输入邮编</string>
+    <string name="edit_address">编辑收货地址</string>
+    <string name="set_default_address">设为默认收货地址</string>
+
+    <string name="positive">确定</string>
+    <string name="negative">取消</string>
+
+    <string name="default_address">[默认]</string>
 
 
 </resources>

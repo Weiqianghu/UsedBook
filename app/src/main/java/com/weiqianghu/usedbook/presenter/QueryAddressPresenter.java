@@ -36,10 +36,10 @@ public class QueryAddressPresenter {
         mQueryModel = new QueryModel<AddressBean>();
     }
 
-    public void query(Context context) {
-        BmobQuery<AddressBean> query = new BmobQuery<AddressBean>();
+    public void query(Context context,BmobQuery<AddressBean> query) {
         UserBean userBean= BmobUser.getCurrentUser(context,UserBean.class);
         query.addWhereEqualTo("user",userBean);
+        query.order("-isDefault");
 
         FindListener<AddressBean> findListener = new FindListener<AddressBean>() {
             @Override

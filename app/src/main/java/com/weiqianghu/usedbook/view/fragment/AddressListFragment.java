@@ -3,9 +3,11 @@ package com.weiqianghu.usedbook.view.fragment;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,7 +16,6 @@ import android.widget.Toast;
 
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.AddressBean;
-import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.QueryAddressPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
@@ -24,12 +25,10 @@ import com.weiqianghu.usedbook.view.ViewHolder;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IQueryView;
 
-import org.w3c.dom.Comment;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 
 
 public class AddressListFragment extends BaseFragment implements IQueryView{
@@ -42,6 +41,7 @@ public class AddressListFragment extends BaseFragment implements IQueryView{
 
     private FragmentManager mFragmentManager;
     private Fragment mProvinceAddressFragment;
+    private Fragment mEditAddressFragment;
 
     private QueryAddressPresenter mQueryAddressPresenter;
 
@@ -75,19 +75,32 @@ public class AddressListFragment extends BaseFragment implements IQueryView{
 
         mQueryAddressPresenter=new QueryAddressPresenter(this, queryAddressHandler);
         mAddressLv= (ListView) mRootView.findViewById(R.id.tv_address);
+        mAddressLv.setOnItemClickListener(itemClick);
+
+        queryAllAddress();
+    }
+
+    private void queryAllAddress(){
+        BmobQuery<AddressBean> query = new BmobQuery<>();
+        mQueryAddressPresenter.query(getActivity(),query);
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        mQueryAddressPresenter.query(getActivity());
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if(!hidden){
+            new Thread(){
+                public void run(){
+                    queryAllAddress();
+                }
+            }.start();
+        }
     }
 
     CallBackHandler queryAddressHandler =new CallBackHandler(){
         public  void handleSuccessMessage(Message msg){
             switch (msg.what) {
                 case Constant.SUCCESS:
-                    //mLoading.setVisibility(View.INVISIBLE);
                     Bundle bundle=msg.getData();
                     addressList=bundle.getParcelableArrayList(Constant.PARCEABLE);
                     initAdapter();
@@ -115,6 +128,8 @@ public class AddressListFragment extends BaseFragment implements IQueryView{
                 helper.setText(R.id.tv_name,item.getName());
                 helper.setText(R.id.tv_mobile_no,item.getMobileNo());
                 helper.setText(R.id.tv_address,address.toString());
+
+               helper.setViewVisible(R.id.tv_default,item.isDefault());
             }
         };
     }
@@ -145,6 +160,31 @@ public class AddressListFragment extends BaseFragment implements IQueryView{
 
         Fragment from=mFragmentManager.findFragmentByTag(AddressListFragment.TAG);
         FragmentUtil.switchContentAddToBackStack(from,mProvinceAddressFragment,R.id.address_container,mFragmentManager,ProvinceAddressFragment.TAG);
+    }
+
+    AdapterView.OnItemClickListener itemClick=new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            editAddress(position);
+        }
+    };
+
+    private void editAddress(int position) {
+        if(mFragmentManager==null){
+            mFragmentManager=getActivity().getSupportFragmentManager();
+        }
+        mEditAddressFragment =mFragmentManager.findFragmentByTag(EditAddressFragment.TAG);
+        if(mEditAddressFragment ==null){
+            mEditAddressFragment =new EditAddressFragment();
+        }
+
+        Bundle bundle=new Bundle();
+        bundle.putParcelable(Constant.ADDRESS,addressList.get(position));
+        bundle.putParcelableArrayList(Constant.PARCEABLE, (ArrayList<? extends Parcelable>) addressList);
+        mEditAddressFragment.setArguments(bundle);
+
+        Fragment from=mFragmentManager.findFragmentByTag(AddressListFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, mEditAddressFragment,R.id.address_container,mFragmentManager,CityAddressFragment.TAG);
     }
 
 }

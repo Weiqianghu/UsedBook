@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements IUploadFileByPathView,
                     Bundle bundle = msg.getData();
                     BmobFile file = (BmobFile) bundle.getSerializable(Constant.FILE);
                     String fileUrl = file.getUrl();
-                    UserBean currentUser= BmobUser.getCurrentUser(MainActivity.this,UserBean.class);
+                    UserBean currentUser= new UserBean();
                     currentUser.setImg(fileUrl);
                     mEditUserPresenter.updateUser(MainActivity.this,currentUser);
                     break;
