@@ -20,6 +20,7 @@ public class AddressBean extends BmobObject implements Parcelable{
     private boolean isDefault;
 
     public AddressBean(){}
+
     protected AddressBean(Parcel in) {
         name = in.readString();
         mobileNo = in.readString();

@@ -6,9 +6,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 
+
 import com.weiqianghu.usedbook.model.entity.AddressBean;
 import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.entity.UserBean;
+
 import com.weiqianghu.usedbook.model.impl.QueryModel;
 import com.weiqianghu.usedbook.model.inf.IQueryModel;
 import com.weiqianghu.usedbook.util.Constant;
@@ -17,7 +19,6 @@ import com.weiqianghu.usedbook.view.view.IQueryView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;

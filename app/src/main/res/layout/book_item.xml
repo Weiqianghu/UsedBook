@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-    
-    <ImageView
-        android:id="@+id/iv_item_book"
-        android:src="@mipmap/logo"
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_item_book_img"
         android:layout_width="@dimen/book_item_img_dimen"
-        android:layout_height="@dimen/book_item_img_dimen" />
+        android:layout_height="@dimen/book_item_img_dimen"
+        fresco:placeholderImage="@mipmap/logo" />
 
     <TextView
         android:id="@+id/tv_item_book_percent"
-        android:text="八成新"
         style="@style/book_percent_style"
-        android:layout_below="@+id/iv_item_book" />
+        android:layout_below="@+id/iv_item_book_img"
+        android:maxLength="3"
+        android:text="八成新" />
 
     <TextView
         android:id="@+id/tv_item_book_price"
-        android:text="20￥"
         style="@style/book_price_style"
-        android:layout_below="@+id/iv_item_book"
-        android:layout_toRightOf="@id/tv_item_book_percent"/>
+        android:layout_below="@+id/iv_item_book_img"
+        android:layout_toRightOf="@id/tv_item_book_percent"
+        android:text="20￥" />
 
     <TextView
         android:id="@+id/tv_item_book_name"
-        android:text="计算机文化"
         style="@style/book_name_style"
-        android:layout_below="@+id/tv_item_book_price" />
+        android:layout_below="@+id/tv_item_book_price"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="计算机文化" />
 
 
     <TextView
         android:id="@+id/tv_item_book_shop"
-        android:text="UB二手书城"
         style="@style/book_shop_style"
-        android:layout_below="@+id/tv_item_book_name" />
+        android:layout_below="@+id/tv_item_book_name"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="UB二手书城" />
 
 </RelativeLayout>

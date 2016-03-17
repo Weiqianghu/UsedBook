@@ -99,7 +99,6 @@ public class MainActivity extends BaseActivity implements IUploadFileByPathView,
                     }
                     String smallImgPath=ImgUtil.getSmallImgPath(path.get(0), mUserImgView.getWidth(), mUserImgView.getHeight());
                     updateImg(smallImgPath);
-                    Log.d("path","path.get(0):"+path.get(0)+",smallImgPath:"+smallImgPath);
                     mUploadFileByPathPresenter.uploadFileByPath(MainActivity.this,smallImgPath);
                 }
             }

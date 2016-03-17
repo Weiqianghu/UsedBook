@@ -117,7 +117,7 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
                     break;
                 case R.id.btn_submit:
                     if(beforeSubmit()){
-                        mSavePresenter.save(getActivity(),address);
+                        mSavePresenter.save(getActivity(), address);
                         mLoading.setVisibility(View.VISIBLE);
                     }else {
                         mSubmitBtn.setClickable(true);
@@ -163,14 +163,15 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
         }
 
         address=new AddressBean();
+
         address.setProvince(provinceName);
         address.setCity(cityName);
         address.setCounty(countyName);
+        address.setDetailAddress(detailAddress);
         address.setName(name);
         address.setZipCode(zipCode);
         address.setMobileNo(mobileNo);
         address.setDefault(false);
-        address.setDetailAddress(detailAddress);
 
         UserBean userBean= BmobUser.getCurrentUser(getActivity(),UserBean.class);
         address.setUser(userBean);

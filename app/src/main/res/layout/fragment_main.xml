@@ -4,10 +4,10 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@drawable/search_edit_text_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/search_edit_text_background"
         android:padding="10dp">
 
         <ImageView
@@ -29,19 +29,25 @@
             android:textSize="@dimen/middle_text_size" />
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/gv_book"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="@dimen/book_list_width"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center">
-    </GridView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <GridView
+            android:id="@+id/gv_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:columnWidth="@dimen/book_list_width"
+            android:gravity="center"
+            android:horizontalSpacing="8dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="8dp"></GridView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 
 </LinearLayout>

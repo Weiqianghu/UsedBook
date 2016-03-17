@@ -2,23 +2,32 @@ package com.weiqianghu.usedbook.view.fragment;
 
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookBean;
-import com.weiqianghu.usedbook.presenter.BooksPresenter;
+import com.weiqianghu.usedbook.model.entity.BookModel;
+import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
+import com.weiqianghu.usedbook.presenter.QueryBooksPresenter;
+import com.weiqianghu.usedbook.presenter.adapter.BooksAdapter;
 import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
+import com.weiqianghu.usedbook.util.CallBackHandler;
+import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.ViewHolder;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IBooksView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,28 +36,41 @@ public class MainFragment extends BaseFragment implements IBooksView {
     private GridView mBookGridView;
     private FragmentManager fragmentManager;
     private TextView mSearchEditText;
-    private CommonAdapter<BookBean> booksAdapter;
-
-    private BooksPresenter mBoksPresenter;
-
-    private List<BookBean> books;
+    private BooksAdapter mAdapter;
 
     private View loadingView;
 
+    private QueryBooksPresenter mQueryBooksPresenter;
+    private QueryBookImgsPresenter mQueryBookImgsPresenter;
+    private List<BookBean> mBooks = new ArrayList<>();
+    private List<BookModel> mData = new ArrayList();
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private int count = 0;
+    private static final int STEP = 30;
+    private boolean isRefresh = false;
+
     @Override
     protected int getLayoutId() {
+        Fresco.initialize(getActivity());
         return R.layout.fragment_main;
     }
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
         initView(savedInstanceState);
-
-
+        initData();
     }
 
     protected void initView(Bundle savedInstanceState) {
         mBookGridView = (GridView) mRootView.findViewById(R.id.gv_book);
+        mAdapter = new BooksAdapter(getActivity(), mData, R.layout.book_item);
+        mBookGridView.setAdapter(mAdapter);
+        mBookGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                gotoBookDetail(position);
+            }
+        });
 
         //TODO 分页显示
         loadingView = getLayoutInflater(savedInstanceState).inflate(R.layout.loading, null);
@@ -58,10 +80,92 @@ public class MainFragment extends BaseFragment implements IBooksView {
         mSearchEditText.setFocusable(false);
         mSearchEditText.setOnClickListener(new ClickListener());
 
-        mBoksPresenter = new BooksPresenter(this);
-        mBoksPresenter.loadBooks();
+        mQueryBooksPresenter = new QueryBooksPresenter(queryBooksHandler);
+        mQueryBookImgsPresenter = new QueryBookImgsPresenter(queryBookImgsHandler);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.swiperefreshlayout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.mainColor);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                count = 0;
+                isRefresh = true;
+                queryData(count * STEP, STEP);
+            }
+        });
+
     }
 
+    private void initData() {
+        count = 0;
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                queryData(count * STEP, STEP);
+            }
+        });
+
+    }
+
+    private void queryData(int start, int step) {
+        mQueryBooksPresenter.queryBooks(getActivity(), start, step);
+    }
+
+    CallBackHandler queryBooksHandler = new CallBackHandler() {
+        @Override
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    List list = bundle.getParcelableArrayList(Constant.LIST);
+                    if (list != null && list.size() > 0) {
+                        mBooks.clear();
+                        mBooks.addAll(list);
+                        for (int i = 0, length = mBooks.size(); i < length; i++) {
+                            mQueryBookImgsPresenter.queryBookImgs(getActivity(), (BookBean) list.get(i));
+                        }
+                    }
+            }
+        }
+
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+    CallBackHandler queryBookImgsHandler = new CallBackHandler() {
+        @Override
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    List list = bundle.getParcelableArrayList(Constant.LIST);
+                    BookBean bookBean = bundle.getParcelable(Constant.BOOK);
+
+                    BookModel bookModel = new BookModel();
+                    bookModel.setBook(bookBean);
+                    bookModel.setBookImgs(list);
+
+                    if (isRefresh) {
+                        mData.clear();
+                        isRefresh = false;
+                    }
+                    mData.add(bookModel);
+
+                    mAdapter.notifyDataSetChanged();
+                    mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }
+
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
 
     void gotoBookDetail(int position) {
 
@@ -73,37 +177,18 @@ public class MainFragment extends BaseFragment implements IBooksView {
             fragment = BookDetailFragment.getInstance();
 
             Bundle args = new Bundle();
-            args.putSerializable("books", books.get(position));
+            args.putParcelable("books", mData.get(position));
             fragment.setArguments(args);
         } else {
             Bundle args = fragment.getArguments();
-            args.putSerializable("books", books.get(position));
+            args.putParcelable("books", mData.get(position));
         }
 
         Fragment form = fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
 
-        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager,BookDetailFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager, BookDetailFragment.TAG);
     }
 
-    @Override
-    public void showBooks(List<BookBean> books) {
-        this.books = books;
-        booksAdapter = new CommonAdapter<BookBean>(getActivity(), books, R.layout.book_item) {
-            @Override
-            public void convert(ViewHolder helper, BookBean item) {
-                helper.setText(R.id.tv_item_book_price, item.getPrice() + "￥");
-            }
-        };
-
-        mBookGridView.setAdapter(booksAdapter);
-
-        mBookGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                gotoBookDetail(position);
-            }
-        });
-    }
 
     private class ClickListener implements View.OnClickListener {
 
@@ -127,8 +212,8 @@ public class MainFragment extends BaseFragment implements IBooksView {
             fragment = SearchFragment.getInstance();
         }
 
-        Fragment from=fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
-        FragmentUtil.switchContentAddToBackStack(from,fragment,R.id.main_container,fragmentManager,SearchFragment.TAG);
+        Fragment from = fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, fragment, R.id.main_container, fragmentManager, SearchFragment.TAG);
     }
 
 }

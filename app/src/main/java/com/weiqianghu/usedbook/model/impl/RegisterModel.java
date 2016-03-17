@@ -5,11 +5,7 @@ import android.content.Context;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.model.inf.IRegisterModel;
 
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.SaveListener;
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
 
 /**
  * Created by weiqianghu on 2016/2/19.
@@ -27,6 +23,7 @@ public class RegisterModel implements IRegisterModel {
         user.setSex(true);
         user.setLatitude(0.0);
         user.setLongitude(0.0);
+        user.setShop(false);
         user.signUp(context,saveListener);
 
         user.signUp(context,saveListener);

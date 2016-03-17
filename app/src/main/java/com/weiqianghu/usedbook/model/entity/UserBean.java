@@ -14,6 +14,25 @@ public class UserBean extends BmobUser {
     private Double longitude;
     private Double latitude;
 
+    private boolean isShop;
+    private ShopBean shop;
+
+    public boolean isShop() {
+        return isShop;
+    }
+
+    public void setShop(boolean shop) {
+        isShop = shop;
+    }
+
+    public ShopBean getShop() {
+        return shop;
+    }
+
+    public void setShop(ShopBean shop) {
+        this.shop = shop;
+    }
+
     public int getAge() {
         return age;
     }

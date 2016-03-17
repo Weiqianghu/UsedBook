@@ -2,6 +2,7 @@ package com.weiqianghu.usedbook.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
  * Created by 胡伟强 on 2016/1/18.
@@ -72,15 +75,14 @@ public class ViewHolder {
      * @param text
      * @return
      */
-    public ViewHolder setText(int viewId, String text)
-    {
+    public ViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
         return this;
     }
 
-    public ViewHolder setChecked(int viewId,boolean isChecked){
-        CheckBox view=getView(viewId);
+    public ViewHolder setChecked(int viewId, boolean isChecked) {
+        CheckBox view = getView(viewId);
         view.setChecked(isChecked);
         return this;
     }
@@ -92,8 +94,7 @@ public class ViewHolder {
      * @param drawableId
      * @return
      */
-    public ViewHolder setImageResource(int viewId, int drawableId)
-    {
+    public ViewHolder setImageResource(int viewId, int drawableId) {
         ImageView view = getView(viewId);
         view.setImageResource(drawableId);
 
@@ -107,20 +108,26 @@ public class ViewHolder {
      * @param bm
      * @return
      */
-    public ViewHolder setImageBitmap(int viewId, Bitmap bm)
-    {
+    public ViewHolder setImageBitmap(int viewId, Bitmap bm) {
         ImageView view = getView(viewId);
         view.setImageBitmap(bm);
         return this;
     }
 
-    public void setViewVisible(int viewId,boolean visible){
-        View view=getView(viewId);
-        if(visible){
+    public void setViewVisible(int viewId, boolean visible) {
+        View view = getView(viewId);
+        if (visible) {
             view.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             view.setVisibility(View.INVISIBLE);
         }
     }
+
+    public ViewHolder setImageForSimpleDraweeViewUri(int viewId, Uri uri) {
+        SimpleDraweeView draweeView = getView(viewId);
+        draweeView.setImageURI(uri);
+        return this;
+    }
+
 
 }

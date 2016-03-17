@@ -200,9 +200,12 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
                 int choiceWhich = choiceListener.getWhich();
                 boolean sexBoole = choiceWhich == 0 ? true : false;
                 if (sexBoole != currentUser.isSex()) {
+                    UserBean user=new UserBean();
+                    user.setObjectId(currentUser.getObjectId());
+                    user.setSex(sexBoole);
                     currentUser.setSex(sexBoole);
                     mLoading.setVisibility(View.VISIBLE);
-                    mEditUserPresenter.updateUser(EditUserInfoActivity.this, currentUser);
+                    mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);
                 }
             }
         });
@@ -240,9 +243,12 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
             public void onClick(DialogInterface dialog, int which) {
                 int age = Integer.valueOf(temp.getText().toString());
                 if (age > 0 && age < 150 && age != currentUser.getAge()) {
+                    UserBean user=new UserBean();
+                    user.setObjectId(currentUser.getObjectId());
+                    user.setAge(Integer.valueOf(temp.getText().toString()));
                     currentUser.setAge(Integer.valueOf(temp.getText().toString()));
                     mLoading.setVisibility(View.VISIBLE);
-                    mEditUserPresenter.updateUser(EditUserInfoActivity.this, currentUser);
+                    mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);
                 } else {
                     Toast.makeText(EditUserInfoActivity.this, "输入不合法", Toast.LENGTH_SHORT).show();
                 }
