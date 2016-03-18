@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.weiqianghu.usedbook.model.entity.BookBean;
+import com.weiqianghu.usedbook.model.entity.BookImgsBean;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
  */
 public interface IBooksDetailModel {
 
-    List<View> loadBookImgs(Activity activity, BookBean book);
+    List<View> loadBookImgs(Activity activity, List<BookImgsBean> imgs);
 
 }

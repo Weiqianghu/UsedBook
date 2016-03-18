@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -72,8 +73,22 @@ public class MainFragment extends BaseFragment implements IBooksView {
             }
         });
 
-        //TODO 分页显示
-        loadingView = getLayoutInflater(savedInstanceState).inflate(R.layout.loading, null);
+        mBookGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    //滚动到底部
+                    if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
+                        loadMore();
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
 
 
         mSearchEditText = (TextView) mRootView.findViewById(R.id.et_search);
@@ -110,6 +125,11 @@ public class MainFragment extends BaseFragment implements IBooksView {
 
     private void queryData(int start, int step) {
         mQueryBooksPresenter.queryBooks(getActivity(), start, step);
+    }
+
+    private void loadMore() {
+        count++;
+        queryData(count * STEP, STEP);
     }
 
     CallBackHandler queryBooksHandler = new CallBackHandler() {
@@ -177,11 +197,11 @@ public class MainFragment extends BaseFragment implements IBooksView {
             fragment = BookDetailFragment.getInstance();
 
             Bundle args = new Bundle();
-            args.putParcelable("books", mData.get(position));
+            args.putParcelable(Constant.BOOK, mData.get(position));
             fragment.setArguments(args);
         } else {
             Bundle args = fragment.getArguments();
-            args.putParcelable("books", mData.get(position));
+            args.putParcelable(Constant.BOOK, mData.get(position));
         }
 
         Fragment form = fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);

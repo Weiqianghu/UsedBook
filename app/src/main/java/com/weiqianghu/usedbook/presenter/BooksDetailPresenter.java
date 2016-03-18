@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.weiqianghu.usedbook.model.entity.BookBean;
+import com.weiqianghu.usedbook.model.entity.BookImgsBean;
 import com.weiqianghu.usedbook.model.impl.BookDetailModel;
 import com.weiqianghu.usedbook.model.inf.IBooksDetailModel;
 import com.weiqianghu.usedbook.view.view.IBooksDetailView;
@@ -21,17 +22,17 @@ public class BooksDetailPresenter {
     private IBooksDetailModel mBooksDetailModel;
     private IBooksDetailView mIBooksDetailView;
 
-    private BookBean mBook;
+    private List<BookImgsBean> mBookImgs;
 
-    public BooksDetailPresenter(Activity activity,IBooksDetailView booksDetailView,BookBean book){
-        this.mActivity=activity;
-        this.mIBooksDetailView=booksDetailView;
-        mBooksDetailModel=new BookDetailModel();
-        this.mBook=book;
+    public BooksDetailPresenter(Activity activity, IBooksDetailView booksDetailView, List<BookImgsBean> bookImgs) {
+        this.mActivity = activity;
+        this.mIBooksDetailView = booksDetailView;
+        mBooksDetailModel = new BookDetailModel();
+        this.mBookImgs = bookImgs;
     }
 
-    public void loadBookImgs(){
-        List<View> views=mBooksDetailModel.loadBookImgs(mActivity,mBook);
+    public void loadBookImgs() {
+        List<View> views = mBooksDetailModel.loadBookImgs(mActivity, mBookImgs);
         mIBooksDetailView.setBookImgs(views);
     }
 }
