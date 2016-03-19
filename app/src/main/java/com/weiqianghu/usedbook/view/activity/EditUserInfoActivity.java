@@ -170,7 +170,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         InputFilter[] filters = {new InputFilter.LengthFilter(10)};
         temp.setFilters(filters);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("修改用户名");
         builder.setIcon(android.R.drawable.ic_dialog_info);
         builder.setView(temp);
@@ -191,7 +191,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         final int choice = (currentUser.isSex()) ? 0 : 1;
         final String[] sex = {"男", "女"};
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("修改性别");
         builder.setSingleChoiceItems(sex, choice, choiceListener);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -234,7 +234,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         InputFilter[] filters = {new InputFilter.LengthFilter(3)};
         temp.setFilters(filters);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("修改年龄");
         builder.setIcon(android.R.drawable.ic_dialog_info);
         builder.setView(temp);

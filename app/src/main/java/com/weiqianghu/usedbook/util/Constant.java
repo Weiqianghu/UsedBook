@@ -1,5 +1,7 @@
 package com.weiqianghu.usedbook.util;
 
+import java.security.PublicKey;
+
 /**
  * Created by 胡伟强 on 2016/2/1.
  */
@@ -39,5 +41,12 @@ public class Constant {
 
     public static final String LIST = "list";
     public static final String BOOK = "book";
+
+    public static final String DATA = "data";
+
+    public static final String EXIST = "exist";
+
+    public static final int TRUE = 1;
+    public static final int FALSE = 0;
 
 }

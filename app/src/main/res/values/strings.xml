@@ -37,6 +37,7 @@
     <string name="submit">确定</string>
     <string name="password">设置密码，最少6位,最长16位</string>
     <string name="ensure_password">确认密码</string>
+    <string name="cancel">取消</string>
 
     <string name="mobile_no">输入手机号码，用于找回账号</string>
 
@@ -105,6 +106,8 @@
     <string name="negative">取消</string>
 
     <string name="default_address">[默认]</string>
+
+    <string name="warning">警告</string>
 
 
 </resources>

@@ -1,13 +1,14 @@
 package com.weiqianghu.usedbook.view.fragment;
 
 
+import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.text.Layout;
-import android.util.Log;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,44 +16,67 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.BookBean;
+import com.weiqianghu.usedbook.model.entity.BookImgsBean;
+import com.weiqianghu.usedbook.model.entity.BookModel;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
+import com.weiqianghu.usedbook.model.entity.ShoppingCartModel;
+import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
-import com.weiqianghu.usedbook.presenter.ShoppingCartPresenter;
+import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
+import com.weiqianghu.usedbook.presenter.QueryShoppingCartPresenter;
+import com.weiqianghu.usedbook.presenter.UpdatePresenter;
 import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
+import com.weiqianghu.usedbook.util.CallBackHandler;
+import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.view.ViewHolder;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
-import com.weiqianghu.usedbook.view.view.IShoppingCartView;
+import com.weiqianghu.usedbook.view.view.IUpdateView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShoppingCartFragment extends BaseFragment implements IShoppingCartView {
+public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
 
     private View mSuggestToLoginLayout;
     private IsLoginPresenter mIsLoginPresenter;
 
     private ListView mShoppingCartListView;
-
-    private ShoppingCartPresenter mPresenter;
-    private CommonAdapter<ShoppingCartBean> shoppingCartAdapter;
-
     private TextView mTotalMoney;
 
-    private List<ShoppingCartBean> mData;
+    private List<ShoppingCartBean> mShoppingCartBeans = new ArrayList<>();
+    private List<ShoppingCartModel> mShoppingCartModels = new ArrayList<>();
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private int count = 0;
+    private static final int STEP = 30;
+    private boolean isRefresh = false;
+    private QueryShoppingCartPresenter mQueryShoppingCartPresenter;
+    private QueryBookImgsPresenter mQueryBookImgsPresenter;
+    private UpdatePresenter<ShoppingCartBean> mUpdatePresenter;
+
+    private CommonAdapter<ShoppingCartModel> shoppingCartAdapter;
 
     @Override
     protected int getLayoutId() {
+        Fresco.initialize(getActivity());
         return R.layout.fragment_shopping_cart;
     }
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
+        initAdapter();
         initView(savedInstanceState);
+        initData();
     }
 
     @Override
@@ -61,61 +85,190 @@ public class ShoppingCartFragment extends BaseFragment implements IShoppingCartV
 
         mIsLoginPresenter = new IsLoginPresenter();
 
-        if (mPresenter == null) {
-            mPresenter = new ShoppingCartPresenter(this);
-        }
         mShoppingCartListView = (ListView) mRootView.findViewById(R.id.lv_shoppingcart);
-
-        mPresenter.showShoppingCart();
+        mShoppingCartListView.setAdapter(shoppingCartAdapter);
 
         mTotalMoney = (TextView) mRootView.findViewById(R.id.tv_total_money);
         showTotalMoney();
+
+        mQueryShoppingCartPresenter = new QueryShoppingCartPresenter(queryShoppingCartHandler);
+        mQueryBookImgsPresenter = new QueryBookImgsPresenter(queryBookImgsHandler);
+        mUpdatePresenter = new UpdatePresenter<>(this, delectShoppingCartHandler);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mRootView.findViewById(R.id.swiperefreshlayout);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.mainColor);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                count = 0;
+                isRefresh = true;
+                queryData(count * STEP, STEP);
+            }
+        });
+
+        mShoppingCartListView.setAdapter(shoppingCartAdapter);
+    }
+
+    private void initData() {
+        count = 0;
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                isRefresh = true;
+                mSwipeRefreshLayout.setRefreshing(true);
+                queryData(count * STEP, STEP);
+            }
+        });
+
+    }
+
+    private void queryData(int start, int step) {
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+        mQueryShoppingCartPresenter.queryShoppingCart(getActivity(), user, start, step);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(mIsLoginPresenter.isLogin(getActivity())){//TODO 没有登陆
-            mSuggestToLoginLayout.setVisibility(View.VISIBLE);
-        }else {
-            mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
-        }
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                return mIsLoginPresenter.isLogin(getActivity());
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                super.onPostExecute(aBoolean);
+
+                if (aBoolean) {
+                    mSuggestToLoginLayout.setVisibility(View.VISIBLE);
+                } else {
+                    mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        }.execute();
+
     }
 
-    @Override
-    public void showShoppingCart(final List<ShoppingCartBean> shoppingCartBeanList) {
-        this.mData=shoppingCartBeanList;
-        shoppingCartAdapter = new CommonAdapter<ShoppingCartBean>(getActivity(),
-                shoppingCartBeanList, R.layout.item_shopping_cart) {
+    CallBackHandler queryShoppingCartHandler = new CallBackHandler() {
+        @Override
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    List list = bundle.getParcelableArrayList(Constant.LIST);
+                    if (list != null && list.size() > 0) {
+                        mShoppingCartBeans.clear();
+                        mShoppingCartBeans.addAll(list);
+                        for (int i = 0, length = mShoppingCartBeans.size(); i < length; i++) {
+                            mQueryBookImgsPresenter.queryBookImgs(getActivity(), (ShoppingCartBean) list.get(i));
+                        }
+                    } else {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+            }
+        }
+
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+    CallBackHandler queryBookImgsHandler = new CallBackHandler() {
+        @Override
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    List list = bundle.getParcelableArrayList(Constant.LIST);
+                    ShoppingCartBean shoppingCartBean = bundle.getParcelable(Constant.DATA);
+
+                    ShoppingCartModel shoppingCartModel = new ShoppingCartModel();
+                    shoppingCartModel.setShoppingCartBean(shoppingCartBean);
+                    shoppingCartModel.setBookImgs(list);
+
+                    if (isRefresh) {
+                        mShoppingCartModels.clear();
+                        isRefresh = false;
+                    }
+                    mShoppingCartModels.add(shoppingCartModel);
+
+                    shoppingCartAdapter.notifyDataSetChanged();
+                    mSwipeRefreshLayout.setRefreshing(false);
+            }
+        }
+
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+    CallBackHandler delectShoppingCartHandler = new CallBackHandler() {
+        @Override
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    shoppingCartAdapter.notifyDataSetChanged();
+            }
+        }
+
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+    private void initAdapter() {
+        shoppingCartAdapter = new CommonAdapter<ShoppingCartModel>(getActivity(), mShoppingCartModels, R.layout.item_shopping_cart) {
             @Override
-            public void convert(ViewHolder helper, final ShoppingCartBean item) {
-                helper.setText(R.id.tv_book_price, "￥" + item.getPrice());
-                helper.setText(R.id.tv_number, String.valueOf(item.getNumber()));
-                helper.setText(R.id.tv_subtotal, "￥" + item.getSubtotal());
+            public void convert(ViewHolder helper, final ShoppingCartModel item) {
+
+                final ShoppingCartBean shoppingCartBean = item.getShoppingCartBean();
+
+                helper.setText(R.id.tv_book_name, shoppingCartBean.getBook().getBookName());
+                helper.setText(R.id.tv_book_price, "￥" + shoppingCartBean.getPrice());
+                helper.setText(R.id.tv_number, String.valueOf(shoppingCartBean.getNumber()));
+                helper.setText(R.id.tv_subtotal, "￥" + shoppingCartBean.getSubtotal());
+
+                List<BookImgsBean> imgs = item.getBookImgs();
+                if (imgs != null && imgs.size() > 0) {
+                    Uri uri = Uri.parse(imgs.get(0).getImg());
+                    helper.setImageForSimpleDraweeViewUri(R.id.iv_book, uri);
+                } else {
+                    Uri uri = Uri.parse("res://com.weiqianghu.usedbook_shop/" + R.mipmap.upload_img);
+                    helper.setImageForSimpleDraweeViewUri(R.id.iv_book, uri);
+                }
+
                 CheckBox cb = helper.getView(R.id.cb_check);
                 cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            item.setChecked(true);
+                            shoppingCartBean.setChecked(true);
 
                             showTotalMoney();
                         } else {
-                            item.setChecked(false);
+                            shoppingCartBean.setChecked(false);
                             showTotalMoney();
                         }
                     }
                 });
-                cb.setChecked(item.isChecked());
+                cb.setChecked(shoppingCartBean.isChecked());
 
                 ImageButton ib_add = helper.getView(R.id.ib_add);
                 ib_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        item.setNumber(item.getNumber() + 1);
-                        item.setSubtotal(item.getSubtotal() + item.getPrice());
+                        shoppingCartBean.setNumber(shoppingCartBean.getNumber() + 1);
+                        shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() + shoppingCartBean.getPrice());
                         shoppingCartAdapter.notifyDataSetChanged();
-                        if(item.isChecked()) {
+                        if (shoppingCartBean.isChecked()) {
                             showTotalMoney();
                         }
                     }
@@ -125,11 +278,11 @@ public class ShoppingCartFragment extends BaseFragment implements IShoppingCartV
                 ib_subtract.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (item.getNumber() > 1) {
-                            item.setNumber(item.getNumber() - 1);
-                            item.setSubtotal(item.getSubtotal() - item.getPrice());
+                        if (shoppingCartBean.getNumber() > 1) {
+                            shoppingCartBean.setNumber(shoppingCartBean.getNumber() - 1);
+                            shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() - shoppingCartBean.getPrice());
                             shoppingCartAdapter.notifyDataSetChanged();
-                            if(item.isChecked()) {
+                            if (shoppingCartBean.isChecked()) {
                                 showTotalMoney();
                             }
                         }
@@ -140,24 +293,40 @@ public class ShoppingCartFragment extends BaseFragment implements IShoppingCartV
                 btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mData.remove(item);
-                        shoppingCartAdapter.notifyDataSetChanged();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("确定要从购物车中删除这件商品");
+                        builder.setIcon(android.R.drawable.ic_dialog_info);
+                        builder.setPositiveButton(R.string.submit, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                mShoppingCartModels.remove(item);
+                                deleteShoppingCartModel(item);
+                            }
+                        });
+                        builder.setNegativeButton(R.string.cancel, null);
+                        builder.show();
                     }
                 });
             }
         };
-        mShoppingCartListView.setAdapter(shoppingCartAdapter);
     }
 
-    private void showTotalMoney(){
-        new AsyncTask<Void,Void,Double>() {
+    private void deleteShoppingCartModel(ShoppingCartModel item) {
+        ShoppingCartBean shoppingCartBean = item.getShoppingCartBean();
+        shoppingCartBean.setOrder(true);
+        mUpdatePresenter.update(getActivity(), shoppingCartBean, shoppingCartBean.getObjectId());
+    }
+
+    private void showTotalMoney() {
+        new AsyncTask<Void, Void, Double>() {
 
             @Override
             protected Double doInBackground(Void... params) {
                 double currentCount = 0;
-                for(int i=0,length=mData.size();i<length;i++){
-                    if (mData.get(i).isChecked()){
-                        currentCount+=mData.get(i).getSubtotal();
+                for (int i = 0, length = mShoppingCartModels.size(); i < length; i++) {
+                    ShoppingCartBean shoppingCartBean = mShoppingCartModels.get(i).getShoppingCartBean();
+                    if (shoppingCartBean.isChecked()) {
+                        currentCount += shoppingCartBean.getSubtotal();
                     }
                 }
                 return currentCount;

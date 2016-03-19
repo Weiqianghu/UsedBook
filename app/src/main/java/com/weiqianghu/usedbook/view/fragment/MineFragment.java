@@ -3,6 +3,7 @@ package com.weiqianghu.usedbook.view.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,7 @@ import com.weiqianghu.usedbook.util.SelectImgUtil;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderActivity;
+import com.weiqianghu.usedbook.view.activity.PreferActivity;
 import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.CircleImageView;
@@ -74,6 +76,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
         mSuggestToLoginLayout = mRootView.findViewById(R.id.ly_suggest_to_login);
 
         Click click = new Click();
@@ -104,7 +107,7 @@ public class MineFragment extends BaseFragment {
 
         mIsLoginPresenter = new IsLoginPresenter();
 
-        mUserImgImgView = (SimpleDraweeView ) mRootView.findViewById(R.id.iv_user_img);
+        mUserImgImgView = (SimpleDraweeView) mRootView.findViewById(R.id.iv_user_img);
         mUserImgImgView.setOnClickListener(click);
 
         mSeetings = mRootView.findViewById(R.id.setting);
@@ -125,7 +128,7 @@ public class MineFragment extends BaseFragment {
             username = currentUser.getUsername();
             mUsernameTv.setText(username);
 
-            if(userImg !=null && !"".equals(userImg)){
+            if (userImg != null && !"".equals(userImg)) {
                 mUserImgImgView.setImageURI(Uri.parse(userImg));
             }
         }
@@ -134,12 +137,25 @@ public class MineFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (mIsLoginPresenter.isLogin(getActivity())) {
-            mSuggestToLoginLayout.setVisibility(View.VISIBLE);
-        } else {
-            mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
-            updateView();
-        }
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                return mIsLoginPresenter.isLogin(getActivity());
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                super.onPostExecute(aBoolean);
+
+                if (aBoolean) {
+                    mSuggestToLoginLayout.setVisibility(View.VISIBLE);
+                } else {
+                    mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
+                    updateView();
+                }
+            }
+        }.execute();
     }
 
     private class Click implements View.OnClickListener {
@@ -182,8 +198,16 @@ public class MineFragment extends BaseFragment {
                 case R.id.address:
                     gotoAddress();
                     break;
+                case R.id.prefer:
+                    gotoPrefer();
+                    break;
             }
         }
+    }
+
+    private void gotoPrefer() {
+        Intent intent = new Intent(getActivity(), PreferActivity.class);
+        startActivity(intent);
     }
 
     void gotoSeetings() {
@@ -200,7 +224,7 @@ public class MineFragment extends BaseFragment {
     }
 
     private void gotoAddress() {
-        Intent intent=new Intent(getActivity(), AddressActivity.class);
+        Intent intent = new Intent(getActivity(), AddressActivity.class);
         startActivity(intent);
 
     }

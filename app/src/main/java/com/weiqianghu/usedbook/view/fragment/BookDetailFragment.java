@@ -1,30 +1,35 @@
 package com.weiqianghu.usedbook.view.fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookBean;
-import com.weiqianghu.usedbook.model.entity.BookImgsBean;
 import com.weiqianghu.usedbook.model.entity.BookModel;
+import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
+import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.BooksDetailPresenter;
+import com.weiqianghu.usedbook.presenter.AddShoppingCartPresenter;
+import com.weiqianghu.usedbook.presenter.QueryShoppingCartPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.MViewPagerAdapter;
+import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IBooksDetailView;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
 
 
 public class BookDetailFragment extends BaseFragment implements IBooksDetailView {
@@ -53,6 +58,10 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
 
     private ImageView mShoppingCartIV;
 
+    private AddShoppingCartPresenter mAddShoppingCartPresenter;
+    private Button mAddShoppingCartBtn;
+    private QueryShoppingCartPresenter mQueryShoppingCartPresenter;
+
 
     public static BookDetailFragment getInstance() {
         BookDetailFragment fragment = new BookDetailFragment();
@@ -76,6 +85,9 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
 
     @Override
     protected void initView(Bundle savedInstanceState) {
+
+        Click click = new Click();
+
         mBookImgVp = (ViewPager) mRootView.findViewById(R.id.vp_book_img);
         if (mBooksDetailPresenter == null) {
             mBooksDetailPresenter = new BooksDetailPresenter(getActivity(), this, mBookModel.getBookImgs());
@@ -83,7 +95,7 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
 
         mTopBarLeftBtn = (ImageView) mRootView.findViewById(R.id.top_bar_left_button);
         mTopBarLeftBtn.setImageResource(R.mipmap.back);
-        mTopBarLeftBtn.setOnClickListener(new Click());
+        mTopBarLeftBtn.setOnClickListener(click);
 
         mTopBarText = (TextView) mRootView.findViewById(R.id.tv_top_bar_text);
         mTopBarText.setText(R.string.book_detail);
@@ -91,7 +103,7 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         mPostionTv = (TextView) mRootView.findViewById(R.id.tv_position);
 
         mCommentView = mRootView.findViewById(R.id.comment);
-        mCommentView.setOnClickListener(new Click());
+        mCommentView.setOnClickListener(click);
 
         mPriceTv = (TextView) mRootView.findViewById(R.id.tv_price);
         mBookNameTv = (TextView) mRootView.findViewById(R.id.tv_book_name);
@@ -105,7 +117,12 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
 
 
         mShoppingCartIV = (ImageView) mRootView.findViewById(R.id.iv_shopping_cart);
-        mShoppingCartIV.setOnClickListener(new Click());
+        mShoppingCartIV.setOnClickListener(click);
+
+        mAddShoppingCartPresenter = new AddShoppingCartPresenter(addShoppingCartHanler);
+        mAddShoppingCartBtn = (Button) mRootView.findViewById(R.id.btn_shopping_cart);
+        mAddShoppingCartBtn.setOnClickListener(click);
+        mQueryShoppingCartPresenter = new QueryShoppingCartPresenter(queryShoppingCartHanler);
     }
 
     private void initData() {
@@ -121,7 +138,6 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         mBooksDetailPresenter.loadBookImgs();
 
         BookBean book = mBookModel.getBook();
-        //setBookImgs(loadBookImgs(savedInstanceState, mBookModel.getBookImgs()));
 
         mBookNameTv.setText(book.getBookName());
         mPriceTv.setText("￥" + book.getPrice());
@@ -183,31 +199,76 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                     }
                     FragmentUtil.switchContent(BookDetailFragment.this, fragment, R.id.main_container, mFragmentManager);
                     break;
+                case R.id.btn_shopping_cart:
+                    checkAddShoppingCart();
+                    break;
             }
         }
     }
 
+    private void checkAddShoppingCart() {
+        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
+        BookBean book = mBookModel.getBook();
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
 
-    /*public List<View> loadBookImgs(Bundle savedInstanceState, List<BookImgsBean> imgs) {
-        LayoutInflater inflater = getLayoutInflater(savedInstanceState);
-        List<View> views = new ArrayList<>(3);
+        shoppingCartBean.setUser(user);
+        shoppingCartBean.setBook(book);
 
-        if (imgs != null) {
-            for (int i = 0, length = imgs.size(); i < length; i++) {
-                SimpleDraweeView img = (SimpleDraweeView) inflater.inflate(R.layout.item_book_detail_img, null);
-                Uri uri = Uri.parse(imgs.get(i).getImg());
-                img.setImageURI(uri);
-                views.add(img);
+        mQueryShoppingCartPresenter.queryShoppingCart(getActivity(), shoppingCartBean);
+    }
+
+    private void addShoppingCart() {
+        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
+        BookBean book = mBookModel.getBook();
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+
+        shoppingCartBean.setUser(user);
+        shoppingCartBean.setBook(book);
+        shoppingCartBean.setNumber(1);
+        shoppingCartBean.setSubtotal(book.getPrice());
+        shoppingCartBean.setOrder(false);
+        shoppingCartBean.setPrice(book.getPrice());
+        shoppingCartBean.setChecked(false);
+
+        mAddShoppingCartPresenter.addShoppingCart(getActivity(), shoppingCartBean);
+    }
+
+    CallBackHandler addShoppingCartHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    mAddShoppingCartBtn.setClickable(true);
+                    Toast.makeText(getActivity(), "添加成功", Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
 
-        for (int i = 0, length = views.size(); i < 3 - length; i++) {
-            SimpleDraweeView img = (SimpleDraweeView) inflater.inflate(R.layout.item_book_detail_img, null);
-            Uri uri = Uri.parse("res://com.weiqianghu.usedbook_shop/" + R.mipmap.upload_img);
-            img.setImageURI(uri);
-            views.add(img);
+        public void handleFailureMessage(String msg) {
+            mAddShoppingCartBtn.setClickable(true);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    CallBackHandler queryShoppingCartHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    if (bundle != null) {
+                        int exist = bundle.getInt(Constant.EXIST);
+                        if (Constant.TRUE == exist) {
+                            Toast.makeText(getActivity(), "已经在购物车中", Toast.LENGTH_SHORT).show();
+                        } else {
+                            addShoppingCart();
+                        }
+                    }
+                    break;
+            }
         }
 
-        return views;
-    }*/
+        public void handleFailureMessage(String msg) {
+            mAddShoppingCartBtn.setClickable(true);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

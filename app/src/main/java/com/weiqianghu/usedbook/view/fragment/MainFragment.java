@@ -39,8 +39,6 @@ public class MainFragment extends BaseFragment implements IBooksView {
     private TextView mSearchEditText;
     private BooksAdapter mAdapter;
 
-    private View loadingView;
-
     private QueryBooksPresenter mQueryBooksPresenter;
     private QueryBookImgsPresenter mQueryBookImgsPresenter;
     private List<BookBean> mBooks = new ArrayList<>();
@@ -116,6 +114,7 @@ public class MainFragment extends BaseFragment implements IBooksView {
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
+                isRefresh = true;
                 mSwipeRefreshLayout.setRefreshing(true);
                 queryData(count * STEP, STEP);
             }
@@ -145,6 +144,8 @@ public class MainFragment extends BaseFragment implements IBooksView {
                         for (int i = 0, length = mBooks.size(); i < length; i++) {
                             mQueryBookImgsPresenter.queryBookImgs(getActivity(), (BookBean) list.get(i));
                         }
+                    } else {
+                        mSwipeRefreshLayout.setRefreshing(false);
                     }
             }
         }
