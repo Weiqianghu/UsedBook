@@ -15,10 +15,13 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.BookModel;
+import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
+import com.weiqianghu.usedbook.presenter.AddPreferPresenter;
 import com.weiqianghu.usedbook.presenter.BooksDetailPresenter;
 import com.weiqianghu.usedbook.presenter.AddShoppingCartPresenter;
+import com.weiqianghu.usedbook.presenter.QueryPreferPresenter;
 import com.weiqianghu.usedbook.presenter.QueryShoppingCartPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.MViewPagerAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
@@ -61,6 +64,10 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
     private AddShoppingCartPresenter mAddShoppingCartPresenter;
     private Button mAddShoppingCartBtn;
     private QueryShoppingCartPresenter mQueryShoppingCartPresenter;
+
+    private QueryPreferPresenter mQueryPreferPresenter;
+    private AddPreferPresenter mAddPreferPresenter;
+    private Button mAddPreferBtn;
 
 
     public static BookDetailFragment getInstance() {
@@ -123,6 +130,11 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         mAddShoppingCartBtn = (Button) mRootView.findViewById(R.id.btn_shopping_cart);
         mAddShoppingCartBtn.setOnClickListener(click);
         mQueryShoppingCartPresenter = new QueryShoppingCartPresenter(queryShoppingCartHanler);
+
+        mQueryPreferPresenter = new QueryPreferPresenter(queryPreferHanler);
+        mAddPreferBtn = (Button) mRootView.findViewById(R.id.btn_prefer);
+        mAddPreferBtn.setOnClickListener(click);
+        mAddPreferPresenter = new AddPreferPresenter(addPreferHanler);
     }
 
     private void initData() {
@@ -202,11 +214,15 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                 case R.id.btn_shopping_cart:
                     checkAddShoppingCart();
                     break;
+                case R.id.btn_prefer:
+                    checkAddPrefer();
+                    break;
             }
         }
     }
 
     private void checkAddShoppingCart() {
+        mAddShoppingCartBtn.setClickable(false);
         ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
         BookBean book = mBookModel.getBook();
         UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
@@ -262,6 +278,7 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                             addShoppingCart();
                         }
                     }
+                    mAddShoppingCartBtn.setClickable(true);
                     break;
             }
         }
@@ -269,6 +286,74 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         public void handleFailureMessage(String msg) {
             mAddShoppingCartBtn.setClickable(true);
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mAddShoppingCartBtn.setClickable(true);
         }
     };
+
+    CallBackHandler queryPreferHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    if (bundle != null) {
+                        int exist = bundle.getInt(Constant.EXIST);
+                        if (Constant.TRUE == exist) {
+                            Toast.makeText(getActivity(), "已在收藏夹中", Toast.LENGTH_SHORT).show();
+                        } else {
+                            addPrefer();
+                        }
+                    }
+                    mAddPreferBtn.setClickable(true);
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg) {
+            mAddShoppingCartBtn.setClickable(true);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mAddPreferBtn.setClickable(true);
+        }
+    };
+
+    private void addPrefer() {
+        PreferBean preferBean = new PreferBean();
+        BookBean book = mBookModel.getBook();
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+
+        preferBean.setUser(user);
+        preferBean.setBook(book);
+        preferBean.setDelete(false);
+
+        mAddPreferPresenter.addPrefer(getActivity(), preferBean);
+    }
+
+    private void checkAddPrefer() {
+        mAddPreferBtn.setClickable(false);
+        PreferBean preferBean = new PreferBean();
+        BookBean book = mBookModel.getBook();
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+
+        preferBean.setUser(user);
+        preferBean.setBook(book);
+
+        mQueryPreferPresenter.queryPrefer(getActivity(), preferBean);
+    }
+
+    CallBackHandler addPreferHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    mAddPreferBtn.setClickable(true);
+                    Toast.makeText(getActivity(), "添加成功", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg) {
+            mAddPreferBtn.setClickable(true);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
 }

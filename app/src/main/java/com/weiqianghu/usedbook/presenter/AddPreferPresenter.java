@@ -3,30 +3,24 @@ package com.weiqianghu.usedbook.presenter;
 import android.content.Context;
 import android.os.Handler;
 
-import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
+import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.impl.SaveModel;
-import com.weiqianghu.usedbook.model.impl.ShoppingCartModel;
 import com.weiqianghu.usedbook.model.inf.ISaveModel;
-import com.weiqianghu.usedbook.model.inf.IShoppingCartModel;
-import com.weiqianghu.usedbook.view.view.IShoppingCartView;
-
-import java.util.List;
 
 import cn.bmob.v3.listener.SaveListener;
 
 /**
- * Created by 胡伟强 on 2016/2/1.
+ * Created by weiqianghu on 2016/3/19.
  */
-public class AddShoppingCartPresenter extends CommonPresenter {
-
+public class AddPreferPresenter extends CommonPresenter {
     private ISaveModel mSaveModel;
 
-    public AddShoppingCartPresenter(Handler handler) {
+    public AddPreferPresenter(Handler handler) {
         super(handler);
         mSaveModel = new SaveModel();
     }
 
-    public void addShoppingCart(Context context, ShoppingCartBean shoppingCartBean) {
+    public void addPrefer(Context context, PreferBean preferBean) {
         SaveListener saveListener = new SaveListener() {
             @Override
             public void onSuccess() {
@@ -39,6 +33,6 @@ public class AddShoppingCartPresenter extends CommonPresenter {
             }
         };
 
-        mSaveModel.save(context, saveListener, shoppingCartBean);
+        mSaveModel.save(context, saveListener, preferBean);
     }
 }
