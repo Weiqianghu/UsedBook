@@ -90,6 +90,14 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         updateView(savedInstanceState);
     }
 
+    /*@Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initData();
+        }
+    }*/
+
     @Override
     protected void initView(Bundle savedInstanceState) {
 

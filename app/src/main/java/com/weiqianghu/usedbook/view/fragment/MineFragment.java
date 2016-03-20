@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,17 +21,12 @@ import com.weiqianghu.usedbook.util.SelectImgUtil;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderActivity;
-import com.weiqianghu.usedbook.view.activity.PreferActivity;
 import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
-import com.weiqianghu.usedbook.view.customview.CircleImageView;
 
 import cn.bmob.v3.BmobUser;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MineFragment extends BaseFragment {
 
     private View mSuggestToLoginLayout;
@@ -62,6 +56,9 @@ public class MineFragment extends BaseFragment {
     private String username;
     private String userImg;
     private UserBean currentUser;
+
+    private FragmentManager mFragmentManager;
+    private Fragment mFragment;
 
     @Override
     protected int getLayoutId() {
@@ -206,8 +203,16 @@ public class MineFragment extends BaseFragment {
     }
 
     private void gotoPrefer() {
-        Intent intent = new Intent(getActivity(), PreferActivity.class);
-        startActivity(intent);
+        if (mFragmentManager == null) {
+            mFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        mFragment = mFragmentManager.findFragmentByTag(PreferFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new PreferFragment();
+        }
+
+        Fragment from = mFragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, PreferFragment.TAG);
     }
 
     void gotoSeetings() {

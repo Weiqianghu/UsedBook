@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -87,6 +88,22 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
         mShoppingCartListView = (ListView) mRootView.findViewById(R.id.lv_shoppingcart);
         mShoppingCartListView.setAdapter(shoppingCartAdapter);
+        mShoppingCartListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    //滚动到底部
+                    if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
+                        loadMore();
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
 
         mTotalMoney = (TextView) mRootView.findViewById(R.id.tv_total_money);
         showTotalMoney();
@@ -338,5 +355,10 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                 mTotalMoney.setText(String.valueOf(aDouble));
             }
         }.execute();
+    }
+
+    private void loadMore() {
+        count++;
+        queryData(count * STEP, STEP);
     }
 }

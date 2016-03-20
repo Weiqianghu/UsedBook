@@ -71,12 +71,36 @@ public class QueryPreferPresenter extends CommonPresenter {
     }
 
     public void queryPrefer(Context context, UserBean userBean, int start, int step) {
-        BmobQuery<PreferBean> query = new BmobQuery<>();
-        query.addWhereEqualTo("user", userBean);
-        query.addWhereEqualTo("isDelete", false);
-        query.include("book");
-        query.setLimit(step);
-        query.setSkip(start);
+        BmobQuery<PreferBean> mainQuery = new BmobQuery<>();
+        mainQuery.addWhereEqualTo("user", userBean);
+        mainQuery.addWhereEqualTo("isDelete", false);
+        mainQuery.addWhereExists("book");
+        mainQuery.include("book");
+        mainQuery.setLimit(step);
+        mainQuery.setSkip(start);
+
+        /*BmobQuery<PreferBean> query1 = new BmobQuery<>();
+        query1.addWhereEqualTo("user", userBean);
+        query1.addWhereEqualTo("isDelete", false);
+        query1.addWhereExists("book");
+        query1.include("book");
+
+        BmobQuery<PreferBean> query2 = new BmobQuery<>();
+        query2.addWhereEqualTo("user", userBean);
+        query2.addWhereEqualTo("isDelete", false);
+        query2.addWhereExists("shop");
+        query2.include("shop");
+
+        List<BmobQuery<PreferBean>> queries = new ArrayList<>();
+        queries.add(query1);
+        queries.add(query2);
+
+        BmobQuery<PreferBean> mainQuery = new BmobQuery<>();
+        mainQuery.include("book");
+        mainQuery.include("shop");
+        mainQuery.setLimit(step);
+        mainQuery.setSkip(start);
+        mainQuery.or(queries);*/
 
         FindListener<PreferBean> findListener = new FindListener<PreferBean>() {
             @Override
@@ -92,6 +116,6 @@ public class QueryPreferPresenter extends CommonPresenter {
             }
         };
 
-        mQueryModel.query(context, query, findListener);
+        mQueryModel.query(context, mainQuery, findListener);
     }
 }

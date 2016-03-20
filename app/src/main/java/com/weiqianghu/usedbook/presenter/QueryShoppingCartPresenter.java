@@ -29,7 +29,7 @@ public class QueryShoppingCartPresenter extends CommonPresenter {
         mQueryModel = new QueryModel<ShoppingCartBean>();
     }
 
-    public void queryShoppingCart(Context context, ShoppingCartBean shoppingCartBean) {
+    public void queryShoppingCart(Context context, final ShoppingCartBean shoppingCartBean) {
         BmobQuery<ShoppingCartBean> query = new BmobQuery<>();
         query.addWhereEqualTo("user", shoppingCartBean.getUser());
         query.addWhereEqualTo("book", shoppingCartBean.getBook());

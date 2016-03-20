@@ -36,7 +36,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".view.activity.EditUserInfoActivity" />
         <activity android:name=".view.activity.AddressActivity" />
-        <activity android:name=".view.activity.PreferActivity"></activity>
     </application>
 
 </manifest>
