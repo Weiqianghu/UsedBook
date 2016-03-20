@@ -10,18 +10,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.BookModel;
-import com.weiqianghu.usedbook.model.entity.PreferBean;
-import com.weiqianghu.usedbook.model.entity.PreferModel;
-import com.weiqianghu.usedbook.model.entity.UserBean;
+import com.weiqianghu.usedbook.model.entity.ShopBean;
 import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
-import com.weiqianghu.usedbook.presenter.QueryPreferPresenter;
-import com.weiqianghu.usedbook.presenter.adapter.PreferAdapter;
+import com.weiqianghu.usedbook.presenter.QueryBooksPresenter;
+import com.weiqianghu.usedbook.presenter.adapter.BookAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
@@ -31,58 +32,44 @@ import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bmob.v3.BmobUser;
-
-
-public class PreferFragment extends BaseFragment implements IRecycleViewItemClickListener {
-
-    public static final String TAG = PreferFragment.class.getSimpleName();
-
+public class ShopFragment extends BaseFragment implements IRecycleViewItemClickListener {
+    public static final String TAG = ShopFragment.class.getSimpleName();
     private TextView mTvTopBarText;
     private ImageView mIvTopBarLeftBtn;
 
-    private SwipeRefreshLayout mSwipeRefreshLayout;
-    private int count = 0;
-    private static final int STEP = 5;
-    private boolean isRefresh = false;
-    private QueryBookImgsPresenter mQueryBookImgsPresenter;
-    private QueryPreferPresenter mQueryPreferPresenter;
-    private List<PreferBean> preferBeens = new ArrayList<>();
-    private List<PreferModel> preferModels = new ArrayList<>();
+    private FragmentManager mFragmentManager;
 
     private RecyclerView mRecyclerView;
-    private PreferAdapter mAdapter;
+    private List<BookModel> mData = new ArrayList();
+    private List<BookBean> mBooks = new ArrayList<>();
+    private BookAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private FragmentManager fragmentManager;
+    private QueryBooksPresenter mQueryBooksPresenter;
+    private QueryBookImgsPresenter mQueryBookImgsPresenter;
+    private boolean isRefresh = false;
+    private int count = 0;
+    private static final int STEP = 15;
+
+    private ShopBean mShop = new ShopBean();
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_prefer;
+        Fresco.initialize(getActivity());
+        return R.layout.fragment_shop;
     }
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
         initView(savedInstanceState);
-        initData();
     }
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        mTvTopBarText = (TextView) mRootView.findViewById(R.id.tv_top_bar_text);
-        mTvTopBarText.setText(R.string.prefer);
-
-        Click click = new Click();
-        mIvTopBarLeftBtn = (ImageView) mRootView.findViewById(R.id.top_bar_left_button);
-        mIvTopBarLeftBtn.setImageResource(R.mipmap.back);
-        mIvTopBarLeftBtn.setOnClickListener(click);
-
-        mQueryPreferPresenter = new QueryPreferPresenter(queryPreferHandler);
-        mQueryBookImgsPresenter = new QueryBookImgsPresenter(queryBookImgsHandler);
-
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new PreferAdapter(preferModels, R.layout.error);
+        mAdapter = new BookAdapter(mData, R.layout.item_book);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -101,14 +88,38 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                 queryData(count * STEP, STEP);
             }
         });
+
+        mQueryBooksPresenter = new QueryBooksPresenter(queryBooksHandler);
+        mQueryBookImgsPresenter = new QueryBookImgsPresenter(queryBookImgsHandler);
+
+        initData();
+
+        initTopBar();
     }
 
+    private void initTopBar() {
+        mTvTopBarText = (TextView) mRootView.findViewById(R.id.tv_top_bar_text);
+        mTvTopBarText.setText(mShop.getShopName());
+
+        Click click = new Click();
+        mIvTopBarLeftBtn = (ImageView) mRootView.findViewById(R.id.top_bar_left_button);
+        mIvTopBarLeftBtn.setImageResource(R.mipmap.back);
+        mIvTopBarLeftBtn.setOnClickListener(click);
+    }
+
+
     private void initData() {
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mShop = bundle.getParcelable(Constant.DATA);
+        }
+
+        isRefresh = true;
         count = 0;
         mSwipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
-                isRefresh = true;
                 mSwipeRefreshLayout.setRefreshing(true);
                 queryData(count * STEP, STEP);
             }
@@ -117,28 +128,10 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
     }
 
     private void queryData(int start, int step) {
-        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
-        mQueryPreferPresenter.queryPrefer(getActivity(), user, start, step);
+        mQueryBooksPresenter.queryBooks(getActivity(), mShop, start, step);
     }
 
-    @Override
-    public void onItemClick(View view, int postion) {
-        gotoBookDetail(postion);
-    }
-
-    private class Click implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.top_bar_left_button:
-                    getActivity().onBackPressed();
-                    break;
-            }
-        }
-    }
-
-    CallBackHandler queryPreferHandler = new CallBackHandler() {
+    CallBackHandler queryBooksHandler = new CallBackHandler() {
         @Override
         public void handleSuccessMessage(Message msg) {
             switch (msg.what) {
@@ -146,10 +139,10 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                     Bundle bundle = msg.getData();
                     List list = bundle.getParcelableArrayList(Constant.LIST);
                     if (list != null && list.size() > 0) {
-                        preferBeens.clear();
-                        preferBeens.addAll(list);
-                        for (int i = 0, length = preferBeens.size(); i < length; i++) {
-                            mQueryBookImgsPresenter.queryBookImgs(getActivity(), (PreferBean) list.get(i));
+                        mBooks.clear();
+                        mBooks.addAll(list);
+                        for (int i = 0, length = mBooks.size(); i < length; i++) {
+                            mQueryBookImgsPresenter.queryBookImgs(getActivity(), (BookBean) list.get(i));
                         }
                     } else {
                         mSwipeRefreshLayout.setRefreshing(false);
@@ -171,17 +164,17 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                 case Constant.SUCCESS:
                     Bundle bundle = msg.getData();
                     List list = bundle.getParcelableArrayList(Constant.LIST);
-                    PreferBean preferBean = bundle.getParcelable(Constant.DATA);
+                    BookBean bookBean = bundle.getParcelable(Constant.BOOK);
 
-                    PreferModel preferModel = new PreferModel();
-                    preferModel.setPrefer(preferBean);
-                    preferModel.setBookImgs(list);
+                    BookModel bookModel = new BookModel();
+                    bookModel.setBook(bookBean);
+                    bookModel.setBookImgs(list);
 
                     if (isRefresh) {
-                        preferModels.clear();
+                        mData.clear();
                         isRefresh = false;
                     }
-                    preferModels.add(preferModel);
+                    mData.add(bookModel);
 
                     mAdapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);
@@ -195,6 +188,46 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
         }
     };
 
+    @Override
+    public void onItemClick(View view, int postion) {
+        gotoBookDetail(postion);
+    }
+
+    void gotoBookDetail(int position) {
+
+        if (mFragmentManager == null) {
+            mFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        Fragment fragment = mFragmentManager.findFragmentByTag(BookDetailFragment.TAG);
+        if (fragment == null) {
+            fragment = BookDetailFragment.getInstance();
+
+            BookModel bookModel = new BookModel();
+            bookModel.setBook(mData.get(position).getBook());
+            bookModel.setBookImgs(mData.get(position).getBookImgs());
+
+            Bundle args = new Bundle();
+            args.putParcelable(Constant.BOOK, bookModel);
+            fragment.setArguments(args);
+        } else {
+            Bundle args = fragment.getArguments();
+
+            BookModel bookModel = new BookModel();
+            bookModel.setBook(mData.get(position).getBook());
+            bookModel.setBookImgs(mData.get(position).getBookImgs());
+
+            args.putParcelable(Constant.BOOK, bookModel);
+        }
+        Fragment form = mFragmentManager.findFragmentByTag(ShopFragment.TAG);
+
+        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, mFragmentManager, BookDetailFragment.TAG);
+    }
+
+    private void loadMore() {
+        count++;
+        queryData(count * STEP, STEP);
+    }
+
     RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {
 
         private int totalItemCount;
@@ -203,7 +236,8 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            if (lastVisibleItem >= totalItemCount - 4) {
+
+            if (lastVisibleItem >= totalItemCount - 1) {
                 loadMore();
             }
         }
@@ -216,38 +250,15 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
         }
     };
 
-    private void loadMore() {
-        count++;
-        queryData(count * STEP, STEP);
-    }
+    private class Click implements View.OnClickListener {
 
-    void gotoBookDetail(int position) {
-
-        if (fragmentManager == null) {
-            fragmentManager = getActivity().getSupportFragmentManager();
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.top_bar_left_button:
+                    getActivity().onBackPressed();
+                    break;
+            }
         }
-        Fragment fragment = fragmentManager.findFragmentByTag(BookDetailFragment.TAG);
-        if (fragment == null) {
-            fragment = BookDetailFragment.getInstance();
-
-            BookModel bookModel = new BookModel();
-            bookModel.setBook(preferModels.get(position).getPrefer().getBook());
-            bookModel.setBookImgs(preferModels.get(position).getBookImgs());
-
-            Bundle args = new Bundle();
-            args.putParcelable(Constant.BOOK, bookModel);
-            fragment.setArguments(args);
-        } else {
-            Bundle args = fragment.getArguments();
-
-            BookModel bookModel = new BookModel();
-            bookModel.setBook(preferModels.get(position).getPrefer().getBook());
-            bookModel.setBookImgs(preferModels.get(position).getBookImgs());
-
-            args.putParcelable(Constant.BOOK, bookModel);
-        }
-        Fragment form = fragmentManager.findFragmentByTag(PreferFragment.TAG);
-
-        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager, BookDetailFragment.TAG);
     }
 }

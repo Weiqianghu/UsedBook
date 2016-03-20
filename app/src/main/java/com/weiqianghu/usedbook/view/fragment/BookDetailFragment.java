@@ -69,6 +69,8 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
     private AddPreferPresenter mAddPreferPresenter;
     private Button mAddPreferBtn;
 
+    private Button mEnterShopBtn;
+
 
     public static BookDetailFragment getInstance() {
         BookDetailFragment fragment = new BookDetailFragment();
@@ -90,13 +92,6 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         updateView(savedInstanceState);
     }
 
-    /*@Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            initData();
-        }
-    }*/
 
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -143,6 +138,9 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         mAddPreferBtn = (Button) mRootView.findViewById(R.id.btn_prefer);
         mAddPreferBtn.setOnClickListener(click);
         mAddPreferPresenter = new AddPreferPresenter(addPreferHanler);
+
+        mEnterShopBtn = (Button) mRootView.findViewById(R.id.btn_enter_shop);
+        mEnterShopBtn.setOnClickListener(click);
     }
 
     private void initData() {
@@ -203,7 +201,8 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                     getActivity().onBackPressed();
                     break;
                 case R.id.iv_shopping_cart:
-                    if (mFragmentManager == null) {
+                    Toast.makeText(getActivity(), "快去购物车结算吧！", Toast.LENGTH_SHORT).show();
+                    /*if (mFragmentManager == null) {
                         mFragmentManager = getActivity().getSupportFragmentManager();
                     }
                     Fragment fragment = mFragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
@@ -217,13 +216,16 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                         Bundle bundle = fragment.getArguments();
                         bundle.putInt(Constant.TAB, 1);
                     }
-                    FragmentUtil.switchContent(BookDetailFragment.this, fragment, R.id.main_container, mFragmentManager);
+                    FragmentUtil.switchContent(BookDetailFragment.this, fragment, R.id.main_container, mFragmentManager);*/
                     break;
                 case R.id.btn_shopping_cart:
                     checkAddShoppingCart();
                     break;
                 case R.id.btn_prefer:
                     checkAddPrefer();
+                    break;
+                case R.id.btn_enter_shop:
+                    gotoShop();
                     break;
             }
         }
@@ -363,5 +365,23 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         }
     };
 
+    private void gotoShop() {
+        if (mFragmentManager == null) {
+            mFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        Fragment fragment = mFragmentManager.findFragmentByTag(ShopFragment.TAG);
+        if (null == fragment) {
+            fragment = new ShopFragment();
+
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constant.DATA, mBookModel.getBook().getShop());
+            fragment.setArguments(bundle);
+        } else {
+            Bundle args = fragment.getArguments();
+            args.putParcelable(Constant.DATA, mBookModel.getBook().getShop());
+        }
+        Fragment from = mFragmentManager.findFragmentByTag(BookDetailFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, fragment, R.id.main_container, mFragmentManager, ShopFragment.TAG);
+    }
 
 }

@@ -194,17 +194,17 @@ public class MainFragment extends BaseFragment implements IBooksView {
             fragmentManager = getActivity().getSupportFragmentManager();
         }
         Fragment fragment = fragmentManager.findFragmentByTag(BookDetailFragment.TAG);
-        // if (fragment == null) {
-        fragment = BookDetailFragment.getInstance();
+        if (fragment == null) {
+            fragment = BookDetailFragment.getInstance();
 
-        Bundle args = new Bundle();
-        args.putParcelable(Constant.BOOK, mData.get(position));
-        fragment.setArguments(args);
-       /* } else {
+            Bundle args = new Bundle();
+            args.putParcelable(Constant.BOOK, mData.get(position));
+            fragment.setArguments(args);
+        } else {
             Bundle args = fragment.getArguments();
             args.putParcelable(Constant.BOOK, mData.get(position));
         }
-*/
+
         Fragment form = fragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
 
         FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager, BookDetailFragment.TAG);

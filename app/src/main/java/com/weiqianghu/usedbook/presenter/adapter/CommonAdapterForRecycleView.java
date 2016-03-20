@@ -36,6 +36,7 @@ public abstract class CommonAdapterForRecycleView<T> extends RecyclerView.Adapte
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footer, parent, false);
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(mItemLayoutId, parent, false);
+            view.setOnClickListener(this);
         }
         return ViewHolderForRecyclerView.get(view);
     }
