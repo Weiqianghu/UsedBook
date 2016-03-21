@@ -30,6 +30,8 @@ import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
+import com.weiqianghu.usedbook.view.customview.EmptyRecyclerView;
+import com.weiqianghu.usedbook.view.customview.EmptyViewHelper;
 import com.weiqianghu.usedbook.view.view.IDeleteView;
 import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
 import com.weiqianghu.usedbook.view.view.IUpdateView;
@@ -56,7 +58,7 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
     private List<PreferBean> mPreferBeens = new ArrayList<>();
     private List<PreferModel> mPreferModels = new ArrayList<>();
 
-    private RecyclerView mRecyclerView;
+    private EmptyRecyclerView mRecyclerView;
     private PreferAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -89,7 +91,9 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
         mQueryPreferPresenter = new QueryPreferPresenter(queryPreferHandler);
         mQueryBookImgsPresenter = new QueryBookImgsPresenter(queryBookImgsHandler);
 
-        mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
+        mRecyclerView = (EmptyRecyclerView) mRootView.findViewById(R.id.recyclerview);
+        View empty = mRootView.findViewById(R.id.prefer_empty);
+        mRecyclerView.setEmptyView(empty);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new PreferAdapter(mPreferModels, R.layout.error);
 

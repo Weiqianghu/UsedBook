@@ -21,9 +21,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.BookImgsBean;
-import com.weiqianghu.usedbook.model.entity.BookModel;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartModel;
 import com.weiqianghu.usedbook.model.entity.UserBean;
@@ -65,7 +63,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
     private QueryBookImgsPresenter mQueryBookImgsPresenter;
     private UpdatePresenter<ShoppingCartBean> mUpdatePresenter;
 
-    private CommonAdapter<ShoppingCartModel> shoppingCartAdapter;
+    private CommonAdapter<ShoppingCartModel> mShoppingCartAdapter;
 
     private UserBean lastUser = null;
 
@@ -89,7 +87,8 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
         mIsLoginPresenter = new IsLoginPresenter();
 
         mShoppingCartListView = (ListView) mRootView.findViewById(R.id.lv_shoppingcart);
-        mShoppingCartListView.setAdapter(shoppingCartAdapter);
+        mShoppingCartListView.setEmptyView(mRootView.findViewById(R.id.empty_view));
+        mShoppingCartListView.setAdapter(mShoppingCartAdapter);
         mShoppingCartListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -125,7 +124,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
             }
         });
 
-        mShoppingCartListView.setAdapter(shoppingCartAdapter);
+        mShoppingCartListView.setAdapter(mShoppingCartAdapter);
     }
 
     private void initData() {
@@ -190,6 +189,10 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                         }
                     } else {
                         mSwipeRefreshLayout.setRefreshing(false);
+                        if (isRefresh) {
+                            mShoppingCartModels.clear();
+                            mShoppingCartAdapter.notifyDataSetChanged();
+                        }
                     }
             }
         }
@@ -220,7 +223,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                     }
                     mShoppingCartModels.add(shoppingCartModel);
 
-                    shoppingCartAdapter.notifyDataSetChanged();
+                    mShoppingCartAdapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);
             }
         }
@@ -237,7 +240,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
         public void handleSuccessMessage(Message msg) {
             switch (msg.what) {
                 case Constant.SUCCESS:
-                    shoppingCartAdapter.notifyDataSetChanged();
+                    mShoppingCartAdapter.notifyDataSetChanged();
             }
         }
 
@@ -249,7 +252,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
     };
 
     private void initAdapter() {
-        shoppingCartAdapter = new CommonAdapter<ShoppingCartModel>(getActivity(), mShoppingCartModels, R.layout.item_shopping_cart) {
+        mShoppingCartAdapter = new CommonAdapter<ShoppingCartModel>(getActivity(), mShoppingCartModels, R.layout.item_shopping_cart) {
             @Override
             public void convert(ViewHolder helper, final ShoppingCartModel item) {
 
@@ -291,7 +294,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                     public void onClick(View v) {
                         shoppingCartBean.setNumber(shoppingCartBean.getNumber() + 1);
                         shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() + shoppingCartBean.getPrice());
-                        shoppingCartAdapter.notifyDataSetChanged();
+                        mShoppingCartAdapter.notifyDataSetChanged();
                         if (shoppingCartBean.isChecked()) {
                             showTotalMoney();
                         }
@@ -305,7 +308,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                         if (shoppingCartBean.getNumber() > 1) {
                             shoppingCartBean.setNumber(shoppingCartBean.getNumber() - 1);
                             shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() - shoppingCartBean.getPrice());
-                            shoppingCartAdapter.notifyDataSetChanged();
+                            mShoppingCartAdapter.notifyDataSetChanged();
                             if (shoppingCartBean.isChecked()) {
                                 showTotalMoney();
                             }

@@ -109,5 +109,7 @@
 
     <string name="warning">警告</string>
 
+    <string name="shopping_cart_empty">购物车空空如也，快去购物吧</string>
+    <string name="prefer_empty">收藏夹空空如也，快去购物吧</string>
 
 </resources>
