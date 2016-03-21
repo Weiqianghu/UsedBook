@@ -67,6 +67,8 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
     private CommonAdapter<ShoppingCartModel> shoppingCartAdapter;
 
+    private UserBean lastUser = null;
+
     @Override
     protected int getLayoutId() {
         Fresco.initialize(getActivity());
@@ -141,6 +143,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
     private void queryData(int start, int step) {
         UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+        lastUser = user;
         mQueryShoppingCartPresenter.queryShoppingCart(getActivity(), user, start, step);
     }
 
@@ -151,6 +154,10 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
             @Override
             protected Boolean doInBackground(Void... params) {
+                UserBean currentUser = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+                if (lastUser != null && currentUser != null && lastUser != currentUser) {
+                    initData();
+                }
                 return mIsLoginPresenter.isLogin(getActivity());
             }
 

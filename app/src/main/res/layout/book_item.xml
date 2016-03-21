@@ -9,7 +9,7 @@
         android:id="@+id/iv_item_book_img"
         android:layout_width="@dimen/book_item_img_dimen"
         android:layout_height="@dimen/book_item_img_dimen"
-        fresco:placeholderImage="@mipmap/logo" />
+        fresco:placeholderImage="@mipmap/upload_img" />
 
     <TextView
         android:id="@+id/tv_item_book_percent"

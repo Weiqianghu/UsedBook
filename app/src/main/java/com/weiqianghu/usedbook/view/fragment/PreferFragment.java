@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,15 +19,20 @@ import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookModel;
 import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.entity.PreferModel;
+import com.weiqianghu.usedbook.model.entity.ShopBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
+import com.weiqianghu.usedbook.presenter.DeletePresenter;
 import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
 import com.weiqianghu.usedbook.presenter.QueryPreferPresenter;
+import com.weiqianghu.usedbook.presenter.UpdatePresenter;
 import com.weiqianghu.usedbook.presenter.adapter.PreferAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
+import com.weiqianghu.usedbook.view.view.IDeleteView;
 import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
+import com.weiqianghu.usedbook.view.view.IUpdateView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +40,7 @@ import java.util.List;
 import cn.bmob.v3.BmobUser;
 
 
-public class PreferFragment extends BaseFragment implements IRecycleViewItemClickListener {
+public class PreferFragment extends BaseFragment implements IRecycleViewItemClickListener, IUpdateView {
 
     public static final String TAG = PreferFragment.class.getSimpleName();
 
@@ -47,14 +53,17 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
     private boolean isRefresh = false;
     private QueryBookImgsPresenter mQueryBookImgsPresenter;
     private QueryPreferPresenter mQueryPreferPresenter;
-    private List<PreferBean> preferBeens = new ArrayList<>();
-    private List<PreferModel> preferModels = new ArrayList<>();
+    private List<PreferBean> mPreferBeens = new ArrayList<>();
+    private List<PreferModel> mPreferModels = new ArrayList<>();
 
     private RecyclerView mRecyclerView;
     private PreferAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private FragmentManager fragmentManager;
+
+    private UpdatePresenter<PreferBean> mUpdatePresenter;
+
 
     @Override
     protected int getLayoutId() {
@@ -82,7 +91,7 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
 
         mRecyclerView = (RecyclerView) mRootView.findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(getActivity());
-        mAdapter = new PreferAdapter(preferModels, R.layout.error);
+        mAdapter = new PreferAdapter(mPreferModels, R.layout.error);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -101,6 +110,11 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                 queryData(count * STEP, STEP);
             }
         });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
+        mUpdatePresenter = new UpdatePresenter<PreferBean>(this, updateHandler);
     }
 
     private void initData() {
@@ -146,9 +160,9 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                     Bundle bundle = msg.getData();
                     List list = bundle.getParcelableArrayList(Constant.LIST);
                     if (list != null && list.size() > 0) {
-                        preferBeens.clear();
-                        preferBeens.addAll(list);
-                        for (int i = 0, length = preferBeens.size(); i < length; i++) {
+                        mPreferBeens.clear();
+                        mPreferBeens.addAll(list);
+                        for (int i = 0, length = mPreferBeens.size(); i < length; i++) {
                             mQueryBookImgsPresenter.queryBookImgs(getActivity(), (PreferBean) list.get(i));
                         }
                     } else {
@@ -178,10 +192,10 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
                     preferModel.setBookImgs(list);
 
                     if (isRefresh) {
-                        preferModels.clear();
+                        mPreferModels.clear();
                         isRefresh = false;
                     }
-                    preferModels.add(preferModel);
+                    mPreferModels.add(preferModel);
 
                     mAdapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);
@@ -231,8 +245,8 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
             fragment = BookDetailFragment.getInstance();
 
             BookModel bookModel = new BookModel();
-            bookModel.setBook(preferModels.get(position).getPrefer().getBook());
-            bookModel.setBookImgs(preferModels.get(position).getBookImgs());
+            bookModel.setBook(mPreferModels.get(position).getPrefer().getBook());
+            bookModel.setBookImgs(mPreferModels.get(position).getBookImgs());
 
             Bundle args = new Bundle();
             args.putParcelable(Constant.BOOK, bookModel);
@@ -241,8 +255,8 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
             Bundle args = fragment.getArguments();
 
             BookModel bookModel = new BookModel();
-            bookModel.setBook(preferModels.get(position).getPrefer().getBook());
-            bookModel.setBookImgs(preferModels.get(position).getBookImgs());
+            bookModel.setBook(mPreferModels.get(position).getPrefer().getBook());
+            bookModel.setBookImgs(mPreferModels.get(position).getBookImgs());
 
             args.putParcelable(Constant.BOOK, bookModel);
         }
@@ -250,4 +264,38 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
 
         FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, fragmentManager, BookDetailFragment.TAG);
     }
+
+    ItemTouchHelper.Callback mCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT) {
+        /**
+         * @param recyclerView
+         * @param viewHolder 拖动的ViewHolder
+         * @param target 目标位置的ViewHolder
+         * @return
+         */
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+
+            PreferBean prefer = mPreferModels.get(position).getPrefer();
+            prefer.setDelete(true);
+
+            mUpdatePresenter.update(getActivity(), prefer, prefer.getObjectId());
+
+            mPreferModels.remove(position);
+            mAdapter.notifyItemRemoved(position);
+        }
+    };
+
+    CallBackHandler updateHandler = new CallBackHandler() {
+        @Override
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+    };
 }
