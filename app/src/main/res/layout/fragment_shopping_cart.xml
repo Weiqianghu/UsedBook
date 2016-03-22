@@ -55,17 +55,6 @@
         </RelativeLayout>
     </RelativeLayout>
 
-
-    <LinearLayout
-        android:id="@+id/ly_suggest_to_login"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background_material_light"
-        android:visibility="invisible">
-
-        <include layout="@layout/suggest_to_login"></include>
-    </LinearLayout>
-
     <LinearLayout
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
@@ -84,5 +73,15 @@
             android:layout_margin="10dp"
             android:text="@string/shopping_cart_empty" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_suggest_to_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_material_light"
+        android:visibility="invisible">
+
+        <include layout="@layout/suggest_to_login"></include>
     </LinearLayout>
 </FrameLayout>

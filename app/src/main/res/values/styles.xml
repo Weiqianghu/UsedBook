@@ -65,7 +65,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
     </style>
 
     <style name="book_shop_style">
@@ -73,7 +72,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
     </style>
 
     <style name="book_price_style">
@@ -82,7 +80,6 @@
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:layout_marginLeft">2dp</item>
         <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
     </style>
 
     <style name="book_percent_style">
@@ -90,7 +87,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">2dp</item>
         <item name="android:textColor">@color/textColor</item>
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
     </style>
 
     <style name="link_text_style">
@@ -102,6 +98,7 @@
         <item name="android:textSize">@dimen/middle_text_size</item>
         <item name="android:textColor">@color/red</item>
     </style>
+
     <style name="small_price_text_style">
         <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:textColor">@color/red</item>
@@ -111,19 +108,26 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/middle_text_size</item>
     </style>
+
     <style name="total_money">
         <item name="android:textColor">@color/red</item>
         <item name="android:textSize">@dimen/middle_text_size</item>
     </style>
 
     <style name="dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item>  //Dialog的windowFrame框为无
-        <item name="android:windowIsFloating">true</item>  //是否浮现在activity之上
-        <item name="android:windowIsTranslucent">false</item> //是否半透明
-        <item name="android:windowNoTitle">true</item>  //是否显示title
-        <item name="android:background">@android:color/transparent</item>  //设置dialog的背景
+        <item name="android:windowFrame">@null</item>
+        //Dialog的windowFrame框为无
+        <item name="android:windowIsFloating">true</item>
+        //是否浮现在activity之上
+        <item name="android:windowIsTranslucent">false</item>
+        //是否半透明
+        <item name="android:windowNoTitle">true</item>
+        //是否显示title
+        <item name="android:background">@android:color/transparent</item>
+        //设置dialog的背景
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:backgroundDimAmount">0.5</item>  //就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5
+        <item name="android:backgroundDimAmount">0.5</item>
+        //就是用来控制灰度的值，当为1时，界面除了我们的dialog内容是高亮显示的，dialog以外的区域是黑色的，完全看不到其他内容，系统的默认值是0.5
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 

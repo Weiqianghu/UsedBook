@@ -292,11 +292,15 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                 ib_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        shoppingCartBean.setNumber(shoppingCartBean.getNumber() + 1);
-                        shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() + shoppingCartBean.getPrice());
-                        mShoppingCartAdapter.notifyDataSetChanged();
-                        if (shoppingCartBean.isChecked()) {
-                            showTotalMoney();
+                        if (shoppingCartBean.getBook().getStock() > shoppingCartBean.getNumber()) {
+                            shoppingCartBean.setNumber(shoppingCartBean.getNumber() + 1);
+                            shoppingCartBean.setSubtotal(shoppingCartBean.getSubtotal() + shoppingCartBean.getPrice());
+                            mShoppingCartAdapter.notifyDataSetChanged();
+                            if (shoppingCartBean.isChecked()) {
+                                showTotalMoney();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), R.string.stock_not_enough, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

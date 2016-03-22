@@ -17,7 +17,7 @@
     <dimen name="large_dp">50dp</dimen>
     <dimen name="xlarge_dp">80dp</dimen>
 
-    <dimen name="book_list_width">80dp</dimen>
+    <dimen name="book_list_width">100dp</dimen>
     <dimen name="book_item_img_dimen">60dp</dimen>
 
     <dimen name="img_height">200dp</dimen>

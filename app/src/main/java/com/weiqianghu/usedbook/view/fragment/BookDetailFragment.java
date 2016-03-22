@@ -202,21 +202,6 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                     break;
                 case R.id.iv_shopping_cart:
                     Toast.makeText(getActivity(), "快去购物车结算吧！", Toast.LENGTH_SHORT).show();
-                    /*if (mFragmentManager == null) {
-                        mFragmentManager = getActivity().getSupportFragmentManager();
-                    }
-                    Fragment fragment = mFragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
-                    if (fragment == null) {
-                        fragment = new MainLayoutFragment();
-
-                        Bundle bundle = new Bundle();
-                        bundle.putInt(Constant.TAB, 1);
-                        fragment.setArguments(bundle);
-                    } else {
-                        Bundle bundle = fragment.getArguments();
-                        bundle.putInt(Constant.TAB, 1);
-                    }
-                    FragmentUtil.switchContent(BookDetailFragment.this, fragment, R.id.main_container, mFragmentManager);*/
                     break;
                 case R.id.btn_shopping_cart:
                     checkAddShoppingCart();
@@ -232,15 +217,21 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
     }
 
     private void checkAddShoppingCart() {
-        mAddShoppingCartBtn.setClickable(false);
-        ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
-        BookBean book = mBookModel.getBook();
-        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
 
-        shoppingCartBean.setUser(user);
-        shoppingCartBean.setBook(book);
+        if (mBookModel.getBook().getStock() > 0) {
 
-        mQueryShoppingCartPresenter.queryShoppingCart(getActivity(), shoppingCartBean);
+            mAddShoppingCartBtn.setClickable(false);
+            ShoppingCartBean shoppingCartBean = new ShoppingCartBean();
+            BookBean book = mBookModel.getBook();
+            UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+
+            shoppingCartBean.setUser(user);
+            shoppingCartBean.setBook(book);
+
+            mQueryShoppingCartPresenter.queryShoppingCart(getActivity(), shoppingCartBean);
+        } else {
+            Toast.makeText(getActivity(), R.string.stock_not_enough, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void addShoppingCart() {
