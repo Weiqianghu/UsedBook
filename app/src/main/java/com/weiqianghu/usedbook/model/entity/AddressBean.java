@@ -18,8 +18,11 @@ public class AddressBean extends BmobObject implements Parcelable{
     private String detailAddress;
     private UserBean user;
     private boolean isDefault;
+    private boolean isDelete;
+
 
     public AddressBean(){}
+
 
     protected AddressBean(Parcel in) {
         name = in.readString();
@@ -30,6 +33,7 @@ public class AddressBean extends BmobObject implements Parcelable{
         county = in.readString();
         detailAddress = in.readString();
         isDefault = in.readByte() != 0;
+        isDelete = in.readByte() != 0;
     }
 
     public static final Creator<AddressBean> CREATOR = new Creator<AddressBean>() {
@@ -43,6 +47,14 @@ public class AddressBean extends BmobObject implements Parcelable{
             return new AddressBean[size];
         }
     };
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
 
     public boolean isDefault() {
         return isDefault;
@@ -116,6 +128,7 @@ public class AddressBean extends BmobObject implements Parcelable{
         this.user = user;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -130,7 +143,7 @@ public class AddressBean extends BmobObject implements Parcelable{
         dest.writeString(city);
         dest.writeString(county);
         dest.writeString(detailAddress);
-        dest.writeSerializable(user);
-        dest.writeInt(isDefault ? 1:0);
+        dest.writeByte((byte) (isDefault ? 1 : 0));
+        dest.writeByte((byte) (isDelete ? 1 : 0));
     }
 }

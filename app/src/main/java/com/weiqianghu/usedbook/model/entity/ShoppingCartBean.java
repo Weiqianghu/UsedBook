@@ -9,6 +9,7 @@ import cn.bmob.v3.BmobObject;
  * Created by 胡伟强 on 2016/2/1.
  */
 public class ShoppingCartBean extends BmobObject implements Parcelable {
+    private String objectIdStr;
     private double price;
     private int number;
     private double subtotal;//小计
@@ -22,6 +23,7 @@ public class ShoppingCartBean extends BmobObject implements Parcelable {
     }
 
     protected ShoppingCartBean(Parcel in) {
+        objectIdStr = in.readString();
         price = in.readDouble();
         number = in.readInt();
         subtotal = in.readDouble();
@@ -41,6 +43,14 @@ public class ShoppingCartBean extends BmobObject implements Parcelable {
             return new ShoppingCartBean[size];
         }
     };
+
+    public String getObjectIdStr() {
+        return objectIdStr;
+    }
+
+    public void setObjectIdStr(String objectIdStr) {
+        this.objectIdStr = objectIdStr;
+    }
 
     public UserBean getUser() {
         return user;
@@ -105,6 +115,7 @@ public class ShoppingCartBean extends BmobObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(objectIdStr);
         dest.writeDouble(price);
         dest.writeInt(number);
         dest.writeDouble(subtotal);

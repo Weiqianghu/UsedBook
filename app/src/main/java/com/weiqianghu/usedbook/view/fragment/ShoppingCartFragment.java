@@ -2,10 +2,12 @@ package com.weiqianghu.usedbook.view.fragment;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.BookImgsBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartModel;
@@ -32,7 +35,9 @@ import com.weiqianghu.usedbook.presenter.UpdatePresenter;
 import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.util.DoubleUtil;
 import com.weiqianghu.usedbook.view.ViewHolder;
+import com.weiqianghu.usedbook.view.activity.OrderActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IUpdateView;
 
@@ -66,6 +71,8 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
     private CommonAdapter<ShoppingCartModel> mShoppingCartAdapter;
 
     private UserBean lastUser = null;
+
+    private Button mPaymentBtn;
 
     @Override
     protected int getLayoutId() {
@@ -125,6 +132,9 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
         });
 
         mShoppingCartListView.setAdapter(mShoppingCartAdapter);
+
+        mPaymentBtn = (Button) mRootView.findViewById(R.id.payment);
+        mPaymentBtn.setOnClickListener(new Click());
     }
 
     private void initData() {
@@ -359,6 +369,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                     if (shoppingCartBean.isChecked()) {
                         currentCount += shoppingCartBean.getSubtotal();
                     }
+                    currentCount = DoubleUtil.subDouble(currentCount);
                 }
                 return currentCount;
             }
@@ -374,5 +385,39 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
     private void loadMore() {
         count++;
         queryData(count * STEP, STEP);
+    }
+
+    class Click implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.payment:
+                    gotoPay();
+                    break;
+            }
+        }
+    }
+
+    private void gotoPay() {
+        List<ShoppingCartModel> data = new ArrayList<>();
+
+        for (int i = 0, length = mShoppingCartModels.size(); i < length; i++) {
+            if (mShoppingCartModels.get(i).getShoppingCartBean().isChecked() == true) {
+                ShoppingCartModel shoppingCartModel = mShoppingCartModels.get(i);
+                shoppingCartModel.getShoppingCartBean().setObjectIdStr(shoppingCartModel.getShoppingCartBean().getObjectId());
+
+                BookBean bookBean = shoppingCartModel.getShoppingCartBean().getBook();
+                bookBean.setObjectIdStr(bookBean.getObjectId());
+                shoppingCartModel.getShoppingCartBean().setBook(bookBean);
+
+                data.add(shoppingCartModel);
+
+            }
+        }
+
+        Intent intent = new Intent(getActivity(), OrderActivity.class);
+        intent.putParcelableArrayListExtra(Constant.LIST, (ArrayList<? extends Parcelable>) data);
+        startActivity(intent);
     }
 }

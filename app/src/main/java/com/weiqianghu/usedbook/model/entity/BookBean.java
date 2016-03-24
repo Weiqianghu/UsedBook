@@ -11,6 +11,7 @@ import cn.bmob.v3.BmobObject;
  * Created by 胡伟强 on 2016/1/26.
  */
 public class BookBean extends BmobObject implements Serializable, Parcelable {
+    private String objectIdStr;
     private String bookName;
     private String isbn;
     private double price;
@@ -28,6 +29,7 @@ public class BookBean extends BmobObject implements Serializable, Parcelable {
     }
 
     protected BookBean(Parcel in) {
+        objectIdStr = in.readString();
         bookName = in.readString();
         isbn = in.readString();
         price = in.readDouble();
@@ -39,6 +41,15 @@ public class BookBean extends BmobObject implements Serializable, Parcelable {
         stock = in.readInt();
         percent = in.readDouble();
         percentDescribe = in.readString();
+    }
+
+
+    public String getObjectIdStr() {
+        return objectIdStr;
+    }
+
+    public void setObjectIdStr(String objectIdStr) {
+        this.objectIdStr = objectIdStr;
     }
 
     public static final Creator<BookBean> CREATOR = new Creator<BookBean>() {
@@ -156,6 +167,7 @@ public class BookBean extends BmobObject implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(objectIdStr);
         dest.writeString(bookName);
         dest.writeString(isbn);
         dest.writeDouble(price);

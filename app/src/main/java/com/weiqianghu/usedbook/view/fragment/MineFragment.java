@@ -20,7 +20,7 @@ import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.util.SelectImgUtil;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
-import com.weiqianghu.usedbook.view.activity.OrderActivity;
+import com.weiqianghu.usedbook.view.activity.OrderFormActivity;
 import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 
@@ -160,7 +160,7 @@ public class MineFragment extends BaseFragment {
         @Override
         public void onClick(View v) {
             if (intent == null) {
-                intent = new Intent(getActivity(), OrderActivity.class);
+                intent = new Intent(getActivity(), OrderFormActivity.class);
             }
             switch (v.getId()) {
                 case R.id.pay:

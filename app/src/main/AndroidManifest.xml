@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.LoginAndRegisterActivity" />
-        <activity android:name=".view.activity.OrderActivity" />
+        <activity android:name=".view.activity.OrderFormActivity" />
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
@@ -36,6 +36,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".view.activity.EditUserInfoActivity" />
         <activity android:name=".view.activity.AddressActivity" />
+        <activity android:name=".view.activity.OrderActivity"></activity>
     </application>
 
 </manifest>

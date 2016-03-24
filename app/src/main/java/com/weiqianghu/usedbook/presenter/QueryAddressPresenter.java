@@ -37,9 +37,10 @@ public class QueryAddressPresenter {
         mQueryModel = new QueryModel<AddressBean>();
     }
 
-    public void query(Context context,BmobQuery<AddressBean> query) {
-        UserBean userBean= BmobUser.getCurrentUser(context,UserBean.class);
-        query.addWhereEqualTo("user",userBean);
+    public void query(Context context, BmobQuery<AddressBean> query) {
+        UserBean userBean = BmobUser.getCurrentUser(context, UserBean.class);
+        query.addWhereEqualTo("user", userBean);
+        query.addWhereEqualTo("isDelete", false);
         query.order("-isDefault");
 
         FindListener<AddressBean> findListener = new FindListener<AddressBean>() {
@@ -72,6 +73,47 @@ public class QueryAddressPresenter {
             }
         };
 
-        mQueryModel.query(context,query,findListener);
+        mQueryModel.query(context, query, findListener);
+    }
+
+    public void queryDefaultAddress(Context context) {
+        BmobQuery<AddressBean> query = new BmobQuery<>();
+        UserBean userBean = BmobUser.getCurrentUser(context, UserBean.class);
+        query.addWhereEqualTo("user", userBean);
+        query.addWhereEqualTo("isDefault", true);
+        query.addWhereEqualTo("isDelete", false);
+        query.order("-isDefault");
+
+        FindListener<AddressBean> findListener = new FindListener<AddressBean>() {
+            @Override
+            public void onSuccess(List<AddressBean> list) {
+                Message message = new Message();
+                message.what = Constant.SUCCESS;
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(Constant.PARCEABLE, (ArrayList<? extends Parcelable>) list);
+
+                message.setData(bundle);
+                handler.sendMessage(message);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                Message message = new Message();
+                message.what = Constant.FAILURE;
+
+                FailureMessageModel failureMessageModel = new FailureMessageModel();
+                failureMessageModel.setMsgCode(i);
+                failureMessageModel.setMsg(s);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(Constant.FAILURE_MESSAGE, failureMessageModel);
+
+                message.setData(bundle);
+                handler.sendMessage(message);
+            }
+        };
+
+        mQueryModel.query(context, query, findListener);
     }
 }

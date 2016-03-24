@@ -13,10 +13,11 @@
 
     <Button
         android:id="@+id/btn_add_new_address"
-        android:text="@string/add_new_address"
         style="@style/common_text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/btn_background" />
+        android:background="@drawable/btn_background"
+        android:text="@string/add_new_address"
+        android:textColor="@color/white" />
 </LinearLayout>

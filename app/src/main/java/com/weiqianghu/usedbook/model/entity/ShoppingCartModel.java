@@ -16,8 +16,10 @@ public class ShoppingCartModel implements Parcelable {
     public ShoppingCartModel() {
     }
 
+
     protected ShoppingCartModel(Parcel in) {
         shoppingCartBean = in.readParcelable(ShoppingCartBean.class.getClassLoader());
+        bookImgs = in.createTypedArrayList(BookImgsBean.CREATOR);
     }
 
     public static final Creator<ShoppingCartModel> CREATOR = new Creator<ShoppingCartModel>() {
@@ -48,6 +50,7 @@ public class ShoppingCartModel implements Parcelable {
         this.bookImgs = bookImgs;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -56,5 +59,6 @@ public class ShoppingCartModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(shoppingCartBean, flags);
+        dest.writeTypedList(bookImgs);
     }
 }

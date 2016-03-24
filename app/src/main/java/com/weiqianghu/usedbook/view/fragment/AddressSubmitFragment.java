@@ -81,17 +81,17 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
 
         mSubmitBtn.setOnClickListener(new Click());
 
-        mSavePresenter=new SavePresenter(this,addAddressHandler);
+        mSavePresenter = new SavePresenter(this, addAddressHandler);
 
         mLoading = (ProgressBar) mRootView.findViewById(R.id.pb_loading);
     }
 
-    CallBackHandler addAddressHandler =new CallBackHandler(){
-        public  void handleSuccessMessage(Message msg){
+    CallBackHandler addAddressHandler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
             switch (msg.what) {
                 case Constant.SUCCESS:
                     mLoading.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getActivity(),"收货地址添加成功！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "收货地址添加成功！", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                     getActivity().onBackPressed();
                     getActivity().onBackPressed();
@@ -100,7 +100,7 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
             }
         }
 
-        public void handleFailureMessage(String msg){
+        public void handleFailureMessage(String msg) {
             mLoading.setVisibility(View.INVISIBLE);
             Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
             mSubmitBtn.setClickable(true);
@@ -116,10 +116,11 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
                     getActivity().onBackPressed();
                     break;
                 case R.id.btn_submit:
-                    if(beforeSubmit()){
+                    if (beforeSubmit()) {
+                        address.setDelete(false);
                         mSavePresenter.save(getActivity(), address);
                         mLoading.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         mSubmitBtn.setClickable(true);
                     }
             }
@@ -141,28 +142,28 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
 
         getdata();
 
-        if(detailAddress==null || "".equals(detailAddress)){
-            Toast.makeText(getActivity(),"详细地址不能为空",Toast.LENGTH_SHORT).show();
+        if (detailAddress == null || "".equals(detailAddress)) {
+            Toast.makeText(getActivity(), "详细地址不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(zipCode==null || "".equals(zipCode)){
-            Toast.makeText(getActivity(),"邮编不能为空",Toast.LENGTH_SHORT).show();
+        if (zipCode == null || "".equals(zipCode)) {
+            Toast.makeText(getActivity(), "邮编不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(name==null || "".equals(name)){
-            Toast.makeText(getActivity(),"收货人姓名不能为空",Toast.LENGTH_SHORT).show();
+        if (name == null || "".equals(name)) {
+            Toast.makeText(getActivity(), "收货人姓名不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(mobileNo==null || "".equals(mobileNo)){
-            Toast.makeText(getActivity(),"收货人联系电话不能为空",Toast.LENGTH_SHORT).show();
+        if (mobileNo == null || "".equals(mobileNo)) {
+            Toast.makeText(getActivity(), "收货人联系电话不能为空", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!InputUtil.verifyMobileNo(mobileNo)){
-            Toast.makeText(getActivity(),"收货人联系电话可能不正确，请核对后重新输入",Toast.LENGTH_SHORT).show();
+        if (!InputUtil.verifyMobileNo(mobileNo)) {
+            Toast.makeText(getActivity(), "收货人联系电话可能不正确，请核对后重新输入", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        address=new AddressBean();
+        address = new AddressBean();
 
         address.setProvince(provinceName);
         address.setCity(cityName);
@@ -173,13 +174,13 @@ public class AddressSubmitFragment extends BaseFragment implements ISaveView {
         address.setMobileNo(mobileNo);
         address.setDefault(false);
 
-        UserBean userBean= BmobUser.getCurrentUser(getActivity(),UserBean.class);
+        UserBean userBean = BmobUser.getCurrentUser(getActivity(), UserBean.class);
         address.setUser(userBean);
 
         return true;
     }
 
-    void getdata(){
+    void getdata() {
         detailAddress = mDetailAddressEt.getText().toString().trim();
         zipCode = mZipCodeEt.getText().toString().trim();
         name = mNameEt.getText().toString().trim();

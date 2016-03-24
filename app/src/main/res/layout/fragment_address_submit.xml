@@ -32,13 +32,13 @@
             android:padding="20dp" />
 
         <com.weiqianghu.usedbook.view.customview.ClearEditText
-            android:inputType="number"
             android:id="@+id/et_zip_code"
             style="@style/common_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/box_bg"
             android:hint="@string/zip_code_hint"
+            android:inputType="number"
             android:maxLength="10"
             android:padding="20dp" />
 
@@ -53,13 +53,13 @@
             android:padding="20dp" />
 
         <com.weiqianghu.usedbook.view.customview.ClearEditText
-            android:inputType="phone"
             android:id="@+id/et_mobile_no"
             style="@style/common_text_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/box_bg"
             android:hint="@string/mobile_no_hint"
+            android:inputType="phone"
             android:maxLength="11"
             android:padding="20dp" />
 
@@ -70,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/btn_background"
-            android:text="@string/submit" />
+            android:text="@string/submit"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <ProgressBar
@@ -78,6 +79,6 @@
         android:layout_width="@dimen/large_dp"
         android:layout_height="@dimen/large_dp"
         android:layout_centerInParent="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
 </RelativeLayout>

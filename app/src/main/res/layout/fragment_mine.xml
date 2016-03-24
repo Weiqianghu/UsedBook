@@ -21,7 +21,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 fresco:placeholderImage="@mipmap/default_user_img"
-                fresco:roundAsCircle="true"/>
+                fresco:roundAsCircle="true" />
 
             <TextView
                 android:id="@+id/tv_username"
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@string/order" />
+                android:text="@string/order_form" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -225,7 +225,7 @@
                     android:layout_width="@dimen/small_dp"
                     android:layout_height="@dimen/small_dp"
                     android:layout_marginRight="10dp"
-                    android:src="@mipmap/message" />
+                    android:src="@mipmap/my_message" />
 
                 <TextView
                     style="@style/common_text_style"

@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class MainLayoutFragment extends BaseFragment {
 
-    public static final String TAG=MainLayoutFragment.class.getSimpleName();
+    public static final String TAG = MainLayoutFragment.class.getSimpleName();
 
     private ViewPager mViewPager;
 
@@ -41,7 +41,7 @@ public class MainLayoutFragment extends BaseFragment {
 
     private TextView mTopBarText;
 
-    private boolean isFristIn=true;
+    private boolean isFristIn = true;
 
     private Fragment mMainFragment;
     private Fragment mShoppingCartFragment;
@@ -49,7 +49,7 @@ public class MainLayoutFragment extends BaseFragment {
 
     private ImageView mTopBarRightBtn;
 
-    private int count=0;
+    private int count = 0;
 
 
     @Override
@@ -59,16 +59,16 @@ public class MainLayoutFragment extends BaseFragment {
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
-        if(isFristIn) {
+        if (isFristIn) {
             initView(savedInstanceState);
         }
-        isFristIn=false;
+        isFristIn = false;
     }
 
     protected void initView(Bundle savedInstanceState) {
         mViewPager = (ViewPager) mRootView.findViewById(R.id.mContener);
 
-        mTopBarText= (TextView)mRootView.findViewById(R.id.tv_top_bar_text);
+        mTopBarText = (TextView) mRootView.findViewById(R.id.tv_top_bar_text);
 
         mTabMain = (RelativeLayout) mRootView.findViewById(R.id.rl_main);
         mTabMine = (RelativeLayout) mRootView.findViewById(R.id.rl_mine);
@@ -78,31 +78,33 @@ public class MainLayoutFragment extends BaseFragment {
         mTabShoppingCart.setOnClickListener(new ClickListener());
         mTabMine.setOnClickListener(new ClickListener());
 
-        mImgViewMain= (ImageView) mRootView.findViewById(R.id.iv_main);
-        mImgViewShoppingCart= (ImageView) mRootView.findViewById(R.id.iv_shopping_cart);
-        mImgViewMine= (ImageView) mRootView.findViewById(R.id.iv_mine);
+        mImgViewMain = (ImageView) mRootView.findViewById(R.id.iv_main);
+        mImgViewShoppingCart = (ImageView) mRootView.findViewById(R.id.iv_shopping_cart);
+        mImgViewMine = (ImageView) mRootView.findViewById(R.id.iv_mine);
 
         updateView();
 
-        mTopBarRightBtn= (ImageView) mRootView.findViewById(R.id.top_bar_right_button);
+        mTopBarRightBtn = (ImageView) mRootView.findViewById(R.id.top_bar_right_button);
         mTopBarRightBtn.setImageResource(R.mipmap.message);
 
         mRootView.setFocusable(true);
         mRootView.setFocusableInTouchMode(true);
-        mRootView.setOnKeyListener(new View.OnKeyListener(){
+        mRootView.setOnKeyListener(new View.OnKeyListener() {
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode==KeyEvent.KEYCODE_BACK){
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
                     exit(v);
                     return true;
                 }
                 return false;
             }
         });
+
+        setSelect(0);
     }
 
-    public void updateView(){
+    public void updateView() {
         mMainFragment = new MainFragment();
         mShoppingCartFragment = new ShoppingCartFragment();
         mMineFragment = new MineFragment();
@@ -111,7 +113,7 @@ public class MainLayoutFragment extends BaseFragment {
         mViews.add(mShoppingCartFragment);
         mViews.add(mMineFragment);
 
-        mPagerAdapter=new FragmentPagerAdapter(getChildFragmentManager()) {
+        mPagerAdapter = new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mViews.get(position);
@@ -148,15 +150,14 @@ public class MainLayoutFragment extends BaseFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden) {
+        if (!hidden) {
             Bundle bundle = getArguments();
             int tap = bundle.getInt(Constant.TAB);
             setSelect(tap);
-        }
-        else {
-            int currentItem=mViewPager.getCurrentItem();
+        } else {
+            int currentItem = mViewPager.getCurrentItem();
             Bundle bundle = getArguments();
-            bundle.putInt(Constant.TAB,currentItem);
+            bundle.putInt(Constant.TAB, currentItem);
         }
     }
 
@@ -188,11 +189,11 @@ public class MainLayoutFragment extends BaseFragment {
         mImgViewMine.setImageResource(R.mipmap.mine);
     }
 
-    private class ClickListener implements View.OnClickListener{
+    private class ClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.rl_main:
                     setSelect(0);
                     break;
@@ -207,7 +208,7 @@ public class MainLayoutFragment extends BaseFragment {
     }
 
     public void exit(View v) {
-        if(count<1){
+        if (count < 1) {
             Toast.makeText(getActivity(), "再按一次退出", Toast.LENGTH_SHORT).show();
         }
         if (count < 2) {
@@ -222,7 +223,7 @@ public class MainLayoutFragment extends BaseFragment {
                     }
                 }
             }.start();
-        } else{
+        } else {
             getActivity().finish();
         }
     }

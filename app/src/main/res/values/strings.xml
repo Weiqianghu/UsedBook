@@ -42,7 +42,7 @@
     <string name="mobile_no">输入手机号码，用于找回账号</string>
 
 
-    <string name="order">我的订单</string>
+    <string name="order_form">我的订单</string>
 
     <string name="deliver">待发货</string>
     <string name="express">配送中</string>
@@ -112,5 +112,6 @@
     <string name="shopping_cart_empty">购物车空空如也，快去购物吧</string>
     <string name="prefer_empty">收藏夹空空如也，快去购物吧</string>
     <string name="stock_not_enough">库存不足</string>
+    <string name="order_ensure">确认订单</string>
 
 </resources>

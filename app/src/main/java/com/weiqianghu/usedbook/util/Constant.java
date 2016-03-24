@@ -49,4 +49,9 @@ public class Constant {
     public static final int TRUE = 1;
     public static final int FALSE = 0;
 
+    public static final int ORDER_RESULT_CODE = 10001;
+
+    public static final String NUMBER = "number";
+    public static final String SHOPPINGCART = "shoppingcart";
+
 }

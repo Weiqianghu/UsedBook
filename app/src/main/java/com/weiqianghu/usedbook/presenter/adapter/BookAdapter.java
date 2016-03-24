@@ -36,7 +36,7 @@ public class BookAdapter extends CommonAdapterForRecycleView {
             Uri uri = Uri.parse(bookImgs.get(0).getImg());
             helper.setImageForSimpleDraweeViewUri(R.id.iv_book, uri);
         } else {
-            Uri uri = Uri.parse("res://com.weiqianghu.usedbook_shop/" + R.mipmap.upload_img);
+            Uri uri = Uri.parse("res://com.weiqianghu.usedbook/" + R.mipmap.upload_img);
             helper.setImageForSimpleDraweeViewUri(R.id.iv_book, uri);
         }
     }
