@@ -18,6 +18,7 @@ import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.AddressBean;
 import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.OrderBean;
+import com.weiqianghu.usedbook.model.entity.ShopBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
 import com.weiqianghu.usedbook.model.entity.ShoppingCartModel;
 import com.weiqianghu.usedbook.model.entity.UserBean;
@@ -116,7 +117,6 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
 
     private void initData() {
         Intent intent = getIntent();
-        List<ShoppingCartModel> data = new ArrayList<>();
         if (intent != null) {
             mShoppingModels = intent.getParcelableArrayListExtra(Constant.LIST);
         }
@@ -253,6 +253,11 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
                     orderBean.setTotalPrice(shoppingCartBean.getSubtotal());
                     orderBean.setAddress(mAddress);
                     orderBean.setOrderState(Constant.DELIVER);
+
+                    ShopBean shopBean = new ShopBean();
+                    shopBean.setObjectId(shoppingCartBean.getShopObjectId());
+
+                    orderBean.setShop(shopBean);
 
                     mSavePresenter.save(OrderActivity.this, orderBean, shoppingCartBean);
                     break;

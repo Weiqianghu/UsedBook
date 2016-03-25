@@ -246,6 +246,7 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
         shoppingCartBean.setOrder(false);
         shoppingCartBean.setPrice(book.getPrice());
         shoppingCartBean.setChecked(false);
+        shoppingCartBean.setShop(book.getShop());
 
         mAddShoppingCartPresenter.addShoppingCart(getActivity(), shoppingCartBean);
     }

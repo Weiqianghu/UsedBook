@@ -10,25 +10,25 @@ import cn.bmob.v3.BmobObject;
  */
 public class ShoppingCartBean extends BmobObject implements Parcelable {
     private String objectIdStr;
+    private String shopObjectId;
     private double price;
     private int number;
     private double subtotal;//小计
     private UserBean user;
     private BookBean book;
     private boolean isOrder;
+    private ShopBean shop;
 
-    private boolean isChecked;//不存储在数据库，只用来解决checkbox错乱问题
-
-    public ShoppingCartBean() {
-    }
 
     protected ShoppingCartBean(Parcel in) {
         objectIdStr = in.readString();
+        shopObjectId = in.readString();
         price = in.readDouble();
         number = in.readInt();
         subtotal = in.readDouble();
         book = in.readParcelable(BookBean.class.getClassLoader());
         isOrder = in.readByte() != 0;
+        shop = in.readParcelable(ShopBean.class.getClassLoader());
         isChecked = in.readByte() != 0;
     }
 
@@ -43,6 +43,29 @@ public class ShoppingCartBean extends BmobObject implements Parcelable {
             return new ShoppingCartBean[size];
         }
     };
+
+    public String getShopObjectId() {
+        return shopObjectId;
+    }
+
+    public void setShopObjectId(String shopObjectId) {
+        this.shopObjectId = shopObjectId;
+    }
+
+
+    public ShopBean getShop() {
+        return shop;
+    }
+
+    public void setShop(ShopBean shop) {
+        this.shop = shop;
+    }
+
+    private boolean isChecked;//不存储在数据库，只用来解决checkbox错乱问题
+
+    public ShoppingCartBean() {
+    }
+
 
     public String getObjectIdStr() {
         return objectIdStr;
@@ -116,11 +139,13 @@ public class ShoppingCartBean extends BmobObject implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(objectIdStr);
+        dest.writeString(shopObjectId);
         dest.writeDouble(price);
         dest.writeInt(number);
         dest.writeDouble(subtotal);
         dest.writeParcelable(book, flags);
         dest.writeByte((byte) (isOrder ? 1 : 0));
+        dest.writeParcelable(shop, flags);
         dest.writeByte((byte) (isChecked ? 1 : 0));
     }
 }

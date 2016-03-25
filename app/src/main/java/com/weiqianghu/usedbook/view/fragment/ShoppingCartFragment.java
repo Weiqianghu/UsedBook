@@ -125,6 +125,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                showTotalMoney();
                 count = 0;
                 isRefresh = true;
                 queryData(count * STEP, STEP);
@@ -406,6 +407,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
             if (mShoppingCartModels.get(i).getShoppingCartBean().isChecked() == true) {
                 ShoppingCartModel shoppingCartModel = mShoppingCartModels.get(i);
                 shoppingCartModel.getShoppingCartBean().setObjectIdStr(shoppingCartModel.getShoppingCartBean().getObjectId());
+                shoppingCartModel.getShoppingCartBean().setShopObjectId(shoppingCartModel.getShoppingCartBean().getShop().getObjectId());
 
                 BookBean bookBean = shoppingCartModel.getShoppingCartBean().getBook();
                 bookBean.setObjectIdStr(bookBean.getObjectId());

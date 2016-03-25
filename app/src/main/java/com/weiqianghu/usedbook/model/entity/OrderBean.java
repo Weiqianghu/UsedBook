@@ -16,9 +16,7 @@ public class OrderBean extends BmobObject implements Parcelable {
     private BookBean book;
     private String orderState;
     private AddressBean address;
-
-    public OrderBean() {
-    }
+    private ShopBean shop;
 
     protected OrderBean(Parcel in) {
         orderNo = in.readString();
@@ -27,6 +25,7 @@ public class OrderBean extends BmobObject implements Parcelable {
         book = in.readParcelable(BookBean.class.getClassLoader());
         orderState = in.readString();
         address = in.readParcelable(AddressBean.class.getClassLoader());
+        shop = in.readParcelable(ShopBean.class.getClassLoader());
     }
 
     public static final Creator<OrderBean> CREATOR = new Creator<OrderBean>() {
@@ -40,6 +39,18 @@ public class OrderBean extends BmobObject implements Parcelable {
             return new OrderBean[size];
         }
     };
+
+    public ShopBean getShop() {
+        return shop;
+    }
+
+    public void setShop(ShopBean shop) {
+        this.shop = shop;
+    }
+
+    public OrderBean() {
+    }
+
 
     public UserBean getUser() {
         return user;
@@ -97,6 +108,7 @@ public class OrderBean extends BmobObject implements Parcelable {
         this.address = address;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -110,5 +122,6 @@ public class OrderBean extends BmobObject implements Parcelable {
         dest.writeParcelable(book, flags);
         dest.writeString(orderState);
         dest.writeParcelable(address, flags);
+        dest.writeParcelable(shop, flags);
     }
 }
