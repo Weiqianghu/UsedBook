@@ -29,7 +29,8 @@
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/small_btn_bg"
-                android:text="@string/get_code" />
+                android:text="@string/get_code"
+                android:textColor="@color/white" />
         </LinearLayout>
 
         <com.weiqianghu.usedbook.view.customview.ClearEditText
@@ -60,12 +61,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@drawable/btn_background"
-            android:text="@string/register" />
+            android:text="@string/register"
+            android:textColor="@color/white" />
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/pb_loading"
         android:layout_width="@dimen/large_dp"
         android:layout_height="@dimen/large_dp"
         android:layout_centerInParent="true"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 </RelativeLayout>

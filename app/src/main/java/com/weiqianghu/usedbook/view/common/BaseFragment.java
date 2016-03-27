@@ -17,8 +17,8 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(null==mRootView){
-            mRootView=inflater.inflate(getLayoutId(),container,false);
+        if (null == mRootView) {
+            mRootView = inflater.inflate(getLayoutId(), container, false);
         }
         return mRootView;
     }
@@ -34,4 +34,6 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void afterCreate(Bundle savedInstanceState);
 
     protected abstract void initView(Bundle savedInstanceState);
+
+    protected boolean isFirstIn = true;
 }

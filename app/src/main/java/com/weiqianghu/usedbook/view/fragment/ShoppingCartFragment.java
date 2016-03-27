@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -36,6 +37,7 @@ import com.weiqianghu.usedbook.presenter.adapter.CommonAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.DoubleUtil;
+import com.weiqianghu.usedbook.util.ThreadPool;
 import com.weiqianghu.usedbook.view.ViewHolder;
 import com.weiqianghu.usedbook.view.activity.OrderActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
@@ -82,8 +84,11 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
-        initAdapter();
-        initView(savedInstanceState);
+        if (isFirstIn) {
+            initAdapter();
+            initView(savedInstanceState);
+            isFirstIn = false;
+        }
         initData();
     }
 
@@ -181,7 +186,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                     mSuggestToLoginLayout.setVisibility(View.INVISIBLE);
                 }
             }
-        }.execute();
+        }.executeOnExecutor(ThreadPool.getThreadPool());
 
     }
 

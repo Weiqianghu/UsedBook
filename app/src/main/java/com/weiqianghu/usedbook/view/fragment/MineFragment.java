@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.util.SelectImgUtil;
+import com.weiqianghu.usedbook.util.ThreadPool;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderFormActivity;
@@ -60,6 +62,8 @@ public class MineFragment extends BaseFragment {
     private FragmentManager mFragmentManager;
     private Fragment mFragment;
 
+    private boolean isFirstIn = true;
+
     @Override
     protected int getLayoutId() {
         Fresco.initialize(getActivity());
@@ -68,7 +72,17 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
-        initView(savedInstanceState);
+        if (isFirstIn) {
+            initView(savedInstanceState);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    updateView();
+                }
+            }, 500);
+            isFirstIn = false;
+        }
+
     }
 
     @Override
@@ -114,8 +128,6 @@ public class MineFragment extends BaseFragment {
         mEditUserInfo.setOnClickListener(click);
 
         mUsernameTv = (TextView) mRootView.findViewById(R.id.tv_username);
-
-        updateView();
     }
 
     private void updateView() {
@@ -152,7 +164,7 @@ public class MineFragment extends BaseFragment {
                     updateView();
                 }
             }
-        }.execute();
+        }.executeOnExecutor(ThreadPool.getThreadPool());
     }
 
     private class Click implements View.OnClickListener {
@@ -164,24 +176,19 @@ public class MineFragment extends BaseFragment {
             }
             switch (v.getId()) {
                 case R.id.pay:
-                    intent.putExtra(Constant.ORDER_TAB, Constant.PAY);
-                    startActivity(intent);
+                    gotoOrder( Constant.PAY);
                     break;
                 case R.id.deliver:
-                    intent.putExtra(Constant.ORDER_TAB, Constant.DELIVER);
-                    startActivity(intent);
+                    gotoOrder(Constant.DELIVER);
                     break;
                 case R.id.express:
-                    intent.putExtra(Constant.ORDER_TAB, Constant.EXPRESS);
-                    startActivity(intent);
+                    gotoOrder(Constant.EXPRESS);
                     break;
                 case R.id.evaluate:
-                    intent.putExtra(Constant.ORDER_TAB, Constant.EVALUATE);
-                    startActivity(intent);
+                    gotoOrder(Constant.EVALUATE);
                     break;
                 case R.id.finish:
-                    intent.putExtra(Constant.ORDER_TAB, Constant.FINISH);
-                    startActivity(intent);
+                    gotoOrder(Constant.FINISH);
                     break;
                 case R.id.iv_user_img:
                     SelectImgUtil.selectImg(getActivity(), MultiImageSelectorActivity.MODE_SINGLE, 1);
@@ -231,6 +238,26 @@ public class MineFragment extends BaseFragment {
     private void gotoAddress() {
         Intent intent = new Intent(getActivity(), AddressActivity.class);
         startActivity(intent);
+    }
+
+    private void gotoOrder(String tab) {
+        if (mFragmentManager == null) {
+            mFragmentManager = getActivity().getSupportFragmentManager();
+        }
+        mFragment = mFragmentManager.findFragmentByTag(OrderFormFragment.TAG);
+        if (mFragment == null) {
+            mFragment = new OrderFormFragment();
+
+            Bundle args = new Bundle();
+            args.putString(Constant.ORDER_TAB, tab);
+            mFragment.setArguments(args);
+        } else {
+            Bundle args = mFragment.getArguments();
+            args.putString(Constant.ORDER_TAB, tab);
+        }
+
+        Fragment from = mFragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
+        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, OrderFormFragment.TAG);
 
     }
 

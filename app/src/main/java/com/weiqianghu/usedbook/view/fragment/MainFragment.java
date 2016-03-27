@@ -2,6 +2,7 @@ package com.weiqianghu.usedbook.view.fragment;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -48,6 +49,8 @@ public class MainFragment extends BaseFragment implements IBooksView {
     private static final int STEP = 30;
     private boolean isRefresh = false;
 
+    private boolean isFirstIn = true;
+
     @Override
     protected int getLayoutId() {
         Fresco.initialize(getActivity());
@@ -56,9 +59,18 @@ public class MainFragment extends BaseFragment implements IBooksView {
 
     @Override
     protected void afterCreate(Bundle savedInstanceState) {
-        initView(savedInstanceState);
-        initData();
+        if (isFirstIn) {
+            initView(savedInstanceState);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    initData();
+                }
+            }, 500);
+            isFirstIn = false;
+        }
     }
+
 
     protected void initView(Bundle savedInstanceState) {
         mBookGridView = (GridView) mRootView.findViewById(R.id.gv_book);
@@ -221,6 +233,7 @@ public class MainFragment extends BaseFragment implements IBooksView {
             }
 
         }
+
     }
 
     void gotoSearch() {

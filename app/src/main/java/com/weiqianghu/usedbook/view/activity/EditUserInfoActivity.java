@@ -109,7 +109,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
 
         mEditUserPresenter = new EditUserPresenter(this, editUserHanler);
 
-        mUpdatePwdBtn= findViewById(R.id.update_pwd);
+        mUpdatePwdBtn = findViewById(R.id.update_pwd);
         mUpdatePwdBtn.setOnClickListener(click);
     }
 
@@ -152,7 +152,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         }
     }
 
-    public void updatePwd(View view){
+    public void updatePwd(View view) {
         if (fragmentManager == null) {
             fragmentManager = getSupportFragmentManager();
         }
@@ -161,7 +161,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         if (fragment == null) {
             fragment = new UpdatePwdFragment();
         }
-        FragmentUtil.addContent(R.id.update_pwd_container, fragment,fragmentManager,UpdatePwdFragment.TAG);
+        FragmentUtil.addContent(R.id.update_pwd_container, fragment, fragmentManager, UpdatePwdFragment.TAG);
     }
 
     public void editUserName(View view) {
@@ -200,9 +200,10 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
                 int choiceWhich = choiceListener.getWhich();
                 boolean sexBoole = choiceWhich == 0 ? true : false;
                 if (sexBoole != currentUser.isSex()) {
-                    UserBean user=new UserBean();
+                    UserBean user = new UserBean();
                     user.setObjectId(currentUser.getObjectId());
                     user.setSex(sexBoole);
+                    user.setAge(currentUser.getAge());
                     currentUser.setSex(sexBoole);
                     mLoading.setVisibility(View.VISIBLE);
                     mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);
@@ -243,9 +244,10 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
             public void onClick(DialogInterface dialog, int which) {
                 int age = Integer.valueOf(temp.getText().toString());
                 if (age > 0 && age < 150 && age != currentUser.getAge()) {
-                    UserBean user=new UserBean();
+                    UserBean user = new UserBean();
                     user.setObjectId(currentUser.getObjectId());
                     user.setAge(Integer.valueOf(temp.getText().toString()));
+                    user.setSex(currentUser.isSex());
                     currentUser.setAge(Integer.valueOf(temp.getText().toString()));
                     mLoading.setVisibility(View.VISIBLE);
                     mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);

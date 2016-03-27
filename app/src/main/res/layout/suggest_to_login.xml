@@ -5,20 +5,22 @@
     android:orientation="vertical">
 
     <TextView
-        android:gravity="center"
-        android:text="@string/suggest_to_login_text"
         style="@style/common_text_style"
-        android:layout_marginTop="200dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center"
+        android:text="@string/suggest_to_login_text" />
+
     <Button
         android:id="@+id/btn_to_login"
-        android:onClick="gotoLogin"
-        android:text="@string/to_login"
         style="@style/common_text_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:background="@drawable/btn_background"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:onClick="gotoLogin"
+        android:text="@string/to_login"
+        android:textColor="@color/white" />
 
 </LinearLayout>

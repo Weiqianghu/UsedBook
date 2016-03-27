@@ -26,7 +26,7 @@ import com.weiqianghu.usedbook.presenter.QueryAddressPresenter;
 import com.weiqianghu.usedbook.presenter.QueryBooksPresenter;
 import com.weiqianghu.usedbook.presenter.SavePresenter;
 import com.weiqianghu.usedbook.presenter.UpdatePresenter;
-import com.weiqianghu.usedbook.presenter.adapter.OrderAdapter;
+import com.weiqianghu.usedbook.presenter.adapter.ShoppingCartOrderAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.DoubleUtil;
@@ -44,7 +44,7 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
     List<ShoppingCartModel> mShoppingModels = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private OrderAdapter mAdapter;
+    private ShoppingCartOrderAdapter mAdapter;
 
     private TextView mTvTopBarText;
     private ImageView mIvTopBarLeftBtn;
@@ -84,7 +84,7 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new OrderAdapter(mShoppingModels, R.layout.item_order);
+        mAdapter = new ShoppingCartOrderAdapter(mShoppingModels, R.layout.item_shopping_cart_order);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);

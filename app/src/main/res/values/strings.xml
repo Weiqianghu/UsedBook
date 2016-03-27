@@ -113,5 +113,10 @@
     <string name="prefer_empty">收藏夹空空如也，快去购物吧</string>
     <string name="stock_not_enough">库存不足</string>
     <string name="order_ensure">确认订单</string>
+    <string name="this_order_empty">您暂时没有相关订单</string>
+    <string name="shopping_cart_address">收货地址</string>
+    <string name="book">书</string>
+    <string name="order_detail">订单详情</string>
+    <string name="confirm_receipt">确认收货</string>
 
 </resources>

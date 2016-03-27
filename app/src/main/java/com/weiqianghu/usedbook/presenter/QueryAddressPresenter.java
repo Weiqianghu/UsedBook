@@ -22,18 +22,18 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.GetListener;
 
 /**
  * Created by weiqianghu on 2016/2/23.
  */
-public class QueryAddressPresenter {
+public class QueryAddressPresenter extends CommonPresenter{
     private IQueryModel mQueryModel;
     private IQueryView mQueryView;
-    private Handler handler;
 
     public QueryAddressPresenter(IQueryView iQueryView, Handler handler) {
+        super(handler);
         this.mQueryView = iQueryView;
-        this.handler = handler;
         mQueryModel = new QueryModel<AddressBean>();
     }
 
@@ -115,5 +115,25 @@ public class QueryAddressPresenter {
         };
 
         mQueryModel.query(context, query, findListener);
+    }
+
+    public void QueryAddress(Context context, String objectId) {
+        GetListener<AddressBean> getListener = new GetListener<AddressBean>() {
+
+            @Override
+            public void onFailure(int i, String s) {
+                handleFailureMessage(i, s);
+            }
+
+            @Override
+            public void onSuccess(AddressBean addressBean) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Constant.DATA, addressBean);
+                handleSuccess(bundle);
+            }
+        };
+
+        BmobQuery<AddressBean> query = new BmobQuery<>();
+        mQueryModel.query(context, query, getListener, objectId);
     }
 }
