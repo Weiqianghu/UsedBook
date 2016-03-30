@@ -1,6 +1,7 @@
 package com.weiqianghu.usedbook.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,6 +24,7 @@ import com.weiqianghu.usedbook.presenter.QueryOrderPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.OrderAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.view.activity.CommentActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.EmptyRecyclerView;
 import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
@@ -138,28 +140,12 @@ public class OrderEvaluateFragment extends BaseFragment implements IRecycleViewI
 
     @Override
     public void onItemClick(View view, int postion) {
-        gotoProcessOrderFragment(postion);
+        gotoComment(postion);
     }
 
-    private void gotoProcessOrderFragment(int postion) {
-        /*if (mFragmentManager == null) {
-            mFragmentManager = getActivity().getSupportFragmentManager();
-        }
-        Fragment mFragment = mFragmentManager.findFragmentByTag(ProcessOrderFragment.TAG);
-        if (mFragment == null) {
-            mFragment = new ProcessOrderFragment();
-        }
-        Bundle bundle = new Bundle();
-        bundle.putBoolean(Constant.IS_BTN_GONE, true);
-        bundle.putParcelable(Constant.DATA, mData.get(postion));
-        mFragment.setArguments(bundle);
-        Fragment from = null;
-        from = mFragmentManager.findFragmentByTag(OrderFragment.TAG);
-        if (null == from) {
-            from = mFragmentManager.findFragmentByTag(MainFragment.TAG);
-        }
-
-        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, ProcessOrderFragment.TAG);*/
+    private void gotoComment(int postion) {
+        Intent intent = new Intent(getActivity(), CommentActivity.class);
+        startActivity(intent);
     }
 
     RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {

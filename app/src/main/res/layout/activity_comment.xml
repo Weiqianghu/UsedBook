@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.weiqianghu.usedbook.view.activity.CommentActivity">
+
+    <include layout="@layout/top_bar"></include>
+
+    <include layout="@layout/item_shopping_cart_order"></include>
+
+    <EditText
+        android:id="@+id/tv_comment_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/box_bg"
+        android:gravity="top"
+        android:hint="写评论..."
+        android:textColor="@color/textColor" />
+
+    <include layout="@layout/comment_bottom_bar" />
+
+</LinearLayout>

@@ -131,4 +131,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="RatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/food_rating_bar_full</item>
+        <item name="android:minHeight">15dip</item>
+        <item name="android:maxHeight">15dip</item>
+    </style>
+
 </resources>

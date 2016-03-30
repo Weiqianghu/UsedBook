@@ -118,5 +118,7 @@
     <string name="book">书</string>
     <string name="order_detail">订单详情</string>
     <string name="confirm_receipt">确认收货</string>
+    <string name="publish_comment">发表评论</string>
+    <string name="rating">评分</string>
 
 </resources>
