@@ -62,7 +62,7 @@ public class CommentActivity extends AppCompatActivity implements FaceFragment.O
 
     private Button mSubmitBtn;
 
-    private int mRating;
+    private int mRating = 5;
     private SavePresenter mSavePresenter;
     private QueryCommentPresenter mQueryCommentPresenter;
     CommentBean comment = new CommentBean();

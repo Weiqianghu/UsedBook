@@ -10,13 +10,14 @@
 
     <RelativeLayout
         android:id="@+id/update_agent"
-        android:layout_below="@id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_dp"
+        android:layout_below="@id/top_bar"
         android:background="@drawable/box_bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp">
+
         <TextView
             style="@style/common_text_style"
             android:layout_width="wrap_content"
@@ -33,12 +34,13 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:layout_margin="10dp"
-        android:text="@string/logout"
         style="@style/common_text_style"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btn_background"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/btn_background"
+        android:text="@string/logout"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

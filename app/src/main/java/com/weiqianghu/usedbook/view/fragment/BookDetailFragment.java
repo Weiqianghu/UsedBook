@@ -1,5 +1,6 @@
 package com.weiqianghu.usedbook.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -27,9 +28,11 @@ import com.weiqianghu.usedbook.presenter.adapter.MViewPagerAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
+import com.weiqianghu.usedbook.view.activity.CommentListActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IBooksDetailView;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -212,8 +215,23 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                 case R.id.btn_enter_shop:
                     gotoShop();
                     break;
+                case R.id.comment:
+                    gotoCommentList();
+                    break;
             }
         }
+    }
+
+    private void gotoCommentList() {
+        Intent intent = new Intent(getActivity(), CommentListActivity.class);
+        Bundle bundle = new Bundle();
+
+        BookBean book = mBookModel.getBook();
+        book.setObjectIdStr(book.getObjectId());
+        bundle.putParcelable(Constant.DATA, book);
+
+        intent.putExtra(Constant.DATA, bundle);
+        startActivity(intent);
     }
 
     private void checkAddShoppingCart() {

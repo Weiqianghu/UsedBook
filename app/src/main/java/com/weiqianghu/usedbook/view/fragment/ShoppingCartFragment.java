@@ -383,7 +383,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
             @Override
             protected void onPostExecute(Double aDouble) {
                 super.onPostExecute(aDouble);
-                mTotalMoney.setText(String.valueOf(aDouble));
+                mTotalMoney.setText(String.valueOf(aDouble + "￥"));
             }
         }.execute();
     }

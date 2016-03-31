@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/activityRoot"
     tools:context="com.weiqianghu.usedbook.view.activity.CommentActivity">
 
     <include layout="@layout/top_bar"></include>
@@ -20,6 +20,7 @@
         android:background="@drawable/box_bg"
         android:gravity="top"
         android:hint="@string/recomend_comment"
+        android:maxLength="100"
         android:textColor="@color/textColor" />
 
     <include layout="@layout/comment_bottom_bar" />

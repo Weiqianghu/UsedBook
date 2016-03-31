@@ -30,15 +30,17 @@
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".view.activity.SeetingsActivity" />
+        <activity android:name=".view.activity.SettingsActivity" />
         <activity
             android:name="cn.bmob.v3.update.UpdateDialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".view.activity.EditUserInfoActivity" />
         <activity android:name=".view.activity.AddressActivity" />
         <activity android:name=".view.activity.OrderActivity" />
-        <activity android:name=".view.activity.CommentActivity"
-            android:windowSoftInputMode="stateUnspecified|adjustResize"></activity>
+        <activity
+            android:name=".view.activity.CommentActivity"
+            android:windowSoftInputMode="stateUnspecified|adjustResize" />
+        <activity android:name=".view.activity.CommentListActivity"></activity>
     </application>
 
 </manifest>

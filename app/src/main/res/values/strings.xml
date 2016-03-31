@@ -122,4 +122,7 @@
     <string name="rating">评分</string>
     <string name="recomend_comment">动一动手指，帮助更多的人，为这世界奉献一点爱...</string>
 
+    <string name="grade">评分：</string>
+    <string name="comment_empty">暂无评论</string>
+
 </resources>

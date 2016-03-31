@@ -12,7 +12,7 @@ import com.weiqianghu.usedbook.R;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.update.BmobUpdateAgent;
 
-public class SeetingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     private TextView mTvTopBarText;
     private ImageView mIvTopBarLeftBtn;
@@ -54,11 +54,11 @@ public class SeetingsActivity extends AppCompatActivity {
                     finish();
                     break;
                 case  R.id.btn_logout:
-                    BmobUser.logOut(SeetingsActivity.this);
+                    BmobUser.logOut(SettingsActivity.this);
                     finish();
                     break;
                 case  R.id.update_agent:
-                    BmobUpdateAgent.forceUpdate(SeetingsActivity.this);
+                    BmobUpdateAgent.forceUpdate(SettingsActivity.this);
                     break;
             }
         }

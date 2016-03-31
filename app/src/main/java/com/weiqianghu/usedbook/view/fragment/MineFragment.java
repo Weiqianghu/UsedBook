@@ -23,7 +23,7 @@ import com.weiqianghu.usedbook.util.ThreadPool;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderFormActivity;
-import com.weiqianghu.usedbook.view.activity.SeetingsActivity;
+import com.weiqianghu.usedbook.view.activity.SettingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 
 import cn.bmob.v3.BmobUser;
@@ -223,7 +223,7 @@ public class MineFragment extends BaseFragment {
     }
 
     void gotoSeetings() {
-        Intent intent = new Intent(getActivity(), SeetingsActivity.class);
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
         startActivity(intent);
     }
 

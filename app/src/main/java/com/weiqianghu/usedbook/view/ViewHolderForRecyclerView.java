@@ -1,5 +1,6 @@
 package com.weiqianghu.usedbook.view;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
@@ -7,14 +8,16 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.tb.emoji.EmojiUtil;
 
 /**
  * Created by 胡伟强 on 2016/1/18.
  */
-public class ViewHolderForRecyclerView extends RecyclerView.ViewHolder{
+public class ViewHolderForRecyclerView extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews = null;
     private static View mConvertView;
 
@@ -96,8 +99,8 @@ public class ViewHolderForRecyclerView extends RecyclerView.ViewHolder{
         return this;
     }
 
-    public ViewHolderForRecyclerView setImageForSimpleDraweeViewUri(int viewId,Uri uri){
-        SimpleDraweeView draweeView=getView(viewId);
+    public ViewHolderForRecyclerView setImageForSimpleDraweeViewUri(int viewId, Uri uri) {
+        SimpleDraweeView draweeView = getView(viewId);
         draweeView.setImageURI(uri);
         return this;
     }
@@ -109,5 +112,17 @@ public class ViewHolderForRecyclerView extends RecyclerView.ViewHolder{
         } else {
             view.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void setRating(int viewId, int value) {
+        RatingBar ratingBar = getView(viewId);
+        if (value > 0 && value <= 5) {
+            ratingBar.setRating(value);
+        }
+    }
+
+    public void setEmojiText(int viewId, String text, Context context) {
+        TextView textView = getView(viewId);
+        EmojiUtil.displayTextView(textView, text, context);
     }
 }
