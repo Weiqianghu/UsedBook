@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/activityRoot"
     tools:context="com.weiqianghu.usedbook.view.activity.CommentActivity">
 
     <include layout="@layout/top_bar"></include>
@@ -11,16 +12,21 @@
     <include layout="@layout/item_shopping_cart_order"></include>
 
     <EditText
-        android:id="@+id/tv_comment_content"
+        android:id="@+id/et_comment_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:background="@drawable/box_bg"
         android:gravity="top"
-        android:hint="写评论..."
+        android:hint="@string/recomend_comment"
         android:textColor="@color/textColor" />
 
     <include layout="@layout/comment_bottom_bar" />
+
+    <FrameLayout
+        android:id="@+id/emoji_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></FrameLayout>
 
 </LinearLayout>

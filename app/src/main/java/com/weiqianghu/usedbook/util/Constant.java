@@ -54,4 +54,5 @@ public class Constant {
     public static final String NUMBER = "number";
     public static final String SHOPPINGCART = "shoppingcart";
 
+    public static final String BOOK_IMGS = "book_imgs";
 }

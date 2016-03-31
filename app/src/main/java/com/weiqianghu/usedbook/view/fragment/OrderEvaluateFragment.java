@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -144,7 +145,15 @@ public class OrderEvaluateFragment extends BaseFragment implements IRecycleViewI
     }
 
     private void gotoComment(int postion) {
+        OrderModel orderModel = mData.get(postion);
+        orderModel.getOrderBean().getBook().setObjectIdStr(orderModel.getOrderBean().getBook().getObjectId());
+        orderModel.getOrderBean().setObjectIdStr(orderModel.getOrderBean().getObjectId());
+
+
         Intent intent = new Intent(getActivity(), CommentActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constant.DATA, orderModel);
+        intent.putExtra(Constant.DATA, bundle);
         startActivity(intent);
     }
 

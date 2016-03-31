@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.BookModel;
 import com.weiqianghu.usedbook.model.entity.OrderBean;
 import com.weiqianghu.usedbook.model.entity.OrderModel;
 import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
@@ -24,6 +25,7 @@ import com.weiqianghu.usedbook.presenter.QueryOrderPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.OrderAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.EmptyRecyclerView;
 import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
@@ -139,28 +141,34 @@ public class OrderFinishFragment extends BaseFragment implements IRecycleViewIte
 
     @Override
     public void onItemClick(View view, int postion) {
-        gotoProcessOrderFragment(postion);
+        gotoBookDetail(postion);
     }
 
-    private void gotoProcessOrderFragment(int postion) {
-        /*if (mFragmentManager == null) {
+    void gotoBookDetail(int position) {
+
+        if (mFragmentManager == null) {
             mFragmentManager = getActivity().getSupportFragmentManager();
         }
-        Fragment mFragment = mFragmentManager.findFragmentByTag(ProcessOrderFragment.TAG);
-        if (mFragment == null) {
-            mFragment = new ProcessOrderFragment();
-        }
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(Constant.DATA, mData.get(postion));
-        bundle.putBoolean(Constant.IS_BTN_GONE, true);
-        mFragment.setArguments(bundle);
-        Fragment from = null;
-        from = mFragmentManager.findFragmentByTag(OrderFragment.TAG);
-        if (null == from) {
-            from = mFragmentManager.findFragmentByTag(MainFragment.TAG);
+        Fragment fragment = mFragmentManager.findFragmentByTag(BookDetailFragment.TAG);
+
+        BookModel bookModel = new BookModel();
+        bookModel.setBook(mOrders.get(position).getBook());
+        bookModel.setBookImgs(mData.get(position).getBookImgs());
+
+        if (fragment == null) {
+            fragment = BookDetailFragment.getInstance();
+
+            Bundle args = new Bundle();
+            args.putParcelable(Constant.BOOK, bookModel);
+            fragment.setArguments(args);
+        } else {
+            Bundle args = fragment.getArguments();
+            args.putParcelable(Constant.BOOK, bookModel);
         }
 
-        FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, ProcessOrderFragment.TAG);*/
+        Fragment form = mFragmentManager.findFragmentByTag(OrderFormFragment.TAG);
+
+        FragmentUtil.switchContentAddToBackStack(form, fragment, R.id.main_container, mFragmentManager, BookDetailFragment.TAG);
     }
 
     RecyclerView.OnScrollListener onScrollListener = new RecyclerView.OnScrollListener() {

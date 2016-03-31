@@ -9,6 +9,7 @@ import cn.bmob.v3.BmobObject;
  * Created by weiqianghu on 2016/3/24.
  */
 public class OrderBean extends BmobObject implements Parcelable {
+    private String objectIdStr;
     private UserBean user;
     private String orderNo;
     private double totalPrice;
@@ -18,7 +19,9 @@ public class OrderBean extends BmobObject implements Parcelable {
     private AddressBean address;
     private ShopBean shop;
 
+
     protected OrderBean(Parcel in) {
+        objectIdStr = in.readString();
         orderNo = in.readString();
         totalPrice = in.readDouble();
         amount = in.readInt();
@@ -108,6 +111,13 @@ public class OrderBean extends BmobObject implements Parcelable {
         this.address = address;
     }
 
+    public String getObjectIdStr() {
+        return objectIdStr;
+    }
+
+    public void setObjectIdStr(String objectIdStr) {
+        this.objectIdStr = objectIdStr;
+    }
 
     @Override
     public int describeContents() {
@@ -116,6 +126,7 @@ public class OrderBean extends BmobObject implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(objectIdStr);
         dest.writeString(orderNo);
         dest.writeDouble(totalPrice);
         dest.writeInt(amount);

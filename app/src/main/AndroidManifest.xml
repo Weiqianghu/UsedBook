@@ -37,7 +37,8 @@
         <activity android:name=".view.activity.EditUserInfoActivity" />
         <activity android:name=".view.activity.AddressActivity" />
         <activity android:name=".view.activity.OrderActivity" />
-        <activity android:name=".view.activity.CommentActivity"></activity>
+        <activity android:name=".view.activity.CommentActivity"
+            android:windowSoftInputMode="stateUnspecified|adjustResize"></activity>
     </application>
 
 </manifest>
