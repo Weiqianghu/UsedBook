@@ -29,7 +29,7 @@ public class CommentAdapter extends CommonAdapterForRecycleView<CommentBean> {
             Uri uri = Uri.parse(userBean.getImg());
             helper.setImageForSimpleDraweeViewUri(R.id.iv_user_img, uri);
         } else {
-            Uri uri = Uri.parse("res://com.weiqianghu.usedbook/" + R.mipmap.user_img);
+            Uri uri = Uri.parse("res://com.weiqianghu.usedbook/" + R.mipmap.default_user_img);
             helper.setImageForSimpleDraweeViewUri(R.id.iv_user_img, uri);
         }
 

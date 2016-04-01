@@ -116,7 +116,7 @@ public class CommentListActivity extends AppCompatActivity {
 
     private void initTopBar() {
         mTvTopBarText = (TextView) findViewById(R.id.tv_top_bar_text);
-        mTvTopBarText.setText(R.string.publish_comment);
+        mTvTopBarText.setText(R.string.comment);
 
         Click click = new Click();
         mIvTopBarLeftBtn = (ImageView) findViewById(R.id.top_bar_left_button);
