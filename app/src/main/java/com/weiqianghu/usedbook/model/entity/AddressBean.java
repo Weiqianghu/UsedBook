@@ -8,7 +8,8 @@ import cn.bmob.v3.BmobObject;
 /**
  * Created by weiqianghu on 2016/2/23.
  */
-public class AddressBean extends BmobObject implements Parcelable{
+public class AddressBean extends BmobObject implements Parcelable {
+    private String objectIdStr;
     private String name;
     private String mobileNo;
     private String zipCode;//邮编
@@ -21,10 +22,12 @@ public class AddressBean extends BmobObject implements Parcelable{
     private boolean isDelete;
 
 
-    public AddressBean(){}
+    public AddressBean() {
+    }
 
 
     protected AddressBean(Parcel in) {
+        objectIdStr = in.readString();
         name = in.readString();
         mobileNo = in.readString();
         zipCode = in.readString();
@@ -47,6 +50,14 @@ public class AddressBean extends BmobObject implements Parcelable{
             return new AddressBean[size];
         }
     };
+
+    public String getObjectIdStr() {
+        return objectIdStr;
+    }
+
+    public void setObjectIdStr(String objectIdStr) {
+        this.objectIdStr = objectIdStr;
+    }
 
     public boolean isDelete() {
         return isDelete;
@@ -136,6 +147,7 @@ public class AddressBean extends BmobObject implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(objectIdStr);
         dest.writeString(name);
         dest.writeString(mobileNo);
         dest.writeString(zipCode);

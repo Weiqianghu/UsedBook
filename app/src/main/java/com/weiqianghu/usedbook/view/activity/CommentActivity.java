@@ -142,7 +142,7 @@ public class CommentActivity extends AppCompatActivity implements FaceFragment.O
             bookNameTv.setText(book.getBookName());
             bookAuthorTv.setText(book.getAuthor());
             bookPercentDescrbeTv.setText(book.getPercentDescribe());
-            bookPriceTv.setText(String.valueOf(book.getPrice() + "$"));
+            bookPriceTv.setText(String.valueOf(book.getPrice() + "￥"));
             bookAmountTv.setText(String.valueOf("X" + orderBean.getAmount()));
 
         }
@@ -286,8 +286,13 @@ public class CommentActivity extends AppCompatActivity implements FaceFragment.O
                     if (mUpdatePresenter == null) {
                         mUpdatePresenter = new UpdatePresenter<OrderBean>(CommentActivity.this, updateOrderHandler);
                     }
-                    mOrderModel.getOrderBean().setOrderState(Constant.FINISH);
-                    mUpdatePresenter.update(CommentActivity.this, mOrderModel.getOrderBean(), mOrderModel.getOrderBean().getObjectId());
+
+                    OrderBean order = mOrderModel.getOrderBean();
+                    order.setOrderState(Constant.FINISH);
+                    order.getShop().setObjectId(order.getShop().getObjectIdStr());
+                    order.getAddress().setObjectId(order.getAddress().getObjectIdStr());
+
+                    mUpdatePresenter.update(CommentActivity.this, order, order.getObjectId());
             }
         }
 

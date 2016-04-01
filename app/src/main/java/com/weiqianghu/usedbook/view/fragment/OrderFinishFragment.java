@@ -239,9 +239,9 @@ public class OrderFinishFragment extends BaseFragment implements IRecycleViewIte
                     orderModel.setBookImgs(list);
 
                     if (isRefresh) {
-                        mData.clear();
-                        isRefresh = false;
-                    }
+                    mData.clear();
+                    isRefresh = false;
+                }
                     mData.add(orderModel);
                     mAdapter.notifyDataSetChanged();
                     mSwipeRefreshLayout.setRefreshing(false);

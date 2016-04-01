@@ -146,6 +146,9 @@ public class OrderEvaluateFragment extends BaseFragment implements IRecycleViewI
 
     private void gotoComment(int postion) {
         OrderModel orderModel = mData.get(postion);
+
+        orderModel.getOrderBean().getShop().setObjectIdStr(orderModel.getOrderBean().getShop().getObjectId());
+        orderModel.getOrderBean().getAddress().setObjectIdStr(orderModel.getOrderBean().getAddress().getObjectId());
         orderModel.getOrderBean().getBook().setObjectIdStr(orderModel.getOrderBean().getBook().getObjectId());
         orderModel.getOrderBean().setObjectIdStr(orderModel.getOrderBean().getObjectId());
 
