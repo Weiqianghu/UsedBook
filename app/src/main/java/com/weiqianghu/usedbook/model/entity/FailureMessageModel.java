@@ -9,6 +9,14 @@ public class FailureMessageModel implements Serializable {
     private int msgCode;
     private String msg;
 
+    public FailureMessageModel() {
+    }
+
+    public FailureMessageModel(int msgCode, String msg) {
+        this.msgCode = msgCode;
+        this.msg = msg;
+    }
+
     public int getMsgCode() {
         return msgCode;
     }
@@ -26,17 +34,17 @@ public class FailureMessageModel implements Serializable {
                 msg = "用户名或密码错误";
                 break;
             case 207:
-                msg="验证码错误";
+                msg = "验证码错误";
                 break;
             case 10010:
-                msg="此手机号使用过于频繁，请稍后再试";
+                msg = "此手机号使用过于频繁，请稍后再试";
                 break;
             case 9010:
             case 9016:
-                msg="网络状况不良，请检查网络连接";
+                msg = "网络状况不良，请检查网络连接";
                 break;
             case 210:
-                msg="原密码不正确";
+                msg = "原密码不正确";
                 break;
         }
         return msg;

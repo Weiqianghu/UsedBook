@@ -18,17 +18,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a.a.a.V;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.EditUserPresenter;
-import com.weiqianghu.usedbook.presenter.UpdatePwdPresenter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.fragment.UpdatePwdFragment;
 import com.weiqianghu.usedbook.view.view.IEditUserView;
 import com.weiqianghu.usedbook.view.view.ILoginView;
+
+import cn.bmob.v3.BmobUser;
 
 public class EditUserInfoActivity extends AppCompatActivity implements IEditUserView, ILoginView {
 
@@ -75,20 +75,13 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
         mIvTopBarLeftBtn = (ImageView) findViewById(R.id.top_bar_left_button);
         mIvTopBarLeftBtn.setImageResource(R.mipmap.back);
         mIvTopBarLeftBtn.setOnClickListener(click);
+        currentUser = BmobUser.getCurrentUser(EditUserInfoActivity.this, UserBean.class);
+        if (currentUser != null) {
+            username = currentUser.getUsername();
+            sex = currentUser.getSexStr();
+            age = currentUser.getAge();
+            mobileNo = currentUser.getMobilePhoneNumber();
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            Bundle bundle = intent.getBundleExtra(Constant.USERBEAN);
-            if (bundle != null) {
-                currentUser = (UserBean) bundle.getSerializable(Constant.USERBEAN);
-                if (currentUser != null) {
-                    username = currentUser.getUsername();
-                    sex = currentUser.getSexStr();
-                    age = currentUser.getAge();
-                    mobileNo = currentUser.getMobilePhoneNumber();
-
-                }
-            }
         }
 
         mMobileNoTv = (TextView) findViewById(R.id.tv_mobile_no);

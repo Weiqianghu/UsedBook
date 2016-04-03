@@ -110,7 +110,6 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:textColor="@color/white"
                     android:id="@+id/btn_prefer"
                     style="@style/small_text_style"
                     android:layout_width="0dp"
@@ -118,10 +117,10 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/gray_btn_bg"
-                    android:text="@string/add_prefer" />
+                    android:text="@string/add_prefer"
+                    android:textColor="@color/white" />
 
                 <Button
-                    android:textColor="@color/white"
                     android:id="@+id/btn_shopping_cart"
                     style="@style/small_text_style"
                     android:layout_width="0dp"
@@ -129,7 +128,8 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/small_btn_bg"
-                    android:text="@string/add_shooping_cart" />
+                    android:text="@string/add_shooping_cart"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <TextView
@@ -289,7 +289,6 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:textColor="@color/white"
                     android:id="@+id/btn_chat"
                     style="@style/small_text_style"
                     android:layout_width="0dp"
@@ -297,10 +296,10 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/small_btn_bg"
-                    android:text="@string/chat" />
+                    android:text="@string/chat"
+                    android:textColor="@color/white" />
 
                 <Button
-                    android:textColor="@color/white"
                     android:id="@+id/btn_enter_shop"
                     style="@style/small_text_style"
                     android:layout_width="0dp"
@@ -308,7 +307,8 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/small_btn_bg"
-                    android:text="@string/enter_shop" />
+                    android:text="@string/enter_shop"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -229,9 +229,6 @@ public class MineFragment extends BaseFragment {
 
     void gotoEditUserInfo() {
         Intent intent = new Intent(getActivity(), EditUserInfoActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Constant.USERBEAN, currentUser);
-        intent.putExtra(Constant.USERBEAN, bundle);
         startActivity(intent);
     }
 

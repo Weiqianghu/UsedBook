@@ -1,6 +1,7 @@
 package com.weiqianghu.usedbook.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.view.activity.MessageListActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 
 import java.util.ArrayList;
@@ -66,6 +68,9 @@ public class MainLayoutFragment extends BaseFragment {
     }
 
     protected void initView(Bundle savedInstanceState) {
+
+        ClickListener click = new ClickListener();
+
         mViewPager = (ViewPager) mRootView.findViewById(R.id.mContener);
 
         mTopBarText = (TextView) mRootView.findViewById(R.id.tv_top_bar_text);
@@ -74,9 +79,9 @@ public class MainLayoutFragment extends BaseFragment {
         mTabMine = (RelativeLayout) mRootView.findViewById(R.id.rl_mine);
         mTabShoppingCart = (RelativeLayout) mRootView.findViewById(R.id.rl_shopping_cart);
 
-        mTabMain.setOnClickListener(new ClickListener());
-        mTabShoppingCart.setOnClickListener(new ClickListener());
-        mTabMine.setOnClickListener(new ClickListener());
+        mTabMain.setOnClickListener(click);
+        mTabShoppingCart.setOnClickListener(click);
+        mTabMine.setOnClickListener(click);
 
         mImgViewMain = (ImageView) mRootView.findViewById(R.id.iv_main);
         mImgViewShoppingCart = (ImageView) mRootView.findViewById(R.id.iv_shopping_cart);
@@ -86,6 +91,7 @@ public class MainLayoutFragment extends BaseFragment {
 
         mTopBarRightBtn = (ImageView) mRootView.findViewById(R.id.top_bar_right_button);
         mTopBarRightBtn.setImageResource(R.mipmap.message);
+        mTopBarRightBtn.setOnClickListener(click);
 
         mRootView.setFocusable(true);
         mRootView.setFocusableInTouchMode(true);
@@ -203,6 +209,9 @@ public class MainLayoutFragment extends BaseFragment {
                 case R.id.rl_mine:
                     setSelect(2);
                     break;
+                case R.id.top_bar_right_button:
+                    gotoMessageList();
+                    break;
             }
         }
     }
@@ -226,6 +235,11 @@ public class MainLayoutFragment extends BaseFragment {
         } else {
             getActivity().finish();
         }
+    }
+
+    private void gotoMessageList() {
+        Intent intent = new Intent(getActivity(), MessageListActivity.class);
+        startActivity(intent);
     }
 
 }

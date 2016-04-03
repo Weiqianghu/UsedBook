@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,18 +25,25 @@ import com.weiqianghu.usedbook.presenter.BooksDetailPresenter;
 import com.weiqianghu.usedbook.presenter.AddShoppingCartPresenter;
 import com.weiqianghu.usedbook.presenter.QueryPreferPresenter;
 import com.weiqianghu.usedbook.presenter.QueryShoppingCartPresenter;
+import com.weiqianghu.usedbook.presenter.QueryUserPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.MViewPagerAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
+import com.weiqianghu.usedbook.view.activity.ChatActivity;
 import com.weiqianghu.usedbook.view.activity.CommentListActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.view.IBooksDetailView;
 
-import java.io.Serializable;
 import java.util.List;
 
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.bean.BmobIMConversation;
+import cn.bmob.newim.bean.BmobIMUserInfo;
+import cn.bmob.newim.listener.ConnectListener;
+import cn.bmob.newim.listener.ConversationListener;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
 
 
 public class BookDetailFragment extends BaseFragment implements IBooksDetailView {
@@ -73,6 +81,9 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
     private Button mAddPreferBtn;
 
     private Button mEnterShopBtn;
+    private Button mChatBtn;
+
+    private QueryUserPresenter mQueryUserPresenter;
 
 
     public static BookDetailFragment getInstance() {
@@ -144,6 +155,11 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
 
         mEnterShopBtn = (Button) mRootView.findViewById(R.id.btn_enter_shop);
         mEnterShopBtn.setOnClickListener(click);
+
+        mChatBtn = (Button) mRootView.findViewById(R.id.btn_chat);
+        mChatBtn.setOnClickListener(click);
+
+        mQueryUserPresenter = new QueryUserPresenter(queryUserHanler);
     }
 
     private void initData() {
@@ -218,9 +234,85 @@ public class BookDetailFragment extends BaseFragment implements IBooksDetailView
                 case R.id.comment:
                     gotoCommentList();
                     break;
+                case R.id.btn_chat:
+                    gotoChat();
+                    break;
             }
         }
     }
+
+    private void gotoChat() {
+        if (BmobUser.getCurrentUser(getActivity()) == null) {
+            Toast.makeText(getActivity(), "您还没登陆，请登录后再试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+        BmobIM.connect(user.getObjectId(), new ConnectListener() {
+            @Override
+            public void done(String uid, BmobException e) {
+                if (e == null) {
+                    Log.i("im", "connect success");
+                } else {
+                    Log.e("im", e.getErrorCode() + "/" + e.getMessage());
+                }
+            }
+        });
+
+        mQueryUserPresenter.queryUser(getActivity(), mBookModel.getBook().getShop());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BmobIM.getInstance().disConnect();
+    }
+
+    CallBackHandler queryUserHanler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    if (bundle != null) {
+                        List<UserBean> users = bundle.getParcelableArrayList(Constant.LIST);
+                        if (users != null && users.size() > 0) {
+                            final UserBean user = users.get(0);
+
+                            BmobIMUserInfo info = new BmobIMUserInfo();
+                            info.setUserId(user.getObjectId());
+                            info.setName(user.getUsername());
+                            info.setAvatar(user.getImg());
+
+                            BmobIM.getInstance().startPrivateConversation(info, new ConversationListener() {
+                                @Override
+                                public void done(BmobIMConversation c, BmobException e) {
+                                    if (e == null) {
+                                        Intent intent = new Intent(getActivity(), ChatActivity.class);
+
+                                        Bundle bundle = new Bundle();
+                                        bundle.putSerializable("c", c);
+                                        bundle.putParcelable(Constant.DATA, user);
+                                        intent.putExtra("c", bundle);
+
+                                        startActivity(intent);
+                                    } else {
+                                        Toast.makeText(getActivity(), e.getMessage() + "(" + e.getErrorCode() + ")", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    mAddShoppingCartBtn.setClickable(true);
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg) {
+            mAddShoppingCartBtn.setClickable(true);
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+            mAddShoppingCartBtn.setClickable(true);
+        }
+    };
 
     private void gotoCommentList() {
         Intent intent = new Intent(getActivity(), CommentListActivity.class);

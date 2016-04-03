@@ -55,4 +55,6 @@ public class Constant {
     public static final String SHOPPINGCART = "shoppingcart";
 
     public static final String BOOK_IMGS = "book_imgs";
+    public static final String MESSAGE_RECEIVE = "message_receive";
+    public static final String MESSAGE_SEND = "message_send";
 }
