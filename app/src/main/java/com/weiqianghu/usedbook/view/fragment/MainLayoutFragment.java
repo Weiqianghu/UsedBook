@@ -13,13 +13,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.readystatesoftware.viewbadger.BadgeView;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.chat_model.UserModel;
+import com.weiqianghu.usedbook.model.chat_model.i.UpdateCacheListener;
+import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.view.activity.MessageListActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.event.MessageEvent;
+import cn.bmob.newim.event.OfflineMessageEvent;
+import cn.bmob.newim.listener.ConnectListener;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,6 +67,7 @@ public class MainLayoutFragment extends BaseFragment {
     private ImageView mTopBarRightBtn;
 
     private int count = 0;
+    private BadgeView badge;
 
 
     @Override
@@ -65,6 +81,18 @@ public class MainLayoutFragment extends BaseFragment {
             initView(savedInstanceState);
         }
         isFristIn = false;
+
+        UserBean user = BmobUser.getCurrentUser(getActivity(), UserBean.class);
+        if (user != null) {
+            BmobIM.connect(user.getObjectId(), new ConnectListener() {
+                @Override
+                public void done(String uid, BmobException e) {
+                    if (e == null) {
+                    } else {
+                    }
+                }
+            });
+        }
     }
 
     protected void initView(Bundle savedInstanceState) {
@@ -238,8 +266,42 @@ public class MainLayoutFragment extends BaseFragment {
     }
 
     private void gotoMessageList() {
+        if (null == BmobUser.getCurrentUser(getActivity())) {
+            Toast.makeText(getActivity(), R.string.suggest_to_login_text, Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent intent = new Intent(getActivity(), MessageListActivity.class);
         startActivity(intent);
+        if (badge != null && badge.isShown()
+                ) {
+            badge.hide();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe
+    public void onEventMainThread(OfflineMessageEvent event) {
+        int offLineMessageCount = 0;
+        Map<String, List<MessageEvent>> map = event.getEventMap();
+        for (Map.Entry<String, List<MessageEvent>> entry : map.entrySet()) {
+            List<MessageEvent> list = entry.getValue();
+            offLineMessageCount += list.size();
+        }
+
+        badge = new BadgeView(getActivity(), mTopBarRightBtn);
+        badge.setText(String.valueOf(offLineMessageCount));
+        badge.show();
     }
 
 }

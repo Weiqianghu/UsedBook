@@ -5,13 +5,18 @@ import android.os.Handler;
 import android.os.Bundle;
 
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.util.FileUtil;
 import com.weiqianghu.usedbook.util.ImgUtil;
 import com.weiqianghu.usedbook.view.common.BaseActivity;
 
 import java.io.File;
 
+import cn.bmob.newim.BmobIM;
+import cn.bmob.newim.listener.ConnectListener;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
 
 public class SplashActivity extends BaseActivity {
 
@@ -19,9 +24,6 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-       // Bmob.initialize(this, "0efc92162139629c26767e7eaf7a4510");
-
 
         //删除上传文件时生成的临时文件
         new Thread() {

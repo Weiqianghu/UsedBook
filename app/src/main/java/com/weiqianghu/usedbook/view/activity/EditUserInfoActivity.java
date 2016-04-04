@@ -197,6 +197,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
                     user.setObjectId(currentUser.getObjectId());
                     user.setSex(sexBoole);
                     user.setAge(currentUser.getAge());
+                    user.setShop(currentUser.isShop());
                     currentUser.setSex(sexBoole);
                     mLoading.setVisibility(View.VISIBLE);
                     mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);
@@ -241,6 +242,7 @@ public class EditUserInfoActivity extends AppCompatActivity implements IEditUser
                     user.setObjectId(currentUser.getObjectId());
                     user.setAge(Integer.valueOf(temp.getText().toString()));
                     user.setSex(currentUser.isSex());
+                    user.setShop(currentUser.isShop());
                     currentUser.setAge(Integer.valueOf(temp.getText().toString()));
                     mLoading.setVisibility(View.VISIBLE);
                     mEditUserPresenter.updateUser(EditUserInfoActivity.this, user);

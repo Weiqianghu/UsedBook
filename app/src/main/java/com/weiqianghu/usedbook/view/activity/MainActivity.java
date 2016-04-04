@@ -47,16 +47,8 @@ public class MainActivity extends BaseActivity implements IUploadFileByPathView,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //initBmobIm();
         initView();
     }
-
-   /* private void initBmobIm() {
-        BmobIM.init(this);
-        //注册消息接收器
-        BmobIM.registerDefaultMessageHandler(new ChatMessageHandler());
-    }*/
-
 
     private void initView() {
         if (mFragmentManager == null) {

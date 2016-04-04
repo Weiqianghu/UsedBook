@@ -35,4 +35,5 @@ dependencies {
     compile files('libs/BmobSDK_V3.4.6_0304.jar')
     compile files('libs/BmobNewIM_2.0.2_20160310.jar')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile files('libs/android-viewbadger.jar')
 }
