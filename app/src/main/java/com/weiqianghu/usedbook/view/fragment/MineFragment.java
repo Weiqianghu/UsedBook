@@ -1,23 +1,31 @@
 package com.weiqianghu.usedbook.view.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.UserBean;
+import com.weiqianghu.usedbook.presenter.EditUserPresenter;
 import com.weiqianghu.usedbook.presenter.IsLoginPresenter;
+import com.weiqianghu.usedbook.presenter.UploadFileByPathPresenter;
+import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.util.FileUtil;
 import com.weiqianghu.usedbook.util.FragmentUtil;
+import com.weiqianghu.usedbook.util.ImgUtil;
 import com.weiqianghu.usedbook.util.SelectImgUtil;
 import com.weiqianghu.usedbook.util.ThreadPool;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
@@ -25,11 +33,16 @@ import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
 import com.weiqianghu.usedbook.view.activity.OrderFormActivity;
 import com.weiqianghu.usedbook.view.activity.SettingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
+import com.weiqianghu.usedbook.view.view.IEditUserView;
+import com.weiqianghu.usedbook.view.view.IUploadFileByPathView;
+
+import java.util.List;
 
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements IUploadFileByPathView, IEditUserView {
 
     private View mSuggestToLoginLayout;
     private IsLoginPresenter mIsLoginPresenter;
@@ -63,6 +76,12 @@ public class MineFragment extends BaseFragment {
     private Fragment mFragment;
 
     private boolean isFirstIn = true;
+    private Context mContext;
+
+    private UploadFileByPathPresenter mUploadFileByPathPresenter;
+    private List<String> path;
+
+    private EditUserPresenter mEditUserPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -128,6 +147,10 @@ public class MineFragment extends BaseFragment {
         mEditUserInfo.setOnClickListener(click);
 
         mUsernameTv = (TextView) mRootView.findViewById(R.id.tv_username);
+
+        mContext = getActivity();
+        mUploadFileByPathPresenter = new UploadFileByPathPresenter(this, uploadFileHandler);
+        mEditUserPresenter = new EditUserPresenter(this, editUserHanler);
     }
 
     private void updateView() {
@@ -176,7 +199,7 @@ public class MineFragment extends BaseFragment {
             }
             switch (v.getId()) {
                 case R.id.pay:
-                    gotoOrder( Constant.PAY);
+                    gotoOrder(Constant.PAY);
                     break;
                 case R.id.deliver:
                     gotoOrder(Constant.DELIVER);
@@ -191,7 +214,7 @@ public class MineFragment extends BaseFragment {
                     gotoOrder(Constant.FINISH);
                     break;
                 case R.id.iv_user_img:
-                    SelectImgUtil.selectImg(getActivity(), MultiImageSelectorActivity.MODE_SINGLE, 1);
+                    SelectImgUtil.selectImg(MineFragment.this, MultiImageSelectorActivity.MODE_SINGLE, 1);
                     break;
                 case R.id.setting:
                     gotoSeetings();
@@ -255,7 +278,66 @@ public class MineFragment extends BaseFragment {
 
         Fragment from = mFragmentManager.findFragmentByTag(MainLayoutFragment.TAG);
         FragmentUtil.switchContentAddToBackStack(from, mFragment, R.id.main_container, mFragmentManager, OrderFormFragment.TAG);
-
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.REQUEST_IMAGE) {
+            if (resultCode == getActivity().RESULT_OK) {
+                // 获取返回的图片列表
+                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                if (path.size() > 0) {
+                    if (mUserImgImgView == null) {
+                        mUserImgImgView = (SimpleDraweeView) mRootView.findViewById(R.id.iv_user_img);
+                    }
+                    String smallImgPath = ImgUtil.getSmallImgPath(path.get(0), mUserImgImgView.getWidth(), mUserImgImgView.getHeight());
+                    updateImg(smallImgPath);
+                    mUploadFileByPathPresenter.uploadFileByPath(mContext, smallImgPath);
+                }
+            }
+        }
+    }
+
+    private void updateImg(String smallImgPath) {
+        if (smallImgPath != null) {
+            Uri uri = FileUtil.getUriByPath(smallImgPath);
+            if (uri != null) {
+                mUserImgImgView.setImageURI(uri);
+            }
+        }
+    }
+
+    CallBackHandler uploadFileHandler = new CallBackHandler() {
+        public void handleSuccessMessage(Message msg) {
+            switch (msg.what) {
+                case Constant.SUCCESS:
+                    Bundle bundle = msg.getData();
+                    BmobFile file = (BmobFile) bundle.getSerializable(Constant.FILE);
+                    String fileUrl = file.getUrl();
+
+                    UserBean userBean = new UserBean();
+                    userBean.setImg(fileUrl);
+                    userBean.setSex(currentUser.isSex());
+                    userBean.setAge(currentUser.getAge());
+                    userBean.setShop(currentUser.isShop());
+
+                    mEditUserPresenter.updateUser(mContext, userBean);
+                    break;
+            }
+        }
+
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+
+    CallBackHandler editUserHanler = new CallBackHandler() {
+        public void handleFailureMessage(String msg) {
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
+    };
 
 }

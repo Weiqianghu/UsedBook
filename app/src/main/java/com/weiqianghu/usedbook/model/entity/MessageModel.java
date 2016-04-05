@@ -3,6 +3,8 @@ package com.weiqianghu.usedbook.model.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import cn.bmob.newim.bean.BmobIMConversation;
+
 /**
  * Created by weiqianghu on 2016/4/3.
  */
@@ -13,6 +15,8 @@ public class MessageModel implements Parcelable {
     private String date;
     private long unRead;
     private UserBean chatUser;
+
+    private BmobIMConversation conversation;
 
     public MessageModel() {
     }
@@ -87,6 +91,14 @@ public class MessageModel implements Parcelable {
         this.date = date;
     }
 
+
+    public BmobIMConversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(BmobIMConversation conversation) {
+        this.conversation = conversation;
+    }
 
     @Override
     public int describeContents() {

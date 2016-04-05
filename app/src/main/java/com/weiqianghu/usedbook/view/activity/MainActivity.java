@@ -31,17 +31,14 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.update.BmobUpdateAgent;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-public class MainActivity extends BaseActivity implements IUploadFileByPathView, IEditUserView {
+public class MainActivity extends BaseActivity {
 
 
     private FragmentManager mFragmentManager;
 
     private SimpleDraweeView mUserImgView;
 
-    private UploadFileByPathPresenter mUploadFileByPathPresenter;
-    private List<String> path;
 
-    private EditUserPresenter mEditUserPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,76 +70,11 @@ public class MainActivity extends BaseActivity implements IUploadFileByPathView,
 
         BmobUpdateAgent.update(this);
 
-        mUploadFileByPathPresenter = new UploadFileByPathPresenter(this, uploadFileHandler);
-        mEditUserPresenter = new EditUserPresenter(this, editUserHanler);
+
     }
 
     public void gotoLogin(View view) {
         Intent intent = new Intent(this, LoginAndRegisterActivity.class);
         startActivity(intent);
     }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.REQUEST_IMAGE) {
-            if (resultCode == RESULT_OK) {
-                // 获取返回的图片列表
-                path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-                if (path.size() > 0) {
-                    if (mUserImgView == null) {
-                        mUserImgView = (SimpleDraweeView) findViewById(R.id.iv_user_img);
-                    }
-                    String smallImgPath = ImgUtil.getSmallImgPath(path.get(0), mUserImgView.getWidth(), mUserImgView.getHeight());
-                    updateImg(smallImgPath);
-                    mUploadFileByPathPresenter.uploadFileByPath(MainActivity.this, smallImgPath);
-                }
-            }
-        }
-    }
-
-    CallBackHandler uploadFileHandler = new CallBackHandler() {
-        public void handleSuccessMessage(Message msg) {
-            switch (msg.what) {
-                case Constant.SUCCESS:
-                    Bundle bundle = msg.getData();
-                    BmobFile file = (BmobFile) bundle.getSerializable(Constant.FILE);
-                    String fileUrl = file.getUrl();
-                    UserBean currentUser = BmobUser.getCurrentUser(MainActivity.this, UserBean.class);
-
-                    UserBean userBean = new UserBean();
-                    userBean.setImg(fileUrl);
-                    userBean.setSex(currentUser.isSex());
-                    userBean.setAge(currentUser.getAge());
-
-                    mEditUserPresenter.updateUser(MainActivity.this, userBean);
-                    break;
-            }
-        }
-
-        public void handleFailureMessage(String msg) {
-            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private void updateImg(String path) {
-        Uri uri = FileUtil.getUriByPath(path);
-        if (uri != null) {
-            mUserImgView.setImageURI(uri);
-        }
-    }
-
-    CallBackHandler editUserHanler = new CallBackHandler() {
-        public void handleSuccessMessage(Message msg) {
-            switch (msg.what) {
-                case Constant.SUCCESS:
-                    break;
-            }
-        }
-
-        public void handleFailureMessage(String msg) {
-            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-        }
-    };
 }

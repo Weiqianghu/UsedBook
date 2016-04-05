@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.entity.MessageModel;
+import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.adapter.MessageAdapter;
 import com.weiqianghu.usedbook.util.Constant;
@@ -70,7 +72,7 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
         List<BmobIMConversation> conversationList = BmobIM.getInstance().loadAllConversation();
         for (int i = 0, length = conversationList.size(); i < length; i++) {
 
-            BmobIMConversation conversation = conversationList.get(i);
+            final BmobIMConversation conversation = conversationList.get(i);
             final MessageModel model = new MessageModel();
 
             List<BmobIMMessage> msgs = conversation.getMessages();
@@ -98,6 +100,7 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
                             model.setTitle(userBean.getUsername());
                         }
                         model.setImg(userBean.getImg());
+                        model.setConversation(conversation);
                         mData.add(model);
                         mAdapter.notifyDataSetChanged();
                         mSwiperefreshLayout.setRefreshing(false);
@@ -144,6 +147,9 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
                 initData();
             }
         });
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
 
@@ -153,8 +159,6 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
             @Override
             public void done(String uid, BmobException e) {
                 if (e == null) {
-                    mSwiperefreshLayout.setRefreshing(true);
-                    initData();
                 } else {
                     Log.e("im", e.getErrorCode() + "/" + e.getMessage());
                 }
@@ -183,6 +187,8 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
     @Override
     protected void onResume() {
         super.onResume();
+        mSwiperefreshLayout.setRefreshing(true);
+        initData();
         BmobNotificationManager.getInstance(this).addObserver(this);
     }
 
@@ -232,4 +238,28 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
             }
         });
     }
+
+
+    ItemTouchHelper.Callback mCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, ItemTouchHelper.LEFT) {
+        /**
+         * @param recyclerView
+         * @param viewHolder 拖动的ViewHolder
+         * @param target 目标位置的ViewHolder
+         * @return
+         */
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            
+            BmobIM.getInstance().deleteConversation(mData.get(position).getConversation());
+
+            mData.remove(position);
+            mAdapter.notifyItemRemoved(position);
+        }
+    };
 }

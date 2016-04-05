@@ -15,8 +15,6 @@ import android.widget.Toast;
 
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.model.chat_model.UserModel;
-import com.weiqianghu.usedbook.model.chat_model.i.UpdateCacheListener;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.view.activity.MessageListActivity;

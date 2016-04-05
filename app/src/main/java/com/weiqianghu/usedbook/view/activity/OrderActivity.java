@@ -165,6 +165,10 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
         if (mShoppingModels == null && mShoppingModels.size() < 0) {
             return;
         }
+        if (mAddress == null) {
+            Toast.makeText(OrderActivity.this, "收货地址不能为空，快去添加收货地址", Toast.LENGTH_SHORT).show();
+            return;
+        }
         for (int i = 0, length = mShoppingModels.size(); i < length; i++) {
             mQueryBooksPresenter.queryBooks(OrderActivity.this, mShoppingModels.get(i).getShoppingCartBean());
         }
