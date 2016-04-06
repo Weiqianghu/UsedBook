@@ -318,7 +318,7 @@
                     android:layout_width="@dimen/small_dp"
                     android:layout_height="@dimen/small_dp"
                     android:layout_marginRight="10dp"
-                    android:src="@mipmap/setting" />
+                    android:src="@mipmap/settings" />
 
                 <TextView
                     style="@style/common_text_style"
