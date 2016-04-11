@@ -30,6 +30,7 @@ import com.weiqianghu.usedbook.util.SelectImgUtil;
 import com.weiqianghu.usedbook.util.ThreadPool;
 import com.weiqianghu.usedbook.view.activity.AddressActivity;
 import com.weiqianghu.usedbook.view.activity.EditUserInfoActivity;
+import com.weiqianghu.usedbook.view.activity.MessageListActivity;
 import com.weiqianghu.usedbook.view.activity.OrderFormActivity;
 import com.weiqianghu.usedbook.view.activity.SettingsActivity;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
@@ -228,8 +229,16 @@ public class MineFragment extends BaseFragment implements IUploadFileByPathView,
                 case R.id.prefer:
                     gotoPrefer();
                     break;
+                case R.id.message:
+                    gotoMessageList();
+                    break;
             }
         }
+    }
+
+    private void gotoMessageList() {
+        Intent intent = new Intent(getActivity(), MessageListActivity.class);
+        startActivity(intent);
     }
 
     private void gotoPrefer() {

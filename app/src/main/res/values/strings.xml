@@ -126,5 +126,6 @@
     <string name="comment_empty">暂无评论</string>
     <string name="conversaction">会话列表</string>
     <string name="search_result_empty">没有您要找的内容</string>
+    <string name="system_push">系统推送消息</string>
 
 </resources>

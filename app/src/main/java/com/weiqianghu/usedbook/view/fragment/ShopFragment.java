@@ -10,7 +10,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -189,8 +188,8 @@ public class ShopFragment extends BaseFragment implements IRecycleViewItemClickL
     };
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoBookDetail(postion);
+    public void onItemClick(View view, int position) {
+        gotoBookDetail(position);
     }
 
     void gotoBookDetail(int position) {

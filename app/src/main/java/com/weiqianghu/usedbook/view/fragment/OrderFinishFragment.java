@@ -140,8 +140,8 @@ public class OrderFinishFragment extends BaseFragment implements IRecycleViewIte
     }
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoBookDetail(postion);
+    public void onItemClick(View view, int position) {
+        gotoBookDetail(position);
     }
 
     void gotoBookDetail(int position) {

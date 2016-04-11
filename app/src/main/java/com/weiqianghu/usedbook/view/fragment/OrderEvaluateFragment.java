@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -140,8 +139,8 @@ public class OrderEvaluateFragment extends BaseFragment implements IRecycleViewI
     }
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoComment(postion);
+    public void onItemClick(View view, int position) {
+        gotoComment(position);
     }
 
     private void gotoComment(int postion) {

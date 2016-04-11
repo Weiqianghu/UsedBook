@@ -19,9 +19,7 @@ import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookModel;
 import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.entity.PreferModel;
-import com.weiqianghu.usedbook.model.entity.ShopBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
-import com.weiqianghu.usedbook.presenter.DeletePresenter;
 import com.weiqianghu.usedbook.presenter.QueryBookImgsPresenter;
 import com.weiqianghu.usedbook.presenter.QueryPreferPresenter;
 import com.weiqianghu.usedbook.presenter.UpdatePresenter;
@@ -31,8 +29,6 @@ import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.common.BaseFragment;
 import com.weiqianghu.usedbook.view.customview.EmptyRecyclerView;
-import com.weiqianghu.usedbook.view.customview.EmptyViewHelper;
-import com.weiqianghu.usedbook.view.view.IDeleteView;
 import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
 import com.weiqianghu.usedbook.view.view.IUpdateView;
 
@@ -140,8 +136,8 @@ public class PreferFragment extends BaseFragment implements IRecycleViewItemClic
     }
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoBookDetail(postion);
+    public void onItemClick(View view, int position) {
+        gotoBookDetail(position);
     }
 
     private class Click implements View.OnClickListener {

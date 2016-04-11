@@ -21,9 +21,11 @@ public class UserBean extends BmobUser implements Parcelable, Serializable {
 
     private boolean isShop;
     private ShopBean shop;
+    private String role;
 
     public UserBean() {
     }
+
 
     protected UserBean(Parcel in) {
         age = in.readInt();
@@ -33,6 +35,7 @@ public class UserBean extends BmobUser implements Parcelable, Serializable {
         address = in.readString();
         isShop = in.readByte() != 0;
         shop = in.readParcelable(ShopBean.class.getClassLoader());
+        role = in.readString();
     }
 
     public static final Creator<UserBean> CREATOR = new Creator<UserBean>() {
@@ -46,6 +49,14 @@ public class UserBean extends BmobUser implements Parcelable, Serializable {
             return new UserBean[size];
         }
     };
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public boolean isShop() {
         return isShop;
@@ -120,6 +131,7 @@ public class UserBean extends BmobUser implements Parcelable, Serializable {
         return sexStr;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -134,5 +146,6 @@ public class UserBean extends BmobUser implements Parcelable, Serializable {
         dest.writeString(address);
         dest.writeByte((byte) (isShop ? 1 : 0));
         dest.writeParcelable(shop, flags);
+        dest.writeString(role);
     }
 }

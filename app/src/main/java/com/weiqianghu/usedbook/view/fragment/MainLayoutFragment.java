@@ -270,8 +270,7 @@ public class MainLayoutFragment extends BaseFragment {
         }
         Intent intent = new Intent(getActivity(), MessageListActivity.class);
         startActivity(intent);
-        if (badge != null && badge.isShown()
-                ) {
+        if (badge != null && badge.isShown()) {
             badge.hide();
         }
     }

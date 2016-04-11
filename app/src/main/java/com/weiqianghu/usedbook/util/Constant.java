@@ -57,4 +57,8 @@ public class Constant {
     public static final String BOOK_IMGS = "book_imgs";
     public static final String MESSAGE_RECEIVE = "message_receive";
     public static final String MESSAGE_SEND = "message_send";
+
+    public static final String ROLE_USER="role_user";
+    public static final String ROLE_SHOP="role_shop";
+    public static final String ROLE_ADMIN="role_admin";
 }

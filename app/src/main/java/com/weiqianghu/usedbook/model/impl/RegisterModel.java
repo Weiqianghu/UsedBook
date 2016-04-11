@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.model.inf.IRegisterModel;
+import com.weiqianghu.usedbook.util.Constant;
 
 import cn.bmob.v3.listener.SaveListener;
 
@@ -12,8 +13,8 @@ import cn.bmob.v3.listener.SaveListener;
  */
 public class RegisterModel implements IRegisterModel {
     @Override
-    public boolean register(Context context,SaveListener saveListener,String mobileNo, String smsCode, String password) {
-        UserBean user=new UserBean();
+    public boolean register(Context context, SaveListener saveListener, String mobileNo, String smsCode, String password) {
+        UserBean user = new UserBean();
         user.setUsername(mobileNo);
         user.setPassword(password);
         user.setMobilePhoneNumber(mobileNo);
@@ -24,9 +25,10 @@ public class RegisterModel implements IRegisterModel {
         user.setLatitude(0.0);
         user.setLongitude(0.0);
         user.setShop(false);
-        user.signUp(context,saveListener);
+        user.setRole(Constant.ROLE_USER);
+        user.signUp(context, saveListener);
 
-        user.signUp(context,saveListener);
+        user.signUp(context, saveListener);
         return true;
     }
 }

@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.FailureMessageModel;
 import com.weiqianghu.usedbook.model.entity.MessageModel;
-import com.weiqianghu.usedbook.model.entity.PreferBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.adapter.MessageAdapter;
 import com.weiqianghu.usedbook.util.Constant;
@@ -28,7 +27,6 @@ import com.weiqianghu.usedbook.view.view.IRecycleViewItemClickListener;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.security.interfaces.RSAKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -212,8 +210,8 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
     }
 
     @Override
-    public void onItemClick(View view, int postion) {
-        final UserBean user = mData.get(postion).getChatUser();
+    public void onItemClick(View view, int position) {
+        final UserBean user = mData.get(position).getChatUser();
 
         BmobIMUserInfo info = new BmobIMUserInfo();
         info.setUserId(user.getObjectId());

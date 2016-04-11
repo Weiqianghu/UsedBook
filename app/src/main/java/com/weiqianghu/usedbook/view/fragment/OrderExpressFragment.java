@@ -146,8 +146,8 @@ public class OrderExpressFragment extends BaseFragment implements IRecycleViewIt
     }
 
     @Override
-    public void onItemClick(View view, int postion) {
-        gotoOrderExpressDetailFragment(postion);
+    public void onItemClick(View view, int position) {
+        gotoOrderExpressDetailFragment(position);
     }
 
     private void gotoOrderExpressDetailFragment(int postion) {
