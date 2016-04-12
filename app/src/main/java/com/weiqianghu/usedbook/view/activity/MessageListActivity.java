@@ -56,6 +56,8 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
     private SwipeRefreshLayout mSwiperefreshLayout;
     private MessageAdapter mAdapter;
 
+    private View mSysMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,11 +150,17 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(mCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
+        mSysMessage = findViewById(R.id.sys_message);
+        mSysMessage.setOnClickListener(new Click());
     }
 
 
     private void initBmobIm() {
         UserBean user = BmobUser.getCurrentUser(MessageListActivity.this, UserBean.class);
+        if (user == null) {
+            return;
+        }
         BmobIM.connect(user.getObjectId(), new ConnectListener() {
             @Override
             public void done(String uid, BmobException e) {
@@ -171,6 +179,10 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
             switch (v.getId()) {
                 case R.id.top_bar_left_button:
                     finish();
+                    break;
+                case R.id.sys_message:
+                    Intent intent = new Intent(MessageListActivity.this, SysMessageActivity.class);
+                    startActivity(intent);
                     break;
             }
         }
@@ -253,7 +265,7 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
-            
+
             BmobIM.getInstance().deleteConversation(mData.get(position).getConversation());
 
             mData.remove(position);

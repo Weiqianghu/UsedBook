@@ -26,6 +26,8 @@ import com.weiqianghu.usedbook.view.view.IUploadFileByPathView;
 
 import java.util.List;
 
+import cn.bmob.push.BmobPush;
+import cn.bmob.v3.BmobInstallation;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.update.BmobUpdateAgent;
@@ -36,14 +38,13 @@ public class MainActivity extends BaseActivity {
 
     private FragmentManager mFragmentManager;
 
-    private SimpleDraweeView mUserImgView;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        BmobInstallation.getCurrentInstallation(this).save();
+        // 启动推送服务
+        BmobPush.startWork(this);
         initView();
     }
 

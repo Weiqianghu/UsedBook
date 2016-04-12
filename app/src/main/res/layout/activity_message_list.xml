@@ -10,6 +10,7 @@
     <include layout="@layout/top_bar"></include>
 
     <LinearLayout
+        android:id="@+id/sys_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/box_bg"

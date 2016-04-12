@@ -41,9 +41,5 @@ public class BmobIMApplication extends Application {
         //注册消息接收器
         BmobIM.registerDefaultMessageHandler(new ChatMessageHandler(this));
 
-        BmobInstallation.getCurrentInstallation(this).save();
-        // 启动推送服务
-        BmobPush.startWork(this);
-
     }
 }

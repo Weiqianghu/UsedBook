@@ -61,4 +61,6 @@ public class Constant {
     public static final String ROLE_USER="role_user";
     public static final String ROLE_SHOP="role_shop";
     public static final String ROLE_ADMIN="role_admin";
+
+    public static final String SYS_MESSAGE_TYPE_NOTICE = "sys_message_type_notice";
 }
