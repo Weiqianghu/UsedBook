@@ -163,7 +163,11 @@ public class ChatActivity extends AppCompatActivity implements FaceFragment.OnEm
 
     private void initTopBar() {
         mTvTopBarText = (TextView) findViewById(R.id.tv_top_bar_text);
-        mTvTopBarText.setText(chatUser.getShop().getShopName());
+        if (chatUser.getShop() == null) {
+            mTvTopBarText.setText("个人用户");
+        } else {
+            mTvTopBarText.setText(chatUser.getShop().getShopName());
+        }
 
         Click click = new Click();
         mIvTopBarLeftBtn = (ImageView) findViewById(R.id.top_bar_left_button);
