@@ -57,6 +57,7 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
     private MessageAdapter mAdapter;
 
     private View mSysMessage;
+    private View mRecommend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +154,9 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
 
         mSysMessage = findViewById(R.id.sys_message);
         mSysMessage.setOnClickListener(new Click());
+
+        mRecommend = findViewById(R.id.sys_like);
+        mRecommend.setOnClickListener(new Click());
     }
 
 
@@ -182,6 +186,10 @@ public class MessageListActivity extends Activity implements ObseverListener, IR
                     break;
                 case R.id.sys_message:
                     Intent intent = new Intent(MessageListActivity.this, SysMessageActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.sys_like:
+                    intent = new Intent(MessageListActivity.this, RecommendActivity.class);
                     startActivity(intent);
                     break;
             }

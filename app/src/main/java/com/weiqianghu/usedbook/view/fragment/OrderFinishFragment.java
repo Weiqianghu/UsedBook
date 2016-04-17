@@ -82,7 +82,7 @@ public class OrderFinishFragment extends BaseFragment implements IRecycleViewIte
         mEmptyTv.setText(R.string.this_order_empty);
 
         mRecyclerView = (EmptyRecyclerView) mRootView.findViewById(R.id.recyclerview);
-        View empty = mRootView.findViewById(R.id.book_empty);
+        View empty = mRootView.findViewById(R.id.empty);
         mRecyclerView.setEmptyView(empty);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new OrderAdapter(mData, R.layout.item_order);

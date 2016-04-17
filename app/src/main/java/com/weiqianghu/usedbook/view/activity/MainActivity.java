@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.weiqianghu.usedbook.R;
+import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.presenter.EditUserPresenter;
 import com.weiqianghu.usedbook.presenter.UploadFileByPathPresenter;
@@ -21,6 +22,7 @@ import com.weiqianghu.usedbook.util.FileUtil;
 import com.weiqianghu.usedbook.util.ImgUtil;
 import com.weiqianghu.usedbook.view.common.BaseActivity;
 import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
+import com.weiqianghu.usedbook.view.service.RecommendService;
 import com.weiqianghu.usedbook.view.view.IEditUserView;
 import com.weiqianghu.usedbook.view.view.IUploadFileByPathView;
 

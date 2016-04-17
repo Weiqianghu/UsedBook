@@ -30,6 +30,7 @@ import com.weiqianghu.usedbook.presenter.adapter.ShoppingCartOrderAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.util.DoubleUtil;
+import com.weiqianghu.usedbook.view.service.RecommendService;
 import com.weiqianghu.usedbook.view.view.IQueryView;
 import com.weiqianghu.usedbook.view.view.ISaveView;
 import com.weiqianghu.usedbook.view.view.IUpdateView;
@@ -169,6 +170,9 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
             Toast.makeText(OrderActivity.this, "收货地址不能为空，快去添加收货地址", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        mSubmitBtn.setClickable(false);
+
         for (int i = 0, length = mShoppingModels.size(); i < length; i++) {
             mQueryBooksPresenter.queryBooks(OrderActivity.this, mShoppingModels.get(i).getShoppingCartBean());
         }
@@ -263,6 +267,8 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
 
                     orderBean.setShop(shopBean);
 
+                    recommend(book);
+
                     mSavePresenter.save(OrderActivity.this, orderBean, shoppingCartBean);
                     break;
             }
@@ -313,4 +319,12 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
             Toast.makeText(OrderActivity.this, msg, Toast.LENGTH_SHORT).show();
         }
     };
+
+    private void recommend(BookBean baseBook) {
+        Intent serviceIntent = new Intent(OrderActivity.this, RecommendService.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constant.DATA, baseBook);
+        serviceIntent.putExtra(Constant.DATA, bundle);
+        startService(serviceIntent);
+    }
 }

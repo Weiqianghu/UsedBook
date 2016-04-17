@@ -16,15 +16,11 @@ import android.widget.Toast;
 import com.weiqianghu.usedbook.R;
 import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.CommentBean;
-import com.weiqianghu.usedbook.model.entity.OrderBean;
 import com.weiqianghu.usedbook.presenter.QueryCommentPresenter;
 import com.weiqianghu.usedbook.presenter.adapter.CommentAdapter;
-import com.weiqianghu.usedbook.presenter.adapter.OrderAdapter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
 import com.weiqianghu.usedbook.view.customview.EmptyRecyclerView;
-
-import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +58,7 @@ public class CommentListActivity extends AppCompatActivity {
         this.mSwiperefreshlayout = (SwipeRefreshLayout) findViewById(R.id.swiperefreshlayout);
         this.mRecyclerview = (EmptyRecyclerView) findViewById(R.id.recyclerview);
 
-        View empty = findViewById(R.id.book_empty);
+        View empty = findViewById(R.id.empty);
         TextView emptyTv = (TextView) findViewById(R.id.tv_empty);
         emptyTv.setText(R.string.comment_empty);
         mRecyclerview.setEmptyView(empty);

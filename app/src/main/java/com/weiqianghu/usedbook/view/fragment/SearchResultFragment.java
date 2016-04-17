@@ -102,7 +102,7 @@ public class SearchResultFragment extends BaseFragment implements IRecycleViewIt
     @Override
     protected void initView(Bundle savedInstanceState) {
         mRecyclerView = (EmptyRecyclerView) mRootView.findViewById(R.id.recyclerview);
-        View empty = mRootView.findViewById(R.id.book_empty);
+        View empty = mRootView.findViewById(R.id.empty);
         mEmptyTv= (TextView) mRootView.findViewById(R.id.tv_empty);
         mEmptyTv.setText(R.string.search_result_empty);
         mRecyclerView.setEmptyView(empty);

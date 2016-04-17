@@ -112,7 +112,14 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".view.activity.SysMessageActivity"></activity>
+        <activity android:name=".view.activity.SysMessageActivity" />
+
+        <service
+            android:name=".view.service.RecommendService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".view.activity.RecommendActivity"></activity>
     </application>
 
 </manifest>

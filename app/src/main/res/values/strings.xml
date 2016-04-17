@@ -129,5 +129,8 @@
     <string name="system_push">系统推送消息</string>
     <string name="sys_message">系统消息</string>
     <string name="sys_message_empty">暂无系统消息</string>
+    <string name="system_like">猜您喜欢</string>
+    <string name="recomend">猜你喜欢</string>
+    <string name="recommend_empty">暂无推荐</string>
 
 </resources>
