@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 
-import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.RecommendBean;
-import com.weiqianghu.usedbook.model.entity.ShopBean;
 import com.weiqianghu.usedbook.model.entity.UserBean;
 import com.weiqianghu.usedbook.model.impl.QueryModel;
 import com.weiqianghu.usedbook.model.inf.IQueryModel;
 import com.weiqianghu.usedbook.util.Constant;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
@@ -35,7 +35,12 @@ public class QueryRecommendPresenter extends CommonPresenter {
             @Override
             public void onSuccess(List list) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelableArrayList(Constant.LIST, (ArrayList<? extends Parcelable>) list);
+
+                Set<RecommendBean> recommends = new HashSet<>(list);
+
+                List<RecommendBean> recommendBeanList = new ArrayList<>(recommends);
+
+                bundle.putParcelableArrayList(Constant.LIST, (ArrayList<? extends Parcelable>) recommendBeanList);
                 handleSuccess(bundle);
             }
 

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -130,7 +129,6 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                showTotalMoney();
                 count = 0;
                 isRefresh = true;
                 queryData(count * STEP, STEP);
@@ -210,6 +208,7 @@ public class ShoppingCartFragment extends BaseFragment implements IUpdateView {
                             mShoppingCartAdapter.notifyDataSetChanged();
                         }
                     }
+                    showTotalMoney();
             }
         }
 

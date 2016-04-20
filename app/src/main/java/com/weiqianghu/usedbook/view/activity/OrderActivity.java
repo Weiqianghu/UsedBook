@@ -70,6 +70,8 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
 
     int count = 0;
 
+    private List<BookBean> mBookRecommend = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,7 +269,7 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
 
                     orderBean.setShop(shopBean);
 
-                    recommend(book);
+                    mBookRecommend.add(book);
 
                     mSavePresenter.save(OrderActivity.this, orderBean, shoppingCartBean);
                     break;
@@ -310,6 +312,7 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
                     if (count >= mShoppingModels.size()) {
                         onBackPressed();
                         count = 0;
+                        recommend();
                     }
                     break;
             }
@@ -320,11 +323,14 @@ public class OrderActivity extends AppCompatActivity implements IQueryView, IUpd
         }
     };
 
-    private void recommend(BookBean baseBook) {
-        Intent serviceIntent = new Intent(OrderActivity.this, RecommendService.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(Constant.DATA, baseBook);
-        serviceIntent.putExtra(Constant.DATA, bundle);
-        startService(serviceIntent);
+    private void recommend() {
+        for (BookBean baseBook : mBookRecommend) {
+            Intent serviceIntent = new Intent(OrderActivity.this, RecommendService.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constant.DATA, baseBook);
+            serviceIntent.putExtra(Constant.DATA, bundle);
+            startService(serviceIntent);
+        }
+        mBookRecommend = null;
     }
 }
