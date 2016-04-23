@@ -89,4 +89,26 @@ public class CommentBean extends BmobObject implements Parcelable {
         dest.writeInt(grade);
         dest.writeString(content);
     }
+
+    @Override
+    public int hashCode() {
+        return getUser().getObjectId().hashCode() + getBook().getObjectId().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof CommentBean)) {
+            return false;
+        }
+        if (null == getUser() || null == getBook()
+                || null == getUser().getObjectId()
+                || null == getBook().getObjectId()) {
+            return false;
+        }
+
+        CommentBean comment = (CommentBean) o;
+
+        return getUser().getObjectId().equals(comment.getUser().getObjectId()) &&
+                getBook().getObjectId().equals(comment.getBook().getObjectId());
+    }
 }

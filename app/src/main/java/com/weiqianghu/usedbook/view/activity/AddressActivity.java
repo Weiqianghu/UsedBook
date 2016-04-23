@@ -1,16 +1,13 @@
 package com.weiqianghu.usedbook.view.activity;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
 
 import com.weiqianghu.usedbook.R;
-import com.weiqianghu.usedbook.util.FragmentUtil;
 import com.weiqianghu.usedbook.view.fragment.AddressListFragment;
-import com.weiqianghu.usedbook.view.fragment.MainLayoutFragment;
 
 public class AddressActivity extends AppCompatActivity {
 
