@@ -7,7 +7,6 @@ import android.os.Parcelable;
 
 import com.weiqianghu.usedbook.model.entity.BookBean;
 import com.weiqianghu.usedbook.model.entity.CommentBean;
-import com.weiqianghu.usedbook.model.entity.ShoppingCartBean;
 import com.weiqianghu.usedbook.model.impl.QueryModel;
 import com.weiqianghu.usedbook.model.inf.IQueryModel;
 import com.weiqianghu.usedbook.util.Constant;
@@ -75,6 +74,28 @@ public class QueryCommentPresenter extends CommonPresenter {
         query.setLimit(step);
         query.setSkip(start);
         query.order("-updatedAt");
+        mQueryModel.query(context, query, findListener);
+    }
+
+
+    public void queryComment(final Context context, int start, int step){
+        FindListener<CommentBean> findListener=new FindListener<CommentBean>() {
+            @Override
+            public void onSuccess(List<CommentBean> list) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList(Constant.LIST, (ArrayList<? extends Parcelable>) list);
+                handleSuccess(bundle);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                handleFailureMessage(i, s);
+            }
+        };
+        BmobQuery<CommentBean> query=new BmobQuery<>();
+        query.addWhereGreaterThanOrEqualTo("grade", 4);
+        query.setLimit(step);
+        query.setSkip(start);
         mQueryModel.query(context, query, findListener);
     }
 

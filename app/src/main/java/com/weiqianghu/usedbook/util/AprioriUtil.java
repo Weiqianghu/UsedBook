@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Apriori {
+public class AprioriUtil {
 
     private static final int MSF = 2;// 最小支持频次
-    private static final double MCONF = 0.6;// 最小置信度
+    private static final double MCONF = 0.5;// 最小置信度
 
     public static void main(String[] args) throws Exception {
 

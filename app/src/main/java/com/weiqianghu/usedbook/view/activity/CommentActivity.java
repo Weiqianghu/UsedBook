@@ -3,16 +3,14 @@ package com.weiqianghu.usedbook.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,10 +35,10 @@ import com.weiqianghu.usedbook.presenter.SavePresenter;
 import com.weiqianghu.usedbook.presenter.UpdatePresenter;
 import com.weiqianghu.usedbook.util.CallBackHandler;
 import com.weiqianghu.usedbook.util.Constant;
+import com.weiqianghu.usedbook.view.service.AprioriRecommendService;
 import com.weiqianghu.usedbook.view.view.ISaveView;
 import com.weiqianghu.usedbook.view.view.IUpdateView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cn.bmob.v3.BmobUser;
@@ -312,6 +310,9 @@ public class CommentActivity extends AppCompatActivity implements FaceFragment.O
                     Toast.makeText(CommentActivity.this, "评论提交成功", Toast.LENGTH_SHORT).show();
                     mSubmitBtn.setClickable(false);
                     onBackPressed();
+
+                    Intent intent = new Intent(CommentActivity.this, AprioriRecommendService.class);
+                    startService(intent);
             }
         }
 
