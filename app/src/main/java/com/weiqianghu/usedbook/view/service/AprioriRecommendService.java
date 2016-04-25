@@ -211,6 +211,7 @@ public class AprioriRecommendService extends Service {
                                 }
                                 mSaveAssociatePresenter.batchSaveAssociate(AprioriRecommendService.this, associateBeanList);
                                 mSaveRecommendPresenter.batchSaveRecommend(AprioriRecommendService.this, recommendBeanList);
+                                Looper.myLooper().quit();
                             }
                     }
                 }
