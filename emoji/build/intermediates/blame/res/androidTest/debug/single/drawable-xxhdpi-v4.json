@@ -1,0 +1,610 @@
+[
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_divider_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_jiyan.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_jiyan.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_zuohengheng.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_zuohengheng.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_zuoyi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_zuoyi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_haixiu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_haixiu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shuijiao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shuijiao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_dangao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_dangao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_zan.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_zan.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_haha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_haha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\l_xin.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\l_xin.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_ding.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_ding.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_36dp.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_baibai.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_baibai.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_tuzi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_tuzi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_taikaixin.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_taikaixin.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_feiji.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_feiji.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_clear_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_clear_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_youhengheng.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_youhengheng.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_yiwen.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_yiwen.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_ruo.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_ruo.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_xixi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_xixi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\indicator_point_nomal.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\indicator_point_nomal.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_aoteman.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_aoteman.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_zhutou.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_zhutou.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_taiyang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_taiyang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_pressed_holo_dark.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_landelini.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_landelini.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_han.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_han.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_pressed_holo_light.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_pressed_holo_light.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_weibo.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_weibo.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_tu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_tu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_popup_background_mtrl_mult.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_aini.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_aini.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_heixian.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_heixian.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_huaxin.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_huaxin.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\l_shangxin.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\l_shangxin.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_buyao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_buyao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_xi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_xi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_jiong.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_jiong.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_rating_star_on_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_rating_star_on_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shiwang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shiwang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_zuiyou.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_zuiyou.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_hehe.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_hehe.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_weifeng.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_weifeng.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_doge.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_doge.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_longpressed_holo.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_lazhu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_lazhu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_nu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_nu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_shachenbao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_shachenbao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_lvsidai.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_lvsidai.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_kelian.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_kelian.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_feizao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_feizao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_yun.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_yun.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_numa.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_numa.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_sikao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_sikao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_zhi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_zhi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_focused_holo.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_ok.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_ok.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_liwu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_liwu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_miao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_miao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_ganmao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_ganmao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_fuyun.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_fuyun.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_guzhang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_guzhang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_xianhua.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_xianhua.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_meng.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_meng.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_ab_back_mtrl_am_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_ab_back_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_haha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_haha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shengbing.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shengbing.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_qian.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_qian.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_lei.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_lei.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_voice_search_api_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_voice_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shenshou.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shenshou.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_dalian.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_dalian.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_v5.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_v5.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_keai.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_keai.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_zhaoxiangji.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_zhaoxiangji.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_geili.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_geili.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_000.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_005.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_shenma.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_shenma.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_switch_track_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_wabishi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_wabishi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_touxiao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_touxiao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_zhong.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_zhong.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_yueliang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_yueliang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_xiongmao.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_xiongmao.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_bishi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_bishi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_qinqin.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_qinqin.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_ganbei.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_ganbei.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\indicator_point_select.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\indicator_point_select.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_lai.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_lai.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_chanzui.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_chanzui.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shuai.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shuai.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_xiaoku.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_xiaoku.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_dahaqi.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_dahaqi.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\w_xiayu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\w_xiayu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_xu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_xu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_chijing.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_chijing.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_zhuakuang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_zhuakuang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_huatong.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_huatong.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\face_delete.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\face_delete.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ic_search_api_mtrl_alpha.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ic_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_heng.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_heng.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_bizui.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_bizui.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\f_hufen.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\f_hufen.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_quantou.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_quantou.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_yinxian.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_yinxian.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\ic_evangelist_tip.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\ic_evangelist_tip.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_ye.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_ye.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_ku.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_ku.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_good.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_good.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_shayan.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_shayan.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_weiguan.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_weiguan.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\o_yinyue.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\o_yinyue.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_kun.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_kun.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_nanhaier.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_nanhaier.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_nvhaier.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_nvhaier.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_beishang.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_beishang.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\d_weiqu.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\d_weiqu.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\h_woshou.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\h_woshou.png"
+    },
+    {
+        "merged": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png",
+        "source": "E:\\Android-workplace\\UsedBook\\emoji\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
+    }
+]
